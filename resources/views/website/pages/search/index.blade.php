@@ -18,7 +18,7 @@
          <section>
              <div class="container">
                  <form class="form-control-1 p-t-5">
-                 <input type="text" class="form-controller" id="search" name="search"></input>
+                 <input type="text" class="form-controller" id="search" name="que"></input>
                    
                     <button class="search-btn">
                         <svg id="search-normal" xmlns="http://www.w3.org/2000/svg" width="20.493" height="20.493" viewBox="0 0 20.493 20.493">
@@ -53,7 +53,7 @@
                         <div class="text"> {!! strip_tags($item->translate(app()->getlocale())->text) !!}
                         </div>
                         @endif
-                        <a href="#" class="about-read-link">
+                        <a href="/{{ $item->getfullslug() }}@if($item->parent->type_id == 6)#{{$item->id}}@endif" class="about-read-link">
                             <div class="read-link">Read more</div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="36.514" height="11.852" viewBox="0 0 36.514 11.852">
                                 <g id="Iconly_Light_Arrow_-_Right" data-name="Iconly/Light/Arrow - Right" transform="translate(0.75 1.061)">
@@ -83,24 +83,3 @@
         </section>
     </main>
 @endsection
-@push('scripts')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
-
-<script type="text/javascript">
-$('#Productsearch').on('keyup',function(){
-$value=$(this).val();
-$.ajax({
-type : 'get',
-url : '{{URL::to("/search")}}',
-data:{'search':$value},
-success:function(data){
-$('tbody').html(data);
-}
-});
-})
-</script>
-<script type="text/javascript">
-$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-</script>
-@endpush
