@@ -1,0 +1,14 @@
+@media (max-width: 1638px){
+    .contact-links{
+        width: 800px;
+    }
+    .contact-links li:before{
+        right: -95px;
+    }
+    .popular-product-text{
+        padding-right: 5%;
+    }
+    .absolute-pos{
+        padding-left: 50px;
+    }
+}
