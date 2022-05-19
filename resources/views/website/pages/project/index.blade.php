@@ -111,7 +111,7 @@
                 @if(isset($services) && isset($services->posts) && (count($services->posts) > 0))
                 @foreach($services->posts as $service)
                 <div class="tabs">
-                    <div class="tabcontent" id="{{$service->translate(app()->getlocale())->title}}">
+                    <div class="tabcontent " id="{{$service->translate(app()->getlocale())->title}}">
                         <div class="row">
                             @if(isset($projects->posts) && (count($projects->posts) > 0))
                             @foreach($projects->posts as $project)

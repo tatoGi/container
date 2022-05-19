@@ -59,11 +59,11 @@
                     @endforeach
                 </div>
                 <div style="padding-top:20px">
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="cover">{{trans('admin.cover')}}</label>
                         <br>
                         <input type="file" name="cover" value="file_types" multiple>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="type">{{ trans('admin.type') }}</label>
                         @error('active')
@@ -80,10 +80,11 @@
                         <select class="form-control" name="parent_id" id="parent">
                             <option value="">{{ trans('admin.parent') }}</option>
                             @foreach ($sections as $key => $sec)
-                            <option value="{{ $sec->id }}">{{ $sec->title }}</option>
+                            <option value="{{ $sec->id }}">{{ $sec[app()->getlocale()]->title }}</option>
                             @endforeach
                         </select>
                     </div>
+                    
                     @foreach ( menuTypes() as $key => $menuType )
                     <div class="checkbox checkbox-primary">
                         <input type="checkbox" name="menu_types[]" id="type_{{ $key }}" value="{{ $key }}">
@@ -92,6 +93,8 @@
                         </label>
                     </div>
                     @endforeach
+               
+                   
                 </div>
                 <div class="form-group text-right mb-0">
                     <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">

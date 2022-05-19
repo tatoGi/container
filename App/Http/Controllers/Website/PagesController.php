@@ -82,7 +82,7 @@ class PagesController extends Controller
 		}
 		if ($model->type_id == 4) {
 			$contact = Section::where('type_id', 4)->with('translations', 'posts')->first();
-			return view("website.pages.contact.index	", compact('model', 'breadcrumbs', 'contact', 'language_slugs'));
+			return view("website.pages.contact.index", compact('model', 'breadcrumbs', 'contact', 'language_slugs'));
 		}
 		if ($model->type_id == 6) {
 			$services = Section::where('type_id', 6)->with('translations', 'posts')->first();
@@ -133,34 +133,35 @@ class PagesController extends Controller
 	
 		if ($model->type_id == 14) {
 			$products  = Section::where('type_id', 14)->with('translations', 'posts')->first();
+			$popular_products = Post::where('section_id', $products->id)->with('translations')->get();
 			$category  = Section::where([['type_id', 13],['parent_id', null]])->with('translations','children')->get();
 			$products_posts = Post::where('section_id', $products->id)->with('translations')->paginate(settings('pagination'));
 			return view("website.pages.products.index", compact('model', 'breadcrumbs','products_posts','products', 'category', 'language_slugs'));
 		}
 		return view("website.pages.{$model->type['folder']}.index", compact(['model', 'breadcrumbs', 'language_slugs']));
 	}
-	// public static function submission(Request $request)
-	// {
-	// 	dd($request);
+	public static function submission(Request $request)
+	{
+	
 
-	// 	$validated = $request->validate([
-	// 		'name_surname' => 'required',
-	// 		'sub_section' => 'required',
-	// 		'letter' => 'required',
-	// 	]);
+		$validated = $request->validate([
+			'name_surname' => 'required',
+			'sub_section' => 'required',
+			'letter' => 'required',
+		]);
 
-	// 	$values = request()->all();
-	// 	if ($request->identity != 1) {
-	// 		$values['user_id'] = trans('website.unknown');
-	// 		$values['name'] = trans('website.unknown');
-	// 	}
-	// 	$values['additional'] = getAdditional($values, config('submissionAttr.additional'));
-	// 	$submission = Submission::create($values);
+		$values = request()->all();
+		if ($request->identity != 1) {
+			$values['user_id'] = trans('website.unknown');
+			$values['name'] = trans('website.unknown');
+		}
+		$values['additional'] = getAdditional($values, config('submissionAttr.additional'));
+		$submission = Submission::create($values);
 
-	// 	return redirect()->back()->with([
-	// 		'message' => trans('website.submission_sent'),
-	// 	]);
-	// }
+		return redirect()->back()->with([
+			'message' => trans('website.submission_sent'),
+		]);
+	}
 
 
 	public static function homePage($model, $locales = null)
@@ -177,6 +178,11 @@ class PagesController extends Controller
 		$products_posts = Post::where('section_id', $products->id)->with('translations',function ($q) {
 			$q->where('active', 1);
 		})->where('active_on_home', 1)->get();
+		$popular_products = Post::where('section_id', $products->id)->with('translations',function ($q) {
+			$q->where('active', 1);
+		})->where('populars', 1)->get();
+		// dd($popular_products);
+	
 
 
 
@@ -193,7 +199,7 @@ class PagesController extends Controller
 // dd($teams_section_post);
 		$services = Section::where('type_id', 6)->with('translations', 'posts')->first();
 
-		return view('website.home', compact('contact', 'about_section', 'model', 'services', 'products', 'teams', 'news','news_section_post', 'teams_section_post'));
+		return view('website.home', compact('contact', 'about_section','popular_products', 'model', 'services', 'products', 'teams', 'news','news_section_post', 'teams_section_post'));
 	}
 
 

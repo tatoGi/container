@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Auth\Events\Validated;
 
 class SectionController extends Controller
 {
@@ -24,7 +25,7 @@ class SectionController extends Controller
      * @return void
      */
     public function index(){
-        $sections = Section::where('parent_id', null)->orderBy('order', 'asc')->with('children')->get();
+        $sections = Section::where('parent_id', null)->orderBy('order', 'desc')->with('children')->get();
         // dd($sections);
 
         return view('admin.sections.list', compact('sections'));
@@ -101,9 +102,9 @@ class SectionController extends Controller
         Validator::validate($values, [
             'type_id' => 'required'
         ]);
-        $section = Section::where('id', $id)->first();
+        $section = Section::where('id', $id)->with('translations')->first();
+      
         MenuSection::where('section_id', $id)->delete();
-        Slug::where('slugable_id', $id)->delete();
         if($request->cover != ''){
             $originalName = $request->cover->getClientOriginalName();
             $newName = uniqid() . "." . $request->cover->getClientOriginalExtension();
@@ -113,10 +114,10 @@ class SectionController extends Controller
 
         $values['additional'] = getAdditional($values, config('sectionAttr.additional'));
         foreach(config('app.locales') as $locale){
-            // dd($locale);
-            if($values[$locale]['slug'] != $section->slug){
+           
+            if($values[$locale]['slug'] != $section[$locale]->slug){
+                
                 $values[$locale]['slug'] = SlugService::createSlug(SectionTranslation::class, 'slug', $values[$locale]['slug']);
-                $values[$locale]['slug'] = SlugService::createSlug(PostTranslation::class, 'slug', $values[$locale]['slug']);
             }
             $section->slugs()->create([
                 'fullSlug' => $locale.'/'.$values[$locale]['slug'],
@@ -124,6 +125,7 @@ class SectionController extends Controller
                 'locale' => $locale
             ]);
             $values[$locale]['locale_additional'] = getAdditional($values[$locale], config('sectionAttr.translateable_additional'));
+    
         }
         $section = Section::find($id)->update($values);
         // dd($values['menu_types']);

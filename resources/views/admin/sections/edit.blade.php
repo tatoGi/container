@@ -83,7 +83,7 @@
                         @endforeach
                     </div>
                     <div style="padding-top:20px">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="cover">{{ trans('admin.cover') }}</label>
                             <br>
                             <div class="row">
@@ -106,7 +106,7 @@
 
 
 
-                        </div>
+                        </div> -->
 
 
                         <input type="hidden" name="id" value="cover" />
@@ -170,7 +170,7 @@
                                 <option value="">{{ trans('admin.parent') }}</option>
                                 @foreach ($sections as $key => $sec)
                                     <option value="{{ $sec->id }}"
-                                        {{ $sec->id == $section->parent_id ? 'selected' : '' }}>{{ $sec->title }}
+                                        {{ $sec->id == $section->parent_id ? 'selected' : '' }}>{{ $sec[app()->getlocale()]->title }}
                                     </option>
                                 @endforeach
                             </select>

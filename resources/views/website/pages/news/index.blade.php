@@ -17,13 +17,14 @@
         </section>
         @endif
         <section>
-        @if(isset($news_posts) && (count($news_posts) > 0))
-            @foreach($news_posts as $news)
+      
             <div class="important-title">
                 <span class="line-1"></span>
-                <h1>{{$news->translate(app()->getlocale())->title}}</h1>
+                <h1>{{$model->title}}</h1>
                 <span class="line-1"></span>
             </div>
+            @if(isset($news_posts) && (count($news_posts) > 0))
+            @foreach($news_posts as $key => $news)
             <div class="news-section padding m-b-2">
                 <div class="container">
                     <div class="row row2">
@@ -65,6 +66,7 @@
             @endif
          
         </section>
+        
         <section>
             <div class="container">
                 <div class="pagination">

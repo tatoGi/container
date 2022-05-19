@@ -32,7 +32,7 @@ $('.main-slider').slick({
 $(document).ready(function(){
   $('#searhtext').on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("#search-list .product-list-item").filter(function() {
+    $("#search-list .tabcontent").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
@@ -95,6 +95,25 @@ $(document).on('click', '.list-ul li > span', function(){
   }
 
 });
+
+ 
+function openPos(evt, positName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active-color", "");
+  }
+  document.getElementById(positName).style.display = "block";
+  evt.currentTarget.className += " active-color";
+
+console.log(circles)
+}
+
+ 
 
 //  $(document).on('click', '.list-ul li  span', function(){
 //   const item = $(this).closest('.list-ul li');

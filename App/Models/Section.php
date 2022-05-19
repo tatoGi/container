@@ -100,6 +100,7 @@ class Section extends Model
     }
 
 
+   
     /**
      * Get the user associated with the Section
      *
@@ -138,7 +139,21 @@ class Section extends Model
     public function slugs(){
         return $this->morphMany(Slug::class, 'slugable');
     }
+    public function getAttribute($key)
+    {
+        if (in_array($key, locales())) {
 
+            return $this->translations->keyBy('locale')->get($key);
+
+        }
+
+        if (isset($this->attributes['additional']) && array_key_exists($key, json_decode($this->attributes['additional'], true))) {
+
+            return json_decode($this->attributes['additional'], true)[$key];
+        }
+
+        return parent::getAttribute($key);
+    }
     
     public static function rearrange($array) {
         self::_rearrange($array, 0);

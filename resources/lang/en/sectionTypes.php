@@ -7,7 +7,7 @@ return [
     'contact' => 'Contact Page',
 	'text_page' => 'Text Page',
 	'submenu' => 'Submenu',
-	'project' => 'Project',
+	'projects' => 'Projects',
 	'team' => 'Team',
 	'service' => 'Service',
     'About us' => 'About us',
@@ -15,6 +15,6 @@ return [
     'video_gallery' => 'video gallery',
     'photo_gallery' => 'photo gallery',
     'partners' => 'partners',
-    'product' => 'product',
+    'products' => 'products',
     'category' => 'category'
 ];

@@ -38,6 +38,13 @@
     <label for="">{{trans('admin.show_on_home_page')}}</label> 
 </div> 
 @endif
+@if(($section->type_id == 14))
+<div class="form-group"> 
+    <input type="hidden" value="0" name="populars"> 
+    <input type="checkbox" value="1" name="populars" @if (isset($post) && $post->populars != 0) checked @endif> 
+    <label for="">{{trans('admin.populars')}}</label> 
+</div> 
+@endif
 <div class="form-group text-right mb-0">
     <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
         {{ trans('admin.save') }}

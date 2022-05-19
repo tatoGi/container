@@ -3,7 +3,7 @@
   @foreach ($sections as $section)
   <li class="dd-item @if (count($section->children) > 0 ) acordion @endif" data-id="{{ $section->id }}">
       <div class="dd-handle">
-          {{ $section->title }}
+          {{ $section[app()->getlocale()]->title }}
       </div>
       <div class="change-icons">
           @if ($section->type['type'] != 1 && $section->type['type'] != 13 )

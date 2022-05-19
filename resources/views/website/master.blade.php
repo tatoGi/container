@@ -11,7 +11,7 @@
 		@include('website.components.header')
 	</header>
 	@yield('main')
-  @include('website.components.progress')
+  
 	@include('website.components.FooterBanner')
 	@include('website.components.footer')
 	@include('website.components.scripts')

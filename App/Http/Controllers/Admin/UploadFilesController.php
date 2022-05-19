@@ -48,8 +48,8 @@ class UploadFilesController extends Controller
 
 
     foreach ($files as $file) {
-      File::Delete(config('config.image_path') .  $file);
-      File::Delete(config('config.image_path') . config('config.thumb_path') .  $file);
+      File::unlink(config('config.image_path') .  $file);
+      File::unlink(config('config.image_path') . config('config.thumb_path') .  $file);
     }
 
     DB::table('temp_files_table')->whereIn('file_name', $files)->delete();
@@ -64,11 +64,11 @@ class UploadFilesController extends Controller
     $temp_files = DB::table('temp_files_table')->where('user_id', auth()->user()->id)->get();
 
     foreach ($temp_files as $temp_file) {
-      File::Delete($temp_file->path . $temp_file->file_name);
+      File::unlink($temp_file->path . $temp_file->file_name);
       $arr = json_decode($temp_file->additional_paths);
 
       foreach ($arr as $value) {
-        File::Delete($arr->path . $temp_file->file_name);
+        File::unlink($arr->path . $temp_file->file_name);
       }
     }
 

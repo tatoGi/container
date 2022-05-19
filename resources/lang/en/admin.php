@@ -112,6 +112,7 @@ return [
     'category' => 'category',
     'products' => 'products',
     'about-text' => 'about text',
+    'populars' => 'popular products',
 
 
     'all_rights_resereved' => 'All rights resereved',

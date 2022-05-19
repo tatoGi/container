@@ -62,13 +62,13 @@
                             @foreach ($sections as $section)
                             @if ($sections !== 0)
                             <li>
-                                <a href="/{{ $section->getFullSlug() }}">{{ strtoupper($section->title) }}</a>
+                                <a href="/{{ $section->getFullSlug() }}">{{ strtoupper($section[app()->getlocale()]->title) }}</a>
                                 
                                 <div class="sub-menu">
                                     @if ($section->children->count() > 0)
                                     @foreach ($section->children as $subSec)
                                     <div class="sub-menu-links">
-                                        <a href="/{{ $subSec->getFullSlug() }}">{{ strtoupper($subSec->title) }}</a>
+                                        <a href="/{{ $subSec->getFullSlug() }}">{{ strtoupper($subSec[app()->getlocale()]->title) }}</a>
 
                                     </div>
                                 </div>

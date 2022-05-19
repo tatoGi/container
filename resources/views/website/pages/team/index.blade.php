@@ -21,11 +21,15 @@
                 <h1>{{$model->title}}</h1>
                 <span class="line-1"></span>
             </div>
-             <div class="team-member-1 team-member-list">
+            @if(isset($team_posts) && (count($team_posts) > 0))
+                            @foreach($team_posts as $key => $team)
+                       
+                        
+             <div class="@if($key % 2 == 0)team-member-1 @else team-member-2 @endif team-member-list">
                  <div class="container">
-                     <div class="row team-row">
-                     @if(isset($team_posts) && (count($team_posts) > 0))
-                            @foreach($team_posts as $team)
+             
+                     <div class="row team-row @if($key % 2 != 0) team-row-reverse @endif">
+                 
                          <div class="person-img">
                              <a href="{{ image($team->thumb) }}" data-fancybox="person-img"> 
                                 <img src="{{ image($team->thumb) }}" alt="team">
@@ -33,7 +37,7 @@
                          </div>
                          <div class="person-info">
                              <h4 class="person-name">{{$team->translate(app()->getlocale())->title}}</h4>
-                             <div class="person-special">{{$team->translate(app()->getlocale())->title}}</div>
+                             <div class="person-special">{{$team->translate(app()->getlocale())->position}}</div>
                              <div class="text">{!! $team->translate(app()->getlocale())->text !!}</div>
                              <div class="person-contact">
                                  <a href="{{$team->facebook}}">Linkedin</a>
@@ -53,13 +57,14 @@
                                  </a>
                              </div>
                          </div>
-                         @endforeach
-                         @endif
+                        
                      </div>
+                    
                  </div>
                  <img src="/website/assets/img/Mask Group 158.svg" alt="img" class="position-img">
              </div>
-
+             @endforeach
+                         @endif
         </section>
         <section>
             <div class="container">

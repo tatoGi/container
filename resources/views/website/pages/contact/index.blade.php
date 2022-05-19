@@ -2,19 +2,22 @@
 @section('main')
 <main>
 @if(isset($breadcrumbs))
-        <section>
-            <div class="container">
-                <div class="b-r-c">
-                    <a href="#">{{ trans('website.home') }}</a>
-                    <span >/</span>
-                    @foreach ($breadcrumbs as $breadcrumb)
-                        <li><span class="icon-D-arrow d-arrow-b"> <i class="fa fa-chevron-down" aria-hidden="true"></i> </span></li>
-                        <li class="brand-colored"><a href="/{{ $breadcrumb['url'] }}">{{ $breadcrumb['name'] }}</a></li>
-                        @endforeach
-                </div>
-            </div>
-        </section>
-    @endif
+
+<section>
+    <div class="container">
+        <div class="b-r-c">
+            <a href="/{{app()->getlocale()}}">{{ trans('website.home') }}</a>
+            
+            @foreach ($breadcrumbs as $breadcrumb)
+            <span >/</span>
+            <a href="/{{ $breadcrumb['url'] }}">{{ $breadcrumb['name'] }}</a>
+            
+            @endforeach
+             
+        </div>
+    </div>
+</section>
+@endif
     @if (isset($contact))
          <section>
             <div class="important-title m-t-2 m-tt-22">
@@ -106,62 +109,7 @@
             </div>
          </section>
     @endif
-        <section class="padding">
-            <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2976.4010407681544!2d44.796278315678855!3d41.755010481086615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40446d7d9582ce07%3A0xecde3d7c5a2d7bb3!2sGvazauri%20St%2C%20T&#39;bilisi!5e0!3m2!1sen!2sge!4v1651675927147!5m2!1sen!2sge" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </section>
-             
-       
-        
-        
-    
 
-        <section>
-            <div class="counter-cards">
-                <div class="cards-bg"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-6">
-                            <div class="count-card">
-                                <div class="card-span">
-                                    <span class="count">10</span>
-                                    <span></span>
-                                </div>
-                                <div class="title">Business Years</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-6">
-                            <div class="count-card">
-                                <div class="card-span">
-                                    <span class="count">80</span>
-                                    <span>K+</span>
-                                </div>
-                                <div class="title">Product Sales</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-6">
-                            <div class="count-card">
-                                <div class="card-span">
-                                    <span class="count">90</span>
-                                    <span>%</span>
-                                </div>
-                                <div class="title">Happy Customers</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-6">
-                            <div class="count-card">
-                                <div class="card-span">
-                                    <span class="count">10</span>
-                                    <span></span>
-                                </div>
-                                <div class="title">Team Members</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
 @endsection

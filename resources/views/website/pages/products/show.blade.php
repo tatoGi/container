@@ -58,15 +58,15 @@
                         <div class="col-xxl-9 col-lg-8 col-md-8 col-sm-7">
                             <div class="container-components-box">
                                 <h1 class="container-name">
-                                {{ $model->title }}
+                                {{ $model[app()->getlocale()]->title }}
                                 </h1>
                                 <div class="cont-snt">
-                                {!! $model->desc !!}
+                                {!! $model[app()->getlocale()]->desc !!}
                                 </div>
                                 <div class="container-description">
                                     <h3>Description:</h3>
                                     <div class="text">
-                                    {!! $model->text !!}
+                                    {!! $model[app()->getlocale()]->text !!}
                                     </div>
                                 </div>
                                 <div class="container-components">

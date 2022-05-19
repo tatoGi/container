@@ -18,13 +18,14 @@ class Post extends Model
 
     protected $fillable = [
         'section_id',
-        'additional',
         'thumb',
         'author_id',
         'date',
 		'additional',
 		'country',
-        'active_on_home'
+        'active_on_home',
+        'populars'
+
     ];
     public $translatedAttributes = [
         'title',

@@ -38,16 +38,20 @@
                         <hr>
                         <div class="categories-list">
                             <ul class="list-ul">
-                                <li class="list-li">
+                                <li class="list-li ">
                                     <a href="#" onclick="openPos(event, 'all')">{{trans('website.all')}}</a>
                                     <span></span>
                                 </li>
+                                
                                 @foreach($category as $key => $cat)
                                 @if($cat ==! 0)
-                                <li class="list-li">
-
-                                    <a href="">{{ $cat->translate(app()->getlocale())->title }}</a>
-
+                                @if ($cat->children ==! 0)
+                                    @foreach ($cat->children as $subSec)
+                                <li class="list-li tablinks" >
+                                
+                                  
+                                    <a href="#" onclick="openPos(event, '{{$subSec->id}}','{{$cat->id }}')">{{ $cat->translate(app()->getlocale())->title }}</a>
+                                 
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="9.414" height="16.828"
                                             viewBox="0 0 9.414 16.828">
@@ -60,12 +64,11 @@
                                         </svg>
                                     </span>
 
-                                    @if ($cat->children ==! 0)
-                                    @foreach ($cat->children as $subSec)
-                                    <ul class="child-ul">
+                                   
+                                    <ul class="child-ul tablinks">
 
                                         <li>
-                                            <a href="#">{{ ($subSec->title) }}</a>
+                                            <a href="#" onclick="openPos(event, '{{$subSec->id}}')">{{ ($subSec[app()->getlocale()]->title) }}</a>
                                             <span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="9.414" height="16.828"
                                                     viewBox="0 0 9.414 16.828">
@@ -81,9 +84,9 @@
                                             @if ($subSec->children ==! 0)
                                             @foreach ($subSec->children as $CsubSec)
 
-                                            <ul class="child-ul">
+                                            <ul class="child-ul tablinks">
                                                 <li>
-                                                    <a href="#">{{ ($CsubSec->title) }}</a>
+                                                    <a href="#" onclick="openPos(event,'{{$CsubSec->id}}')">{{ ($CsubSec[app()->getlocale()]->title) }}</a>
                                                     <span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="9.414"
                                                             height="16.828" viewBox="0 0 9.414 16.828">
@@ -101,7 +104,7 @@
                                            
                                             <ul class="child-ul">
                                                 <li>
-                                                    <a href="#">{{ ($DsubSec->title) }}</a>
+                                                    <a href="#" onclick="openPos(event, '{{$DsubSec->id}}')">{{ ($DsubSec[app()->getlocale()]->title) }}</a>
                                                     <span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="9.414"
                                                             height="16.828" viewBox="0 0 9.414 16.828">
@@ -173,25 +176,30 @@
                             </form>
         
                         </div>
-
+                   
                         <div class="products-list" id="search-list">
-                            @if(isset($products_posts) && (count($products_posts) > 0))
-                            @foreach($products_posts as $products)
-                            <a href="/{{$products->getfullslug()}}" class="product-list-item">
+                        @if(isset($products_posts) && (count($products_posts) > 0))
+                            @foreach($products_posts as $post)
+                         
+                            @if(isset($post->category) && ($post->category) != 0)
+                        
+                            <a href="/{{$post->getfullslug()}}" class="product-list-item tabcontent"  id="{{$post->category}}">
+                               
                                 <div class="list-img">
-                                    <img src="{{ image($products->thumb) }}" alt="img">
+                                    <img src="{{ image($post->thumb) }}" alt="img">
                                     <div class="photo-hover">
                                         <div class="text">
-                                            {!! $products->translate(app()->getlocale())->text !!}
+                                            {!! $post->translate(app()->getlocale())->text !!}
                                         </div>
                                     </div>
                                 </div>
-                                <h3>{{$products->translate(app()->getlocale())->title}}</h3>
+                                <h3>{{$post->translate(app()->getlocale())->title}}</h3>
                             </a>
+                            @endif
                             @endforeach
                             @endif
                         </div>
-
+                       
 
                     </div>
                 </div>
