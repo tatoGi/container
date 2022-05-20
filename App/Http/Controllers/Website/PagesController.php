@@ -23,9 +23,11 @@ use File;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
+use function PHPUnit\Framework\isEmpty;
+
 class PagesController extends Controller
 {
-	public static function index($model)
+	public static function index($model,Request $request)
 	
 	{
 		
@@ -46,7 +48,7 @@ class PagesController extends Controller
 		// BreadCrumb ----------------------------
 		$breadcrumbs = [];
 		$breadcrumbs[] = [
-			'name' => $model->title,
+			'name' => $model[app()->getlocale()]->title,
 			'url' => $model->getFullSlug()
 		];
 		
@@ -134,8 +136,39 @@ class PagesController extends Controller
 		if ($model->type_id == 14) {
 			$products  = Section::where('type_id', 14)->with('translations', 'posts')->first();
 			$popular_products = Post::where('section_id', $products->id)->with('translations')->get();
-			$category  = Section::where([['type_id', 13],['parent_id', null]])->with('translations','children')->get();
-			$products_posts = Post::where('section_id', $products->id)->with('translations')->paginate(settings('pagination'));
+			$category  = Section::where([['type_id', 13],['parent_id',null]])->with('translations','children','children.children')->get();
+			$filter_cat_arr = array();
+			if($request->category != null)
+			{
+				 $filter_category = Section::where([['type_id', 13],['id',$request->category]])->with('translations','children','children.children')->first();
+				 array_push($filter_cat_arr, $filter_category->id);
+				 foreach($filter_category->children as $child_cat )
+				 {
+					array_push($filter_cat_arr, $child_cat->id);
+					foreach($child_cat->children as $grandchild_cat )
+					{
+						array_push($filter_cat_arr, $grandchild_cat->id);
+					}
+				 }
+
+				//  if($filter_category->parent_id != null)
+				//  {
+				// 	$parent_filter_category = Section::where([['type_id', 13],['id',$filter_category->parent_id ]])->first();
+				// 	array_push($filter_cat_arr, $parent_filter_category->id);
+				// 	if($parent_filter_category->parent_id != null)
+				// 	{
+				// 		$grandparent_filter_category = Section::where([['type_id', 13],['id',$parent_filter_category->parent_id ]])->first();
+				// 		array_push($filter_cat_arr, $grandparent_filter_category->id);
+				// 	}
+				//  }		 
+			}
+			if(count($filter_cat_arr)==0)
+			{
+				$products_posts = Post::where('section_id', $products->id)->with('translations')->paginate(settings('pagination'));
+			}
+			else{
+				$products_posts = Post::where('section_id', $products->id)->whereIn('additional->category',$filter_cat_arr)->with('translations')->paginate(settings('pagination'));
+			}
 			return view("website.pages.products.index", compact('model', 'breadcrumbs','products_posts','products', 'category', 'language_slugs'));
 		}
 		return view("website.pages.{$model->type['folder']}.index", compact(['model', 'breadcrumbs', 'language_slugs']));
@@ -266,8 +299,8 @@ class PagesController extends Controller
 	public static function show($model)
 	{
 		$language_slugs = $model->getTranslatedFullSlugs();
-
-		// BreadCrumb ----------------------------
+		
+			// BreadCrumb ----------------------------
 		$breadcrumbs = [];
 		$breadcrumbs[] = [
 			'name' => $model[app()->getLocale()]->title,

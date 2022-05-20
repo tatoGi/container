@@ -70,6 +70,9 @@
 
     .dd-item {
         position: relative;
+        max-height: 180px;
+    overflow-y: auto;
+    
     }
 
     .dd-item .change-icons {

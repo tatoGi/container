@@ -20,7 +20,7 @@
     <section class="padding-b">
         <div class="important-title">
             <span class="line-1"></span>
-            <h1>{{$model->title}}</h1>
+            <h1>{{$model[app()->getlocale()]->title}}</h1>
 
             <span class="line-1"></span>
         </div>
@@ -39,18 +39,18 @@
                         <div class="categories-list">
                             <ul class="list-ul">
                                 <li class="list-li ">
-                                    <a href="#" onclick="openPos(event, 'all')">{{trans('website.all')}}</a>
+                                    <a href="/{{$products->getfullslug()}}" >{{trans('website.all')}}</a>
                                     <span></span>
                                 </li>
                                 
                                 @foreach($category as $key => $cat)
                                 @if($cat ==! 0)
                                 @if ($cat->children ==! 0)
-                                    @foreach ($cat->children as $subSec)
+                                    
                                 <li class="list-li tablinks" >
                                 
                                   
-                                    <a href="#" onclick="openPos(event, '{{$subSec->id}}','{{$cat->id }}')">{{ $cat->translate(app()->getlocale())->title }}</a>
+                                    <a href="/{{$products->getfullslug()}}?category={{$cat->id}}" >{{ $cat->translate(app()->getlocale())->title }}</a>
                                  
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="9.414" height="16.828"
@@ -64,11 +64,11 @@
                                         </svg>
                                     </span>
 
-                                   
+                                    @foreach ($cat->children as $subSec)
                                     <ul class="child-ul tablinks">
 
                                         <li>
-                                            <a href="#" onclick="openPos(event, '{{$subSec->id}}')">{{ ($subSec[app()->getlocale()]->title) }}</a>
+                                            <a href="/{{$products->getfullslug()}}?category={{$subSec->id}}" >{{ ($subSec[app()->getlocale()]->title) }}</a>
                                             <span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="9.414" height="16.828"
                                                     viewBox="0 0 9.414 16.828">
@@ -86,7 +86,7 @@
 
                                             <ul class="child-ul tablinks">
                                                 <li>
-                                                    <a href="#" onclick="openPos(event,'{{$CsubSec->id}}')">{{ ($CsubSec[app()->getlocale()]->title) }}</a>
+                                                    <a href="/{{$products->getfullslug()}}?category={{$CsubSec->id}}">{{ ($CsubSec[app()->getlocale()]->title) }}</a>
                                                     <span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="9.414"
                                                             height="16.828" viewBox="0 0 9.414 16.828">

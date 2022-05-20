@@ -10,9 +10,9 @@ use App\Models\Slug;
 
 class RoutesController extends Controller
 {
-    public function index($url){
+    public function index($url,Request $request){
         if($url == 'search'){
-            return PagesController::search();
+            return PagesController::search($request);
         }
         $slug = Slug::where('fullSlug', app()->getLocale()."/{$url}")->first();
         
@@ -23,7 +23,7 @@ class RoutesController extends Controller
         
         // dd($slug->slugable()->get());
         if ($slug->slugable_type === "App\Models\Section") {
-            return PagesController::index($model);
+            return PagesController::index($model, $request);
 
         }
         if ($slug->slugable_type === "App\Models\Post") {

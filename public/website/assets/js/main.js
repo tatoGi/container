@@ -8,6 +8,18 @@ $('.main-slider').slick({
     autoplay:true,
     autoplaySpeed:4000
   });
+
+  $('.popular-slider-container').slick({
+    nextArrow: false,
+    prevArrow: false,
+    // infinite: true,
+    prevArrow:false,
+    nextArrow:false,
+    dots: false,
+    autoplay:true,
+    autoplaySpeed:4000
+  });
+
   $('.news-slider').slick({
     prevArrow:$('#prev'),
     nextArrow:$('#next'),
@@ -29,26 +41,31 @@ $('.main-slider').slick({
   });
   
 
-$(document).ready(function(){
-  $('#searhtext').on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#search-list .tabcontent").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
+  $(window).scroll(function(){
+    var headSticky = $('.header-pos-container'),
+        scroll = $(window).scrollTop();
+  
+    if (scroll >= 1) headSticky.addClass('header-shadow');
+    else headSticky.removeClass('header-shadow');
   });
-});
+ 
   $(document).ready(function() {
     $(".slick-dots li button").text(" ");
  });
 
+ $(document).on('click', '.burger-lines ', function(){
+  $('.burg-menu').toggleClass('active-burger');
+  $('.burger-lines').toggleClass('active-close');
+  $('body').toggleClass('fix');
+  $(window).scrollTop(0)
+});
 
  $(document).on('click', '.bottom-navbar ul li ', function(){
-  
   $(this).addClass('colored').siblings().removeClass('colored');
 });
 
 $(document).on('click', '.close-btn', function(){
-  $(".search-input").val(" "); 
+  $(".search-input").val(""); 
 });
 
 $('.count').each(function () {
@@ -62,8 +79,14 @@ $('.count').each(function () {
       }
   });
 });
-
-  
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#search-list .product-list-item").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 
 function myFunction(imgs) {
   var expandImg = document.getElementById("expandedImg");
@@ -95,25 +118,6 @@ $(document).on('click', '.list-ul li > span', function(){
   }
 
 });
-
- 
-function openPos(evt, positName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active-color", "");
-  }
-  document.getElementById(positName).style.display = "block";
-  evt.currentTarget.className += " active-color";
-
-console.log(circles)
-}
-
- 
 
 //  $(document).on('click', '.list-ul li  span', function(){
 //   const item = $(this).closest('.list-ul li');

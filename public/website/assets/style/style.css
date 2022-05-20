@@ -34,6 +34,9 @@ a:hover{
 *{
     box-sizing: border-box;
 }
+/* body{
+    overflow-x: hidden;
+} */
 
 
 /* ScrollBar */
@@ -83,11 +86,9 @@ header{
 .header{
     width: 100%;
     height: 165px;
-   
     position: fixed;
     top: 0;
-     
-    z-index: 99;
+    z-index: 99999;
 }
 .h-bg-1{
     width: 100%;
@@ -431,6 +432,9 @@ button.search-button svg{
 .burger-icon{
     display: none;
 }
+.burg-menu{
+    display: none;
+}
 
 .padding{
     padding: var(--section-padding);
@@ -510,6 +514,7 @@ button.search-button svg{
     width: 127px;
     background-color: #E3662A;
 }
+ 
 
 /* Banner */
 
@@ -795,10 +800,13 @@ main{
 .popular-product-img{
     height: 492px;
     overflow: hidden;
+    z-index: 555;
 }
 .popular-product-img img{
     /* width: 100%; */
     height: 100%;
+    position: relative;
+    z-index: 555;
 }
 .popular-product-text{
     padding-right: 10%;
@@ -833,9 +841,13 @@ main{
     content: "";
     bottom: 95px;
     right: -100px;
-    width: 170%;
+    width: 235%;
     height: 51px;
     background-color: #FBD442;
+}
+.popular-slider-item{
+    position: relative;
+    overflow-x: hidden;
 }
 /* Popular product section */
 
@@ -887,6 +899,7 @@ main{
     position: absolute;
     z-index: 2;
 }
+ 
 .news-text-box{
     padding-left: 24px;
     padding-top: 42px;
@@ -958,9 +971,12 @@ footer{
     background: #fff;
     z-index: 1;
 }
-.footer-adv2{
-    margin-top: 100px!important;
+.hidden-news-det-icon{
+    display: none;
 }
+/* .footer-adv2{
+    margin-top: 100px!important;
+} */
 .footer-adv{
     margin-top: 152px;
     background-color: #E3662A;  
@@ -1247,7 +1263,16 @@ footer{
 /* About Page */
 /* News Page */
 .news-text-box h2.m-b-1{
-    margin-bottom: 29px;
+    margin-bottom: 30px;
+}
+.news-text-box2{
+    padding-top: 22px!important;
+}
+.news-text-box2 .time{
+    margin-bottom: 30px!important;
+}
+.news-text-box2 .m-t-1{
+    margin-top: 30px!important;
 }
 .m-t-1{
     margin-top: 22px;
@@ -1533,6 +1558,9 @@ footer{
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.personal-hidden-text{
+    display: none;
 }
 .person-info{
     max-width: calc(100% - 260px);
@@ -1992,6 +2020,7 @@ footer{
     color: #1B1B1B;
     margin-bottom: 20px;
 }
+
 .search-result-item::after{
     position: absolute;
     content: "";
@@ -2000,7 +2029,7 @@ footer{
     width: 23.5%;
     right: 0;
     top: 0;
-    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%)
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
 }
 .search-result-item::before{
     position: absolute;
@@ -2011,6 +2040,27 @@ footer{
     left: 0;
     bottom: 0;
     border-radius: 0 8px 0 0;
+}
+.search-result-item:nth-child(2n - 1)::after{
+    position: absolute;
+    content: "";
+    background-color: #E3662A;
+    height: 56px;
+    width: 23.5%;
+    right: 0;
+    top: 0;
+    border-radius: 0 0 0 8px;
+    clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+}
+.search-result-item:nth-child(2n - 1)::before{
+    position: absolute;
+    content: "";
+    background-color: #1860A2;
+    height: 56px;
+    width: 23.5%;
+    left: 0;
+    bottom: 0;
+    clip-path: polygon(0% 0, 90% 0, 100% 100%, 0% 100%);
 }
 .search-result-item:last-child{
     margin-bottom: 0;
