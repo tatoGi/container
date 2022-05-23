@@ -18,7 +18,7 @@
         <section style="overflow-x: hidden;">
             <div class="important-title">
                 <span class="line-1"></span>
-                <h1>{{$model->title}}</h1>
+                <h1>{{$model[app()->getlocale()]->title}}</h1>
                 <span class="line-1"></span>
             </div>
             @if(isset($team_posts) && (count($team_posts) > 0))

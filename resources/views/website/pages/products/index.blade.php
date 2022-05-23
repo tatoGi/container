@@ -157,8 +157,8 @@
                                     found <span>{{ $products_posts->total() }} </span> result
                                 </h4>
                             </div>
-                            <form action="" method="" role="search">
-                                <input id="searhtext" type="text" placeholder="Search..." name="que">
+                            <form action="/{{ app()->getLocale() }}/products" method="GET" role="prosearch">
+                                        <input id="AllProduct" type="text" placeholder="Search..." name="product">
                                 <button>
                                     <svg id="search-normal" xmlns="http://www.w3.org/2000/svg" width="20.493"
                                         height="20.493" viewBox="0 0 20.493 20.493">
@@ -176,15 +176,15 @@
                             </form>
         
                         </div>
-                   
-                        <div class="products-list" id="search-list">
+                
+                        <div class="products-list" id="prosearch">
                         @if(isset($products_posts) && (count($products_posts) > 0))
                             @foreach($products_posts as $post)
                          
                             @if(isset($post->category) && ($post->category) != 0)
                         
-                            <a href="/{{$post->getfullslug()}}" class="product-list-item tabcontent"  id="{{$post->category}}">
-                               
+                            <a href="/{{$post->getfullslug()}}#{{$post->id}}" class="product-list-item"  id="{{$post->category}}">
+                              
                                 <div class="list-img">
                                     <img src="{{ image($post->thumb) }}" alt="img">
                                     <div class="photo-hover">
@@ -216,10 +216,12 @@
             <div class="pagination">
                 @if(isset($products_posts) && (count($products_posts) > 0))
                 {{ $products_posts->links("website.components.pagination") }}
+                
                 @endif
             </div>
         </div>
 
     </section>
 </main>
+
 @endsection

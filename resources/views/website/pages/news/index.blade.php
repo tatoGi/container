@@ -72,7 +72,7 @@
                 <div class="pagination">
                 @if(isset($news_posts) && (count($news_posts) > 0))
 
-{{ $news_posts->links("website.components.pagination") }}
+                    {{ $news_posts->links("website.components.pagination") }}
 @endif
                 </div>
             </div>

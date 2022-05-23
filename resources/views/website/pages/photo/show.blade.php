@@ -10,7 +10,7 @@
     <div class="container">
         <div class="b-r-c">
             <a href="/{{app()->getlocale()}}">{{ trans('website.home') }}</a>
-            
+            <span>/</span>
             @foreach ($breadcrumbs as $breadcrumb)
             <a href="/{{ $breadcrumb['url'] }}">{{ $breadcrumb['name'] }}</a>
             
@@ -20,8 +20,6 @@
     </div>
 </section>
 @endif
- 
-
         <section>  
             <div class="photo-albums p-t-5">
                 <div class="container">
@@ -33,7 +31,7 @@
                             <img src="{{ image($model->thumb) }}" alt="product">
                             <div class="photo-hover">
                                 <div class="text">
-                               { !! $model->translate(app()->getlocale())->desc !!}
+                               {!! $photo->translate(app()->getlocale())->desc !!}
                                 </div> 
                             </div>
                         </a>

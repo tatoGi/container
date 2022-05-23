@@ -14,7 +14,7 @@
                     @foreach ($breadcrumbs as $breadcrumb)
                    
                     <a href="/{{ $breadcrumb['url'] }}">{{ $breadcrumb['name'] }}</a>
-                    <span >/</span>
+                    
                     @endforeach
                      
                 </div>

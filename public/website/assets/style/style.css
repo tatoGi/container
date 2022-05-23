@@ -1353,6 +1353,9 @@ footer{
     font-family: 'Heebo';
 
 }
+.pagination ul li{
+    list-style: none;
+}
 .pagination ul li a span{
     margin-right: 20px;
 }

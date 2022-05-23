@@ -17,7 +17,6 @@ return [
 		"type" => "textarea",
 		"description" => "About Us Text",
 	],
-
 	"address" => [
 		"value" => [
 			"ka" => "დავით აღმაშენებლის გამზირი",
@@ -25,6 +24,14 @@ return [
 		],
 		"type" => "text",
 		"description" => "Website Title",
+	],
+	"Footer_Banner_Text" => [
+		"value" => [
+			"ka" => "<p>კონტაქტი ტექსტი</p>",
+			"en" => "<p><br>Feel free to contact Us!</p>",
+		],
+		"type" => "textarea",
+		"description" => "contact Us Text",
 	],
 	"time" => [
 		"title" => "instagram",
@@ -86,10 +93,10 @@ return [
 		"type" => "text",
 		"value" => "4",
 	],
-	"service_pagination" => [
+	"products_pagination" => [
 		"title" => "Paginate",
 		"type" => "text",
-		"value" => "2",
+		"value" => "12",
 	],
 	"news_pagination" => [
 		"title" => "Paginate",

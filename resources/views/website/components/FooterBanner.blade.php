@@ -1,20 +1,25 @@
 
-  <section>
+        <section>
             <div class=" footer-adv2 footer-adv ">
                 <div class="container">
                     <div class="footer-cont"> 
                         <div class="row add-items-end">
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-12">
                                 <div class="adv-text">
-                                    <h2>{!!settings('Footer Banner Button title')!!}</h2>
+                                    <h2>
+                                    {{trans('admin.footer_contact')}}
+                                    </h2>
                                     <div class="text">
-                                    {!!settings('Footer Banner Text')!!}
+                                    {!! settings('Footer_Banner_Text') !!}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 add-end">
-                                <a href="#" class="adv-link">  
-                                    <span>{{ trans('website.contact_button') }}</span>
+                           
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12 add-end">
+                          
+                                <a href="/" class="adv-link"> 
+                             
+                                    <span>CONTACT US</span>
                                     <span> 
                                         <svg xmlns="http://www.w3.org/2000/svg" width="65.542" height="33.382" viewBox="0 0 65.542 33.382">
                                             <g id="Iconly_Light_Arrow_-_Right" data-name="Iconly/Light/Arrow - Right" transform="translate(2 2.829)">
@@ -27,6 +32,7 @@
                                     </span>
                                 </a>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

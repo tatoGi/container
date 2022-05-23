@@ -149,25 +149,14 @@ class PagesController extends Controller
 					{
 						array_push($filter_cat_arr, $grandchild_cat->id);
 					}
-				 }
-
-				//  if($filter_category->parent_id != null)
-				//  {
-				// 	$parent_filter_category = Section::where([['type_id', 13],['id',$filter_category->parent_id ]])->first();
-				// 	array_push($filter_cat_arr, $parent_filter_category->id);
-				// 	if($parent_filter_category->parent_id != null)
-				// 	{
-				// 		$grandparent_filter_category = Section::where([['type_id', 13],['id',$parent_filter_category->parent_id ]])->first();
-				// 		array_push($filter_cat_arr, $grandparent_filter_category->id);
-				// 	}
-				//  }		 
+				 }	 
 			}
 			if(count($filter_cat_arr)==0)
 			{
-				$products_posts = Post::where('section_id', $products->id)->with('translations')->paginate(settings('pagination'));
+				$products_posts = Post::where('section_id', $products->id)->with('translations')->paginate(settings('products_pagination'));
 			}
 			else{
-				$products_posts = Post::where('section_id', $products->id)->whereIn('additional->category',$filter_cat_arr)->with('translations')->paginate(settings('pagination'));
+				$products_posts = Post::where('section_id', $products->id)->whereIn('additional->category',$filter_cat_arr)->with('translations')->paginate(settings('products_pagination'));
 			}
 			return view("website.pages.products.index", compact('model', 'breadcrumbs','products_posts','products', 'category', 'language_slugs'));
 		}
@@ -388,8 +377,9 @@ class PagesController extends Controller
 	}
 	public static function search(Request $request)
 	{
-		$language_slugs['ka'] = 'ka/search?que='.$request->que;
-		$language_slugs['en'] = 'en/search?que='.$request->que;
+		
+		$language_slugs['ka'] = 'ka/search?que='.$request->arr;
+		$language_slugs['en'] = 'en/search?que='.$request->arr;
 		$validatedData = $request->validate([
 			'que' => 'required',
 		]);
@@ -416,24 +406,25 @@ class PagesController extends Controller
 	
 	public static function prosearch(Request $request)
 	{
+		dd($language_slugs['ka'] = 'ka/products?product='.$request->product);
+		$language_slugs['ka'] = 'ka/products?product='.$request->product;
+		$language_slugs['en'] = 'en/products?product='.$request->product;
 		
-		$language_slugs['ka'] = 'ka/search?que='.$request->que;
-		$language_slugs['en'] = 'en/search?que='.$request->que;
+		
 		$validatedData = $request->validate([
-			'que' => 'required',
+			'product' => 'required',
 		]);
-		$searchText = $validatedData['que'];
-		
+		$searchText = $validatedData['product'];
 		$postTranlations = PostTranslation::whereActive(true)->whereLocale(app()->getLocale())
 			->where('title', 'LIKE', "%{$searchText}%")
 			->orWhere('desc', 'LIKE', "%{$searchText}%")
 			->orWhere('text', 'LIKE', "%{$searchText}%")
-			->orWhere('keywords', 'LIKE', "%{$searchText}%")
 			->orWhere('locale_additional', 'LIKE', "%{$searchText}%")->pluck('post_id')->toArray();
-		$posts  = Post::whereIn('id', $postTranlations)->with('translations', 'parent', 'parent.translations')->paginate(settings('paginate'));
-		$posts->appends(['que' => $searchText]);
+		$products_posts  = Post::whereIn('id', $postTranlations)->with('translations', 'parent', 'parent.translations')->paginate(settings('paginate'));
+		$products_posts->appends(['product' => $searchText]);
+		dd($products_posts);
 		$data = [];
-		foreach ($posts as $post) {
+		foreach ($products_posts as $post) {
 			$data[] = [
 				'slug' => $post->getFullSlug() ?? '#',
 				'title' => $post->translate(app()->getLocale())->title,

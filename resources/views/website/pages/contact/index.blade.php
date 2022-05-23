@@ -22,7 +22,7 @@
          <section>
             <div class="important-title m-t-2 m-tt-22">
                 <span class="line-1"></span>
-                <h1>{{$model->title}}</h1>
+                <h1>{{$model[app()->getlocale()]->title}}</h1>
              
                 <span class="line-1"></span>
             </div>
@@ -98,7 +98,7 @@
                                         </span>
                                         <h2>address</h2>
                                         <div class="address">
-                                        {{$model->posts[0]->address}}
+                                        {{$model->posts[0]->translate(app()->getlocale())->adress}}
                                         </div>
                                     </div>
                                 </div>
