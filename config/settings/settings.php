@@ -91,12 +91,12 @@ return [
 	"paginate" => [
 		"title" => "Paginate",
 		"type" => "text",
-		"value" => "4",
+		"value" => "8",
 	],
 	"products_pagination" => [
 		"title" => "Paginate",
 		"type" => "text",
-		"value" => "12",
+		"value" => "2",
 	],
 	"news_pagination" => [
 		"title" => "Paginate",
