@@ -23,12 +23,12 @@
         <div class="news-section p-t-5 news-det-section">
             <div class="container">
                 <div class="row row2">
-                    <div class="col-lg-4 news-position">
+                    <div class="col-lg-4 col-md-5 col-sm-5 col-12 news-position">
                         <div class="news-img-box">
                             <img src="{{ image($model->thumb) }}" alt="img">
                         </div>
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-12">
                         <div class="news-text-box news-det-text-box ">
                             <div class="time">
                                 <span>{{ getDates($model->date) }}</span>
@@ -82,13 +82,13 @@
                 <div class="news-section padding m-b-22">
                     <div class="container">
                         <div class="row row2">
-                            <div class="col-lg-4 news-position">
+                            <div class="col-lg-4 col-lg-4 col-md-5 col-sm-5 col-12 news-position">
                                 <div class="news-img-box">
                                     <img src="{{ image($post->thumb) }}" alt="img">
                                 </div>
                             </div>
-                            <div class="col-lg-8">
-                                <div class="news-text-box">
+                            <div class="col-lg-8 col-md-7 col-sm-7 col-12">
+                                <div class="news-text-box news-text-box2">
                                     <div class="time">
                                         <span>{{ getDates($post->date) }}</span>
                                         

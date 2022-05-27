@@ -15,7 +15,7 @@
 
     @if(isset($products))
     <section>
-        <div class="product-section padding-b">
+        <div class="product-section padding-b mobile-padding-b">
             <div class="container">
                 <div class="our-product">
                     <div class="important-title">
@@ -82,13 +82,13 @@
                 <div class="about-position-box">
                     <div class="row wrap-row">
 
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 col-lg-5 col-md-6 col-sm-6 col-12">
                             <div class="about-image">
                                 <img src="{{ image($about_section->posts[0]->thumb) }}" alt="img">
                             </div>
 
                         </div>
-                        <div class="col-lg-8 absolute-position">
+                        <div class="col-lg-8 col-lg-8 col-md-8 col-sm-8 col-12 absolute-position absolute-position">
                             <div class="text-box-h">
                                 <h2>{{$about_section->posts[0][app()->getLocale()]->title}}</h2>
                                 <div class="about-text">
@@ -137,7 +137,7 @@
                     
                       
                     <div class="row wrap-row row-height">
-                        <div class="col-lg-6 position-r">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12 position-r">
                             <div class="popular-product-text">
                                 <h1>{!! $post->translate(app()->getlocale())->desc !!}
                                 </h1>
@@ -145,7 +145,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 absolute-pos">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12 absolute-pos">
                             <div class="popular-product-img">
                                 <img src="{{ image($post->thumb) }}" alt="img">
                             </div>
@@ -173,7 +173,7 @@
             <div class="container">
                 <div class="row row2">
 
-                    <div class="col-lg-4 news-position">
+                    <div class="col-lg-4 col-md-5 col-sm-5 col-12 news-position">
 
                         <div class="news-img-box">
                             <img src="{{ image($post->thumb) }}" alt="img">
@@ -181,7 +181,7 @@
 
                     </div>
 
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 col-lg-8 col-md-7 col-sm-7 col-12">
                         <div class="news-text-box">
                             <div class="time">
                                 <span>{{ getDates($post->date) }}</span>

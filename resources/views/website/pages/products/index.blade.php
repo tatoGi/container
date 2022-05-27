@@ -32,7 +32,7 @@
 
 
 
-                <div class="col-xxl-3 col-lg-4 col-md-4 col-sm-6">
+                <div class="col-xxl-3 col-lg-4 col-md-4 col-sm-12">
                     <div class="select-categories-box">
                         <h2>Product Categories</h2>
                         <hr>
@@ -147,7 +147,7 @@
                     </div>
                 </div>
 
-                <div class="col-xxl-9 col-lg-9 col-md-8 col-sm-6">
+                <div class="col-xxl-9 col-lg-8 col-md-8 col-sm-12">
                     <div class="products-container">
                         <div class="form-box">
 
