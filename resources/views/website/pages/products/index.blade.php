@@ -24,7 +24,21 @@
 
             <span class="line-1"></span>
         </div>
-
+        <div class="filter-title-close">
+                <div class="container">
+                    <div class="filter-flex">
+                        <h2>FILTER</h2>
+                        <div class="filter-close ">  
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15.451" height="15.451" viewBox="0 0 15.451 15.451">
+                                <g id="Group_1843" data-name="Group 1843" transform="matrix(0.695, 0.719, -0.719, 0.695, 7.967, -5.987)">
+                                <rect id="Rectangle_132" data-name="Rectangle 132" width="1.959" height="19.588" rx="0.979" transform="translate(8.815 0)" fill="#414141"/>
+                                <rect id="Rectangle_133" data-name="Rectangle 133" width="1.959" height="19.588" rx="0.979" transform="translate(0 10.578) rotate(-90)" fill="#414141"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>  
+                </div> 
+            </div>
 
         <div class="container">
 
@@ -104,7 +118,7 @@
                                            
                                             <ul class="child-ul">
                                                 <li>
-                                                    <a href="#" onclick="openPos(event, '{{$DsubSec->id}}')">{{ ($DsubSec[app()->getlocale()]->title) }}</a>
+                                                    <a href="/{{$products->getfullslug()}}?category={{$DsubSec->id}}" onclick="openPos(event, '{{$DsubSec->id}}')">{{ ($DsubSec[app()->getlocale()]->title) }}</a>
                                                     <span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="9.414"
                                                             height="16.828" viewBox="0 0 9.414 16.828">
@@ -156,9 +170,16 @@
                                 <h4>
                                     found <span>{{ $products_posts->total() }} </span> result
                                 </h4>
+                                <div class="filter-button">
+                                        <span>Filter</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19.5" height="19.511" viewBox="0 0 19.5 19.511">
+                                            <path id="Stroke_1" data-name="Stroke 1" d="M1.565,0A1.579,1.579,0,0,0,0,1.59v.936A2.549,2.549,0,0,0,.689,4.272L5.535,9.424l0,0A5.157,5.157,0,0,1,7,13.023V17.6a.4.4,0,0,0,.585.356l2.76-1.5A1.309,1.309,0,0,0,11.02,15.3V13.011a5.153,5.153,0,0,1,1.446-3.587l4.846-5.153A2.553,2.553,0,0,0,18,2.526V1.59A1.578,1.578,0,0,0,16.436,0Z" transform="translate(0.75 0.75)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+                                        </svg>
+                                    </div>
                             </div>
-                            <form action="/{{ app()->getLocale() }}/products" method="GET" role="prosearch">
-                                        <input id="AllProduct" type="text" placeholder="Search..." name="product">
+                            <form action="/{{ app()->getLocale() }}/products{id}" method="GET" role="prosearch">
+                                        <input id="MyInput" type="text" placeholder="Search..." name="que">
+                                        <input type="hidden" name="que" value="{{ csrf_token() }}">
                                 <button>
                                     <svg id="search-normal" xmlns="http://www.w3.org/2000/svg" width="20.493"
                                         height="20.493" viewBox="0 0 20.493 20.493">
@@ -186,7 +207,11 @@
                             <a href="/{{$post->getfullslug()}}#{{$post->id}}" class="product-list-item"  id="{{$post->category}}">
                               
                                 <div class="list-img">
+                                   @if(isset($post->thumb))
                                     <img src="{{ image($post->thumb) }}" alt="img">
+                                    @else
+                                   <img src="/uploads/img/blue.png" alt="img">
+                                   @endif
                                     <div class="photo-hover">
                                         <div class="text">
                                             {!! $post->translate(app()->getlocale())->text !!}

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use  Illuminate\Auth\AuthServiceProvider;
 use App\Http\Controllers\Website\RoutesController;
 use App\Http\Controllers\Website\PagesController;
+use App\Http\Controllers\Website\SearchController;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 use App\Mail\Mailers;
@@ -128,12 +129,12 @@ Route::middleware(['auth.check'])->group(function () {
 
 
         //  categories ---------------------------
-         Route::get('/admin/categories', [CategoryController::class, 'index'])->name('categories.index');
-         Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-         Route::post('/admin/categories/store', [CategoryController::class, 'store'])->name('categories.store');
-         Route::get('/admin/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-         Route::post('/admin/categories/update', [CategoryController::class, 'update'])->name('categories.update');
-         Route::get('/admin/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('categories.delete');
+        //  Route::get('/admin/categories', [CategoryController::class, 'index'])->name('categories.index');
+        //  Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+        //  Route::post('/admin/categories/store', [CategoryController::class, 'store'])->name('categories.store');
+        //  Route::get('/admin/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+        //  Route::post('/admin/categories/update', [CategoryController::class, 'update'])->name('categories.update');
+        //  Route::get('/admin/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('categories.delete');
        
         //  Route::group(['prefix' => 'products'], function () {
 
@@ -165,6 +166,6 @@ Route::middleware(['auth.check'])->group(function () {
 Route::post('/submission', [PagesController::class, 'submission'])->name('submission');
 Route::post('/subscribe', [PagesController::class, 'subscribe'])->name('subscribe');
 Route::get('/search', [PagesController::class, 'search'])->name('search');
-Route::get('/prosearch', [PagesController::class, 'prosearch'])->name('prosearch');
+Route::get('/products{id}', [PagesController::class, 'prosearch'])->name('prosearch');
 Route::any('/', [PagesController::class, 'homePage']);
 Route::any('/{all}', [RoutesController::class, 'index'])->where('all', '.*');

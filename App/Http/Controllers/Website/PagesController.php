@@ -158,6 +158,7 @@ class PagesController extends Controller
 			else{
 				$products_posts = Post::where('section_id', $products->id)->whereIn('additional->category',$filter_cat_arr)->with('translations')->paginate(settings('products_pagination'));
 			}
+			
 			return view("website.pages.products.index", compact('model', 'breadcrumbs','products_posts','products', 'category', 'language_slugs'));
 		}
 		return view("website.pages.{$model->type['folder']}.index", compact(['model', 'breadcrumbs', 'language_slugs']));
@@ -378,8 +379,8 @@ class PagesController extends Controller
 	public static function search(Request $request)
 	{
 		
-		$language_slugs['ka'] = 'ka/search?que='.$request->arr;
-		$language_slugs['en'] = 'en/search?que='.$request->arr;
+		$language_slugs['ka'] = 'ka/search?que='.$request->que;
+		$language_slugs['en'] = 'en/search?que='.$request->que;
 		$validatedData = $request->validate([
 			'que' => 'required',
 		]);
@@ -402,29 +403,29 @@ class PagesController extends Controller
 		}
 		return view('website.pages.search.index', compact('posts', 'language_slugs'));
 	}	
-
-	
 	public static function prosearch(Request $request)
 	{
-		dd($language_slugs['ka'] = 'ka/products?product='.$request->product);
-		$language_slugs['ka'] = 'ka/products?product='.$request->product;
-		$language_slugs['en'] = 'en/products?product='.$request->product;
 		
-		
+		$language_slugs['ka'] = 'ka/products?que='.$request->que;
+		$language_slugs['en'] = 'en/products?que='.$request->que;
 		$validatedData = $request->validate([
-			'product' => 'required',
+			'que' => 'required',
 		]);
-		$searchText = $validatedData['product'];
+		$searchText = $validatedData['que'];
+		
 		$postTranlations = PostTranslation::whereActive(true)->whereLocale(app()->getLocale())
+	
 			->where('title', 'LIKE', "%{$searchText}%")
 			->orWhere('desc', 'LIKE', "%{$searchText}%")
 			->orWhere('text', 'LIKE', "%{$searchText}%")
+			->orWhere('keywords', 'LIKE', "%{$searchText}%")
 			->orWhere('locale_additional', 'LIKE', "%{$searchText}%")->pluck('post_id')->toArray();
-		$products_posts  = Post::whereIn('id', $postTranlations)->with('translations', 'parent', 'parent.translations')->paginate(settings('paginate'));
-		$products_posts->appends(['product' => $searchText]);
-		dd($products_posts);
+
+		$posts  = Post::whereIn('id', $postTranlations)->with('translations', 'parent', 'parent.translations')->paginate(settings('paginate'));
+		
+		$posts->appends(['que' => $searchText]);
 		$data = [];
-		foreach ($products_posts as $post) {
+		foreach ($posts as $post) {
 			$data[] = [
 				'slug' => $post->getFullSlug() ?? '#',
 				'title' => $post->translate(app()->getLocale())->title,
@@ -433,5 +434,5 @@ class PagesController extends Controller
 		}
 		return view('website.pages.products.index', compact('posts', 'language_slugs'));
 	}	
-   
+	
 }

@@ -48,6 +48,11 @@ return [
 		"type" => "text",
 		"value" => "90",
 	],
+	"footer_banner_link" => [
+		"title" => "url here",
+		"type" => "text",
+		"value" => "/en/contacts",
+	],
 	"Happy-Customers" => [
 		"title" => "Happy Customers",
 		"type" => "text",
@@ -91,21 +96,16 @@ return [
 	"paginate" => [
 		"title" => "Paginate",
 		"type" => "text",
-		"value" => "8",
+		"value" => "15",
 	],
 	"products_pagination" => [
 		"title" => "Paginate",
 		"type" => "text",
-		"value" => "2",
+		"value" => "15",
 	],
 	"news_pagination" => [
 		"title" => "Paginate",
 		"type" => "text",
 		"value" => "2",
-	],
-	"projects_pagination" => [
-		"title" => "Paginate",
-		"type" => "text",
-		"value" => "3",
 	],
 ];

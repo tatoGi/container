@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\PostFile;
 use Illuminate\Support\Facades\Validator;
 use App\Models\PostTranslation;
+use App\Models\SectionTranslation;
 use App\Models\Slug;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
@@ -79,9 +80,11 @@ class PostController extends Controller
         foreach(config('app.locales') as $locale){
             if($values[$locale]['slug'] != ''){
                 $values[$locale]['slug'] = SlugService::createSlug(PostTranslation::class, 'slug', $values[$locale]['slug']);
+                $values[$locale]['slug'] = SlugService::createSlug(SectionTranslation::class, 'slug', $values[$locale]['slug']);
             }else{
                 $values[$locale]['slug'] = SlugService::createSlug(PostTranslation::class, 'slug', $values[$locale]['title']);
             }
+            
             if(isset($values[$locale]['file']) && $values[$locale]['file'] != ''){
                 $newfileName = uniqid() . "." . $values[$locale]['file']->getClientOriginalExtension();
                 $orignalName = $values[$locale]['file']->getClientoriginalname();
@@ -133,7 +136,8 @@ class PostController extends Controller
         $post = Post::where('id', $id)->with('translations')->first();
       
         $section = Section::where('id', $post->section_id)->with('translations')->first();
-     
+        Post::find($id)->slugs()->delete();
+
         $values = $request->all();
 
         $postFillable = (new Post)->getFillable();
@@ -158,7 +162,7 @@ class PostController extends Controller
             $values['cover'] = $values['old_cover'];
         }
         $values['additional'] = getAdditional($values, array_diff(array_keys($section->fields['nonTrans']), $postFillable) );
-        
+
 
         foreach(config('app.locales') as $locale){
 
@@ -197,7 +201,6 @@ class PostController extends Controller
             }
         }
         Post::find($post->id)->update($values);
-        $post = Post::find($post->id);
 			
         if (isset($values['files']) && count($values['files']) > 0) {
 
@@ -218,19 +221,25 @@ class PostController extends Controller
     public function destroy($id){
 
         $post = Post::where('id', $id)->first();
-        foreach (Post::find($id)->slugs()->get() as $slug) {
-
-            Post::find($id)->delete();
+        $post = Post::find($id)->with('translations')->first();
+        foreach(Post::find($id)->slugs()->get() as $slug){
+            Slug::where('fullSlug', 'LIKE', $slug->fullSlug.'%')->delete();
         }
+
+
+        Post::find($id)->slugs()->delete();
         $section = Section::where('id', $post->section_id)->with('translations')->first();
 
         $files = PostFile::where('post_id', $post->id)->get();
+     
+        $files = PostFile::where('post_id', $post->id)->get();
         foreach($files as $file){
-            
-            $file = file::where('id', $id)->first();
-                unlink(public_path("uploads/files/{$file->file}"));
-                file::find($id)->delete();
-            
+            if(File::exists(config('config.image_path').$file->file)) {
+                File::delete(config('config.image_path').$file->file);
+            }
+            if(File::exists(config('config.image_path').'thumb/'.$file->file)) {
+                File::delete(config('config.image_path').'thumb/'.$file->file);
+            }
 
             $file->delete();
         }

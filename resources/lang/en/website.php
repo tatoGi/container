@@ -10,6 +10,7 @@ return [
 	"contact" => "Contact",
 	"footer_contact" => "Contact Us",
 	"home" => "Home",
+	
 	"specialized_in" => "Specialised in",
 	"see_all_projects" => "See all Projects",
 	"office" => "Office",

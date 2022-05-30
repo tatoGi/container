@@ -48,12 +48,7 @@ return [
                 'type' => 'text',
             
             ],
-            'about' => [
-                'type' => 'textarea',
-                'max' => '2000',
-                'min' => '3',
-                'validation' => 'min:3|max:20'
-            ],
+           
             'active' => [
                 'type' => 'checkbox',
             ],

@@ -22,7 +22,7 @@
                 <div class="container">
                     <div class="important-title">
                         <span class="line-1"></span>
-                        <h1>{{$model->title}}</h1>
+                        <h1>{{$model[app()->getlocale()]->title}}</h1>
                         <span class="line-1"></span>
                     </div>
                     @if(isset($model->posts) && (count($model->posts) > 0))
@@ -38,7 +38,7 @@
                                 <div class="text-box-h">
                                     <h2>{{$model->posts[0][app()->getLocale()]->title}}</h2>
                                     <div class="about-text mb-0">
-                                    {!! $model->posts[0][app()->getLocale()]->about!!}
+                                    {!! $model->posts[0][app()->getLocale()]->desc !!}
                                     </div>
                                     
                                 </div>
@@ -92,5 +92,8 @@
             </div>
         </section>
         @endif
+
+            
+    @include('website.components.progress')
     </main>
     @endsection

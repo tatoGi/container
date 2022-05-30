@@ -16,7 +16,7 @@
     <div class="col-12">
         <div class="card-box">
             <div style="display: flex; align-items:center; justify-content: space-between; padding:20px 0">
-                <h4 class="mt-0 header-title float-left">{{ $section->title }}</h4>
+                <h4 class="mt-0 header-title float-left">{{ $section [app()->getLocale()]->title }}</h4>
 
                 @if ($section->type_id ==10 && count($posts) > 0)
                 @else
