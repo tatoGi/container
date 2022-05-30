@@ -20,7 +20,7 @@
     </div>
 </section>
 @endif
-        <section>  
+        <section class="mg-b-21">  
             <div class="photo-albums p-t-5">
                 <div class="container">
                     <div class="albums-title">
@@ -62,16 +62,16 @@
             </div>
             
             <div class="news-slider">
-                <div class="news-section padding m-b-22">
+                <div class="news-section padding m-b-22 padding-2">
                     <img src="assets/img/Mask Group 158.svg" alt="svg" class="album-slider-pos">
                     <div class="container">
                         <div class="row row2 album-row">
-                            <div class="col-lg-4 news-position">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12 news-position">
                                 <div class="news-img-box">
                                     <img src="{{ image($post->thumb) }}" alt="img">
                                 </div>
                             </div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-12">
                                 <div class="news-text-box album-text-box">
                                      
                                     <h2 class="m-b-1">

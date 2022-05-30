@@ -29,7 +29,7 @@
                 <div class="container">
                     <div class="row row2">
                     
-                        <div class="col-lg-4 news-position">
+                        <div class="col-lg-4 col-md-5 col-sm-5 col-12 news-position">
                         @foreach ($news->files as $file)
                             <div class="news-img-box">
                                 <img src="/{{ config('config.image_path') . $file->file }}" alt="img">
@@ -37,8 +37,8 @@
                             @endforeach
                         </div>
                
-                        <div class="col-lg-8">
-                            <div class="news-text-box">
+                        <div class="col-lg-8 col-md-7 col-sm-7 col-12">
+                            <div class="news-text-box news-text-box2">
                                 <div class="time">
                                     <span>{{ getDates($news->date) }}</span>
                                 </div>

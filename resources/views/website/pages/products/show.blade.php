@@ -26,9 +26,9 @@
             <div class="products-det-cont p-t-5">
                 <div class="container">
               
-                    <div class="row">
+                    <div class="row center-row">
                    
-                        <div class="col-xxl-3 col-lg-4 col-md-4 col-sm-5 ">
+                        <div class="col-xxl-3 col-lg-4 col-md-4 col-sm-8 col-12 ">
                             <div class="tab-img-products">
                                 <div class="tab-img-box-position">
                                 @foreach ($model->files as $file)
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                        
-                        <div class="col-xxl-9 col-lg-8 col-md-8 col-sm-7">
+                        <div class="col-xxl-9 col-lg-8 col-md-8 col-sm-12 col-12">
                             <div class="container-components-box">
                                 <h1 class="container-name">
                                 {{ $model[app()->getlocale()]->title }}

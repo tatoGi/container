@@ -18,7 +18,7 @@
         
     @if(isset($model->posts))
         <section>
-            <div class="about-section padding-b">
+            <div class="about-section about-section2 padding-b">
                 <div class="container">
                     <div class="important-title">
                         <span class="line-1"></span>
@@ -29,12 +29,12 @@
                       @foreach($model->posts as $post)
                     <div class="about-position-box about-delete-after"> 
                         <div class="row wrap-row">
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 col-md-6 col-sm-6 col-12">
                                 <div class="about-image">
                                     <img src="{{ image($post->thumb) }}" alt="img">
                                 </div>
                             </div>
-                            <div class="col-lg-8 absolute-position">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-12  absolute-position">
                                 <div class="text-box-h">
                                     <h2>{{$model->posts[0][app()->getLocale()]->title}}</h2>
                                     <div class="about-text mb-0">

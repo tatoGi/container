@@ -2,7 +2,7 @@
             <div class="counter-cards">
                 <div class="cards-bg"></div>
                 <div class="container">
-                    <div class="row">
+                    <div class="row slider-row">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-6">
                             <div class="count-card">
                                 <div class="card-span">

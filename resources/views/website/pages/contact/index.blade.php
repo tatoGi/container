@@ -28,7 +28,7 @@
             </div>
             <div class="container">
                 <div class="row contact-end-row">
-                    <div class="col-lg-8 col-md-8 col-sm-6 col-12 padd-2">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-12 padd-2">
                         <div class="contact-form-side">
                             <div class="contact-title">
                             {{$model->posts[0][app()->getLocale()]->title}}
@@ -60,7 +60,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 padd-1">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-12 padd-1">
                         <div class="contact-right-side">
                             <div class="ph-ad">
                                 <div class="phone-1">

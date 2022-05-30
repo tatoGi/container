@@ -15,7 +15,7 @@
 
     @if(isset($products))
     <section>
-        <div class="product-section padding-b">
+        <div class="product-section padding-b mobile-padding-b">
             <div class="container">
                 <div class="our-product">
                     <div class="important-title">
@@ -110,13 +110,21 @@
                 <div class="about-position-box">
                     <div class="row wrap-row">
 
+<<<<<<< HEAD
                         <div class="col-lg-5 col-md-6 col-sm-6 col-12">
+=======
+                        <div class="col-lg-5 col-lg-5 col-md-6 col-sm-6 col-12">
+>>>>>>> 98d172dc80b84deaa0e3c9aac0a9171fd017f1b9
                             <div class="about-image">
                                 <img src="{{ image($about_section->posts[0]->thumb) }}" alt="img">
                             </div>
 
                         </div>
+<<<<<<< HEAD
                         <div class="col-lg-8 col-md-8 col-sm-8 col-12 absolute-position">
+=======
+                        <div class="col-lg-8 col-lg-8 col-md-8 col-sm-8 col-12 absolute-position absolute-position">
+>>>>>>> 98d172dc80b84deaa0e3c9aac0a9171fd017f1b9
                             <div class="text-box-h">
                                 <h2>{{$about_section->posts[0][app()->getLocale()]->title}}</h2>
                                 <div class="about-text">
@@ -157,6 +165,7 @@
 
         <div class="popular-product-section padding-b">
             <div class="popular-product">
+<<<<<<< HEAD
                 <div class="important-title">
                     <span class="line-1"></span>
                     <h1>POPULAR PRODUCT</h1>
@@ -184,6 +193,30 @@
                                 </div>
                             </div>
                         </div>
+=======
+                <div class="container">
+                    <div class="important-title">
+                        <span class="line-1"></span>
+                        <h1>{{$post->translate(app()->getlocale())->title}}</h1>
+                        <span class="line-1"></span>
+                    </div>
+                    
+                      
+                    <div class="row wrap-row row-height">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12 position-r">
+                            <div class="popular-product-text">
+                                <h1>{!! $post->translate(app()->getlocale())->desc !!}
+                                </h1>
+                                <div class="text">{!! $post->translate(app()->getlocale())->title !!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12 absolute-pos">
+                            <div class="popular-product-img">
+                                <img src="{{ image($post->thumb) }}" alt="img">
+                            </div>
+                        </div>
+>>>>>>> 98d172dc80b84deaa0e3c9aac0a9171fd017f1b9
                     </div>
                     @endforeach
                 @endif
@@ -197,6 +230,7 @@
 @endif
     @if(isset($news))
     <section>
+<<<<<<< HEAD
         <div class="news-section news-section2 padding nn-section">
             <div class="important-title">
                 <span class="line-1"></span>
@@ -214,6 +248,32 @@
                                 <div class="news-img-box">
                                     <img src="{{ image($post->thumb) }}" alt="img">
                                 </div>
+=======
+
+        <div class="important-title">
+            <span class="line-1"></span>
+            <h1>{{$news->translate(app()->getlocale())->title}}</h1>
+            <span class="line-1"></span>
+        </div>
+        @if(isset($news->posts) && (count($news->posts) > 0))
+        @foreach($news->posts as $post)
+        <div class="news-section padding m-b-2">
+            <div class="container">
+                <div class="row row2">
+
+                    <div class="col-lg-4 col-md-5 col-sm-5 col-12 news-position">
+
+                        <div class="news-img-box">
+                            <img src="{{ image($post->thumb) }}" alt="img">
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-8 col-lg-8 col-md-7 col-sm-7 col-12">
+                        <div class="news-text-box">
+                            <div class="time">
+                                <span>{{ getDates($post->date) }}</span>
+>>>>>>> 98d172dc80b84deaa0e3c9aac0a9171fd017f1b9
                             </div>
                             <div class="col-lg-8 col-md-7 col-sm-7 col-12">
                                 <div class="news-text-box">
