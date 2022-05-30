@@ -236,9 +236,11 @@ class PostController extends Controller
         foreach($files as $file){
             if(File::exists(config('config.image_path').$file->file)) {
                 File::delete(config('config.image_path').$file->file);
+               
             }
             if(File::exists(config('config.image_path').'thumb/'.$file->file)) {
                 File::delete(config('config.image_path').'thumb/'.$file->file);
+               
             }
 
             $file->delete();

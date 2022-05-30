@@ -108,6 +108,11 @@
                 </div>
             </div>
          </section>
+         <section class="padding">
+            <div class="map">
+            {!! settings('Iframe') !!}
+            </div>
+        </section>
     @endif
 
     </main>

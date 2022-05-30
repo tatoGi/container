@@ -48,8 +48,18 @@ class UploadFilesController extends Controller
 
 
     foreach ($files as $file) {
-      File::unlink(config('config.image_path') .  $file);
-      File::unlink(config('config.image_path') . config('config.thumb_path') .  $file);
+      if(File::exists(config('config.image_path').$file->file)) {
+        File::delete(config('config.image_path').$file->file);
+      
+        
+    }
+    if(File::exists(config('config.image_path').'thumb/'.$file->file)) {
+      File::delete(config('config.image_path').'thumb/'.$file->file);
+      
+    }
+
+    $file->delete();
+  
     }
 
     DB::table('temp_files_table')->whereIn('file_name', $files)->delete();
