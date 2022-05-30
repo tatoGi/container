@@ -364,6 +364,9 @@
         gap: 30px 20px;
     }
     /* Products */
+    .footer-cont:before{
+        height: 82%;
+    }
 }
 
 @media (max-width: 1199px){
@@ -821,6 +824,7 @@
     }
     .burger-container ul li{
         margin-bottom: 34px;
+        list-style: none;
     }
     .burger-container ul li a{
         font-size: 16px;
@@ -1982,6 +1986,7 @@
     .mg-b-21 {
         margin-bottom: 57px;
     }
+    /* Contact */
      .contact-end-row{
          flex-direction: column-reverse;
          position: relative;
@@ -2032,10 +2037,16 @@
     .padding{
         padding: 30px 0;
     }
+    .main-slider-section{
+        padding-top: 0;
+    }
     .map {
         height: 161px;
     }
-    /* Album */
+   .m-tt-22{
+        margin-top: 30px;
+    }
+    /* Contact */
     /* Products-details */
     .tab-img-products {
         height: 270px;
