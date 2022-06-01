@@ -61,7 +61,7 @@
                         <ul>
                             @foreach ($sections as $section)
                             @if ($sections !== 0)
-                            <li>
+                            <li  @if ($model[app()->getlocale()]->slug == $section[app()->getlocale()]->slug) class="colored" @endif>
                                 <a href="/{{ $section->getFullSlug() }}">{{ strtoupper($section[app()->getlocale()]->title) }}</a>
                                 
                                 <div class="sub-menu">
@@ -164,16 +164,18 @@
                             <li>
                                 <a href="/{{ $section->getFullSlug() }}">{{ strtoupper($section[app()->getlocale()]->title) }}</a>
                                 
-                                <div class="sub-menu">
-                                    @if ($section->children->count() > 0)
-                                    @foreach ($section->children as $subSec)
-                                    <div class="sub-menu-links">
-                                        <a href="/{{ $subSec->getFullSlug() }}">{{ strtoupper($subSec[app()->getlocale()]->title) }}</a>
-
-                                    </div>
-                                </div>
-                                @endforeach
-                                @endif
+                                 <div class="burger-submenu-2">
+                                     <a href="#">item - 1</a>
+                                     <a href="#">item - 2</a>
+                                     <a href="#">item - 3</a>
+                                 </div>
+                                <span class="rotate-submenu-arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="9.414" height="16.828" viewBox="0 0 9.414 16.828">
+                                        <g id="Arrow_-_Left_2" data-name="Arrow - Left 2" transform="translate(8 1.414) rotate(90)">
+                                            <path id="Stroke_1" data-name="Stroke 1" d="M14,0,7,7,0,0" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"></path>
+                                        </g>
+                                    </svg>
+                                </span>
                             </li>
                             @endif
                             @endforeach

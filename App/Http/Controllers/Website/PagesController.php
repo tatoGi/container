@@ -379,8 +379,8 @@ class PagesController extends Controller
 	public static function search(Request $request)
 	{
 		
-		$language_slugs['ka'] = 'ka/search?que='.$request->que;
-		$language_slugs['en'] = 'en/search?que='.$request->que;
+		$language_slugs[app()->getlocale()] = $request->que;
+		
 		$validatedData = $request->validate([
 			'que' => 'required',
 		]);
@@ -403,36 +403,38 @@ class PagesController extends Controller
 		}
 		return view('website.pages.search.index', compact('posts', 'language_slugs'));
 	}	
-	public static function prosearch(Request $request)
-	{
 		
-		$language_slugs['ka'] = 'ka/products?que='.$request->que;
-		$language_slugs['en'] = 'en/products?que='.$request->que;
+
+	public static function SearchProduct (request $request){
+		$model = '';
+		
+		$language_slugs[app()->getlocale()] = $request->que;
+		$products  = Section::where('type_id', 14)->with('translations', 'posts')->get();
 		$validatedData = $request->validate([
 			'que' => 'required',
 		]);
 		$searchText = $validatedData['que'];
-		
-		$postTranlations = PostTranslation::whereActive(true)->whereLocale(app()->getLocale())
-	
+		if ($request->$products !== 0){
+			$postTranlations = PostTranslation::whereActive(true)->whereLocale(app()->getLocale())
 			->where('title', 'LIKE', "%{$searchText}%")
 			->orWhere('desc', 'LIKE', "%{$searchText}%")
 			->orWhere('text', 'LIKE', "%{$searchText}%")
 			->orWhere('keywords', 'LIKE', "%{$searchText}%")
 			->orWhere('locale_additional', 'LIKE', "%{$searchText}%")->pluck('post_id')->toArray();
-
-		$posts  = Post::whereIn('id', $postTranlations)->with('translations', 'parent', 'parent.translations')->paginate(settings('paginate'));
+		}						
 		
-		$posts->appends(['que' => $searchText]);
+		$products_posts = Post::whereIn('id', $postTranlations)->with('translations', 'parent', 'parent.translations')->paginate(settings('paginate'));
+		$products_posts->appends(['que' => $searchText]);
 		$data = [];
-		foreach ($posts as $post) {
+		foreach ($products_posts as $post) {
 			$data[] = [
 				'slug' => $post->getFullSlug() ?? '#',
 				'title' => $post->translate(app()->getLocale())->title,
 				'desc' => str_limit(strip_tags($post->translate(app()->getLocale())->desc)),
 			];
+			// dd($products_posts);
 		}
-		return view('website.pages.products.index', compact('posts', 'language_slugs'));
-	}	
-	
-}
+		
+		return view('website.pages.products.index', compact('products_posts',  'language_slugs', 'model'));
+	}
+	}

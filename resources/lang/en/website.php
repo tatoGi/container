@@ -11,7 +11,6 @@ return [
 	"footer_contact" => "Contact Us",
 	"home" => "Home",
 	"messege" => "messege",
-	
 	"specialized_in" => "Specialised in",
 	"see_all_projects" => "See all Projects",
 	"office" => "Office",

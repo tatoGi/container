@@ -179,7 +179,7 @@ class PostController extends Controller
 			}
             // dd($values);
             if(isset($values[$locale]['file']) && ($values[$locale]['file'] != '')){
-
+               
                 $newfileName = uniqid() . "." . $values[$locale]['file']->getClientOriginalExtension();
                 $values[$locale]['file']->move(config('config.file_path'), $newfileName );
                 $values[$locale]['file'] = '';
@@ -191,6 +191,7 @@ class PostController extends Controller
         }
 
         $allOldFiles = PostFile::where('post_id', $post->id)->get();
+       
         foreach ($allOldFiles as $key => $fil) {
             if(isset($values['old_file']) && count($values['old_file']) > 0) {
             if(!in_array($fil->id, array_keys($values['old_file']))){
@@ -221,28 +222,25 @@ class PostController extends Controller
     public function destroy($id){
 
         $post = Post::where('id', $id)->first();
-        $post = Post::find($id)->with('translations')->first();
-        foreach(Post::find($id)->slugs()->get() as $slug){
-            Slug::where('fullSlug', 'LIKE', $slug->fullSlug.'%')->delete();
-        }
+        // foreach (Post::find($id)->slugs()->get() as $slug) {
 
-
-        Post::find($id)->slugs()->delete();
+        //     // Post::find($id)->delete();
+        // }
         $section = Section::where('id', $post->section_id)->with('translations')->first();
 
         $files = PostFile::where('post_id', $post->id)->get();
-     
-        $files = PostFile::where('post_id', $post->id)->get();
         foreach($files as $file){
-            if(File::exists(config('config.image_path').$file->file)) {
-                File::delete(config('config.image_path').$file->file);
-               
-            }
-            if(File::exists(config('config.image_path').'thumb/'.$file->file)) {
-                File::delete(config('config.image_path').'thumb/'.$file->file);
-               
-            }
-
+            dd($files);
+            if(file_exists(config('config.image_path').$file->file)){
+                unlink(config('config.image_path').$file->file);
+                }else{
+                dd('File does not exists.');
+                }
+                if(file_exists(config('config.image_path').'thumb/'.$file->file)){
+                    unlink(config('config.image_path').'thumb/'.$file->file);
+                    }else{
+                    dd('File does not exists.');
+                    }
             $file->delete();
         }
 
@@ -254,6 +252,7 @@ class PostController extends Controller
 
         return Redirect::route('post.list', [app()->getLocale(), $section->id,]);
     }
+
 
 
 

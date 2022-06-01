@@ -116,7 +116,10 @@ return [
     'products' => 'products',
     'about-text' => 'about text',
     'populars' => 'popular products',
-
+    'Mission' => 'Mission',
+    'Vission' => 'Vission',
+    'History' => 'History',
+    'Other_news' => 'Other news',
 
     'all_rights_resereved' => 'All rights resereved',
     'idg' => "Created by Idea Design Group",

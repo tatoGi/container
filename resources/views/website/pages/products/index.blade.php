@@ -177,9 +177,9 @@
                                         </svg>
                                     </div>
                             </div>
-                            <form action="/{{ app()->getLocale() }}/products{id}" method="GET" role="prosearch">
-                                        <input id="MyInput" type="text" placeholder="Search..." name="que">
-                                        <input type="hidden" name="que" value="{{ csrf_token() }}">
+                            <form action="/{{ app()->getLocale() }}/SearchProduct" method="GET" role="SearchProduct">
+                                        <input id="MyInput" type="text" placeholder="Search..." name="que" value="">
+                                        
                                 <button>
                                     <svg id="search-normal" xmlns="http://www.w3.org/2000/svg" width="20.493"
                                         height="20.493" viewBox="0 0 20.493 20.493">

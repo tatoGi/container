@@ -61,7 +61,7 @@ return [
 	"Team-Members" => [
 		"title" => "Team Members",
 		"type" => "text",
-		"value" => "10",
+		"value" => "13",
 	],
 	"phone" => [
 		"title" => "Phone",

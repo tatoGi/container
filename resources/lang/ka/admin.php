@@ -119,5 +119,6 @@ return [
     'fax' => 'ფაქსი',
     'working-hours' => 'სამუშაო საათი',
     'Size' => 'ზომა',
-    'Weight' => 'წონა'
+    'Weight' => 'წონა',
+    'Other_news' => 'სხვა სიახლეები'
 ];

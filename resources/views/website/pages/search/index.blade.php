@@ -41,9 +41,11 @@
                      
                  </div>
              </div>
+             @foreach ($posts as $item)
+           
              <div class="search-result-item">
                 <div class="container">
-                @foreach ($posts as $item)
+              
                     <div class="result-item">
                     @if (($item->parent->type_id == 3) || ($item->parent->type_id == 6) || ($item->parent->type_id == 4))
                         <h2>{!! strip_tags($item->translate(app()->getlocale())->title) !!} 
@@ -65,10 +67,11 @@
                               </svg>
                         </a>
                     </div>
-                    @endforeach
+                   
                 </div>
+               
              </div>
-          
+             @endforeach
          </section>
         <section>
             <div class="container">

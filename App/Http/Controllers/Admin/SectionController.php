@@ -10,6 +10,7 @@ use App\Models\MenuSection;
 use App\Models\PostTranslation;
 use App\Models\Slug;
 use App\Models\SectionTranslation;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -33,6 +34,8 @@ class SectionController extends Controller
     public function create(){
 
         $sectionTypes = sectionTypes();
+        Artisan::call('cache:clear');
+        return "Cache is cleared";
         $sections = Section::with('translations')->get();
         $menuTypes = menuTypes();
 
@@ -42,6 +45,7 @@ class SectionController extends Controller
 
     public function store(Request $request){
         $values = $request->all();
+        Artisan::call('cache:clear');
         Validator::validate($values, [
             'type_id' => 'required'
         ]);
@@ -99,6 +103,7 @@ class SectionController extends Controller
     public function update($id, Request $request){
 
         $values = $request->all();
+        Artisan::call('cache:clear');
         Validator::validate($values, [
             'type_id' => 'required'
         ]);

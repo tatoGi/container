@@ -110,7 +110,7 @@
          </section>
          <section class="padding">
             <div class="map">
-            {!! settings('Iframe') !!}
+            {!! settings('iframe') !!}
             </div>
         </section>
     @endif

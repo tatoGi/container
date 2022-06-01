@@ -12,7 +12,7 @@
                 @foreach ($breadcrumbs as $breadcrumb)
 
                 <a href="/{{ $breadcrumb['url'] }}">{{ $breadcrumb['name'] }}</a>
-                <span>/</span>
+                
                 @endforeach
 
             </div>
@@ -31,7 +31,9 @@
                     <div class="col-lg-8 col-md-7 col-sm-7 col-12">
                         <div class="news-text-box news-det-text-box ">
                             <div class="time">
-                                <span>{{ getDates($model->date) }}</span>
+                              <span>{{ \Carbon\Carbon::parse($post->from_date)->format('d')}}</span>
+                                            <span>
+                                                {{ \Carbon\Carbon::parse($post->from_date)->translatedFormat('F Y')}}</span>
 
                             </div>
                             <h2>{!! $model->translate(app()->getlocale())->desc !!}
@@ -90,7 +92,9 @@
                             <div class="col-lg-8 col-md-7 col-sm-7 col-12">
                                 <div class="news-text-box news-text-box2">
                                     <div class="time">
-                                        <span>{{ getDates($post->date) }}</span>
+                                    <span>{{ \Carbon\Carbon::parse($post->from_date)->format('d')}}</span>
+                                            <span>
+                                                {{ \Carbon\Carbon::parse($post->from_date)->translatedFormat('F Y')}}</span>
                                         
                                     </div>
                                     <h2 class="m-b-1">{!! $post->translate(app()->getlocale())->desc !!}

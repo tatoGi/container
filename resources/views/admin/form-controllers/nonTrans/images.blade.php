@@ -6,7 +6,7 @@
         @if (isset($post->files))
             @foreach ($post->files as $file)
             <li class="old">
-                <div class="close-it" data-delete="{{ route('image.del', app()->getLocale(), ['_token' => csrf_token()]) }}"></div>
+                <div class="close-it" data-delete="/{{ route('image.del', app()->getLocale(), ['_token' => csrf_token()]) }}"></div>
                 <input type="hidden" name="old_file[{{ $file->id }}][file]" value="{{ $file->file }}">
                 <img src="{{ '/' . config('config.image_path') . config('config.thumb_path') .  $file->file }}">
             </li>

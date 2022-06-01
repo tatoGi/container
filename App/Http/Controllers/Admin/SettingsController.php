@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use App\Models\Section;
 
 class SettingsController extends Controller
@@ -44,7 +45,7 @@ class SettingsController extends Controller
               }
             }
           }
-
+          Artisan::call('config:clear');
         // foreach($request->all() as $key => $values){
         //     if ($key !== '_token') {
         //         $settings = config('settings.settings.'.$key);

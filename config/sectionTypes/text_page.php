@@ -39,15 +39,15 @@ return [
                 'type' => 'text',
             
             ],
+            'History' => [
+                'type' => 'text',
+            ],
+
             'Vission' => [
                 'type' => 'text',
             
             ],
-            'History
-            ' => [
-                'type' => 'text',
             
-            ],
            
             'active' => [
                 'type' => 'checkbox',

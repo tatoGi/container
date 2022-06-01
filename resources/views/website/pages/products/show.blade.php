@@ -21,7 +21,7 @@
             </div>
         </section>
     @endif
-
+@if(isset($products))
         <section>
             <div class="products-det-cont p-t-5">
                 <div class="container">
@@ -38,13 +38,12 @@
                                     @endforeach
                                   
                                 </div> 
-                                @if (isset($products->posts) && count($products->posts) > 0)
-                                            @foreach ($products->posts as $product)
-                                   <a href="{{ image($product->thumb) }}" data-fancybox="tab-img" id="tab-fancy">
-                                        <img id="expandedImg" style="width:100%" src="{{ image($product->thumb) }}">
+                                
+                                        
+                                   <a href="{{ image($products->thumb) }}" data-fancybox="tab-img" id="tab-fancy">
+                                        <img id="expandedImg" style="width:100%" src="{{ image($products->thumb) }}">
                                    </a> 
-                                   @endforeach
-                                   @endif
+                                
                                     <div class="tab-zoom">
                                         <svg id="search-normal" xmlns="http://www.w3.org/2000/svg" width="20.493" height="20.493" viewBox="0 0 20.493 20.493">
                                             <path id="Vector" d="M16.224,8.112A8.112,8.112,0,1,1,8.112,0,8.112,8.112,0,0,1,16.224,8.112Z" transform="translate(1.708 1.708)" fill="none" stroke="#414141" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"/>
@@ -122,7 +121,7 @@
                 </div>
             </div>
         </section>
-
+@endif
  
  
        

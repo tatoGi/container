@@ -120,7 +120,7 @@
                             <div class="text-box-h">
                                 <h2>{{$about_section->posts[0][app()->getLocale()]->title}}</h2>
                                 <div class="about-text">
-                                    {!!$about_section->posts[0][app()->getLocale()]->text!!}
+                                    {!!$about_section->posts[0][app()->getLocale()]->desc!!}
                                 </div>
                                 <a href="/{{$about_section->getfullslug()}}" class="about-read-link">
                                     <div class="read-link">{{ trans('website.Read More') }}</div>
@@ -152,7 +152,7 @@
     @endif
 
     @if(isset($popular_products))
-    
+
     <section>
 
         <div class="popular-product-section padding-b">
@@ -162,39 +162,41 @@
                     <h1>POPULAR PRODUCT</h1>
                     <span class="line-1"></span>
                 </div>
-               
+
                 <div class="popular-slider-container">
-                @if(isset($popular_products) && (count($popular_products) > 0))
-                        @foreach($popular_products as $post)
-                    <div class="popular-slider-item">
-                        <div class="container">
-                            <div class="row wrap-row wrap-row2 row-height">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 position-r">
-                                    <div class="popular-product-text">
-                                        <h1>{{ $post->translate(app()->getlocale())->title }}
-                                        </h1>
-                                        <div class="text">{!! $post->translate(app()->getlocale())->text !!}
+                    @if(isset($popular_products) && (count($popular_products) > 0))
+                    @foreach($popular_products as $post)
+                    <a href="/{{$post->getfullslug()}}">
+                        <div class="popular-slider-item">
+                            <div class="container">
+                                <div class="row wrap-row wrap-row2 row-height">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 position-r">
+                                        <div class="popular-product-text">
+                                            <h1>{{ $post->translate(app()->getlocale())->title }}
+                                            </h1>
+                                            <div class="text">{!! $post->translate(app()->getlocale())->text !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 absolute-pos">
+                                        <div class="popular-product-img">
+                                            <img src="{{ image($post->thumb) }}" alt="img">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 absolute-pos">
-                                    <div class="popular-product-img">
-                                        <img src="{{ image($post->thumb) }}" alt="img">
-                                    </div>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                    @endforeach
-                @endif
+                    </a>
                 </div>
-                
-
-
+                @endforeach
+                @endif
             </div>
+
+
+
+        </div>
         </div>
     </section>
-@endif
+    @endif
     @if(isset($news))
     <section>
         <div class="news-section news-section2 padding nn-section">
@@ -203,40 +205,43 @@
                 <h1>{{$news->translate(app()->getlocale())->title}}</h1>
                 <span class="line-1"></span>
             </div>
-            
-            <div class="news-sliders-2">
-            @if(isset($news->posts) && (count($news->posts) > 0))
-            @foreach($news->posts as $post)
-                <div class="news-slider-2-item">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-5 col-sm-5 col-12 news-position">
-                                <div class="news-img-box">
-                                    <img src="{{ image($post->thumb) }}" alt="img">
-                                </div>
-                            </div>
-                            <div class="col-lg-8 col-md-7 col-sm-7 col-12">
-                                <div class="news-text-box">
-                                    <div class="time">
-                                        <span>{{ getDates($post->date) }}</span>
 
+            <div class="news-sliders-2">
+                @if(isset($news->posts) && (count($news->posts) > 0))
+                @foreach($news->posts as $post)
+               
+                    <div class="news-slider-2-item">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-5 col-sm-5 col-12 news-position">
+                                    <div class="news-img-box">
+                                      <a href="/{{$post->getfullslug()}}"><img src="{{ image($post->thumb) }}" alt="img"></a>  
                                     </div>
-                                    <h2>{!! $post->translate(app()->getlocale())->desc!!}
-                                    </h2>
-                                    <div class="text">{!! $post->translate(app()->getlocale())->text!!}
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-12">
+                                    <div class="news-text-box">
+                                        <div class="time">
+                                            <span>{{ \Carbon\Carbon::parse($post->from_date)->format('d')}}</span>
+                                            <span>
+                                                {{ \Carbon\Carbon::parse($post->from_date)->translatedFormat('F Y')}}</span>
+
+                                        </div>
+                                        <a href="/{{$post->getfullslug()}}">  <h2>{!! $post->translate(app()->getlocale())->desc!!}
+                                        </h2> </a>
+                                        <a href="/{{$post->getfullslug()}}"> <div class="text">{!! $post->translate(app()->getlocale())->text!!}
+                                        </div></a>
+                                        <a href="/{{$news->getfullslug()}}" class="see-all-link see-2  see-all-link2">
+                                            See All
+                                        </a>
                                     </div>
-                                    <a href="/{{$news->getfullslug()}}" class="see-all-link see-2  see-all-link2">
-                                        See All
-                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                @endforeach
+            @endforeach
             @endif
-            </div>
-          
+        </div>
+
 
         </div>
 

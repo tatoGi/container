@@ -53,7 +53,7 @@
                         <br>
                         <strong>Missions</strong>
                         <br>
-                        {!! $model->posts[0][app()->getLocale()]->mission !!}
+                        {!! $model->posts[0][app()->getLocale()]->Mission !!}
                         <br>
                         <br>
                         <strong>Vission</strong>
@@ -64,6 +64,7 @@
                         <strong>Our History</strong>
                         <br>
                         {!!$model->posts[0][app()->getLocale()]->History !!}
+                       
                          
                     </div>
                     <div class="about-page-share-icons">
