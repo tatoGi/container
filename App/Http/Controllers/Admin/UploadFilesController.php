@@ -40,25 +40,25 @@ class UploadFilesController extends Controller
 
   public function deleteImage(Request $request) {
     $files = $request->input('files');
-    
+
     if(!is_array($files)) {
       $files = [0 => $files];
     }
 
-    foreach($files as $file){
-       
-      if(file_exists(config('config.image_path').$file->file)){
-          unlink(config('config.image_path').$file->file);
-          }else{
-          dd('File does not exists.');
-          }
-          if(file_exists(config('config.image_path').'thumb/'.$file->file)){
-              unlink(config('config.image_path').'thumb/'.$file->file);
-              }else{
-              dd('File does not exists.');
-              }
-      $file->delete();
-  }
+
+
+    foreach ($files as $file) {
+      if(File::exists(config('config.image_path').$file->file)) { 
+        unlink(public_path("uploads/files/{$file->file}"));
+    }
+    if(File::exists(config('config.image_path').'thumb/'.$file->file)) {
+      File::delete(config('config.image_path').'thumb/'.$file->file);
+      unlink(config('config.image_path').'thumb/'.$file->file);
+    }
+
+    $file->delete();
+  
+    }
 
     DB::table('temp_files_table')->whereIn('file_name', $files)->delete();
     DB::table('post_files')->whereIn('file', $files)->delete();
@@ -72,11 +72,11 @@ class UploadFilesController extends Controller
     $temp_files = DB::table('temp_files_table')->where('user_id', auth()->user()->id)->get();
 
     foreach ($temp_files as $temp_file) {
-      File::delete($temp_file->path . $temp_file->file_name);
+      File::unlink($temp_file->path . $temp_file->file_name);
       $arr = json_decode($temp_file->additional_paths);
 
       foreach ($arr as $value) {
-        File::delete($arr->path . $temp_file->file_name);
+        File::unlink($arr->path . $temp_file->file_name);
       }
     }
 

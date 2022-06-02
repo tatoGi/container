@@ -61,7 +61,7 @@
                         <ul>
                             @foreach ($sections as $section)
                             @if ($sections !== 0)
-                            <li  @if ($model[app()->getlocale()]->slug == $section[app()->getlocale()]->slug) class="colored" @endif>
+                            <li  @if ($model[app()->getlocale()]->slug  == $section[app()->getlocale()]->slug)  class="colored" @endif>
                                 <a href="/{{ $section->getFullSlug() }}">{{ strtoupper($section[app()->getlocale()]->title) }}</a>
                                 
                                 <div class="sub-menu">

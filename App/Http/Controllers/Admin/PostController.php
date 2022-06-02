@@ -22,7 +22,7 @@ class PostController extends Controller
     public function index($sec){
         $section = Section::where('id', $sec)->with('translations')->first();
 
-        if (isset($section->type) && $section->type['type'] === 3 && $section->type['type'] === 4) {
+        if (isset($section->type) && $section->type['type'] === 3) {
             $post = Post::where('section_id', $sec)->with(['translations', 'slugs'])->first();
             if (isset($post) && $post !== null) {
                 return Redirect::route('post.edit', [app()->getLocale(), $post->id,]);
@@ -30,7 +30,7 @@ class PostController extends Controller
             return Redirect::route('post.create', [app()->getLocale(), $sec,]);
 
         }
-        $posts = Post::where('section_id', $sec)->orderBy('date', 'desc')->orderBy('created_at', 'desc')
+        $posts = Post::where('section_id', $sec)->orderBy('date', 'desc')->orderBy('created_at', 'asc')
 		->join('post_translations', 'posts.id', '=', 'post_translations.post_id')
 		->where('post_translations.locale', '=', app()->getLocale())
 		->select('posts.*', 'post_translations.text', 'post_translations.desc', 'post_translations.title', 'post_translations.locale_additional', 'post_translations.slug');
