@@ -1,7 +1,7 @@
 <?php
 return [
     'id' => 3,
-    'type' => 3,
+    'type' => 4,
     'folder' => 'text_page',
     'fields' => [
         'trans' => [
@@ -39,15 +39,14 @@ return [
                 'type' => 'text',
             
             ],
-            'History' => [
-                'type' => 'text',
-            ],
-
             'Vission' => [
                 'type' => 'text',
             
             ],
+            'History' => [
+                'type' => 'text',
             
+            ],
            
             'active' => [
                 'type' => 'checkbox',

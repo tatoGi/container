@@ -42,7 +42,7 @@
 
                                     </div>
                                 </div>
-                                <h4 class="header-title mt-0 ">{{ $banner->translate(app()->getLocale())->title }} <br> <small>{{ $banner->translate(app()->getLocale())->slug }}</small></h4>
+                                <h4 class="header-title mt-0 "><small>{{ $banner->translate(app()->getLocale())->slug }}</small></h4>
                                 <img class="img-fluid card-image" src="/uploads/img/thumb/{{ $banner->thumb }}" alt="Card image cap">
                                 <p>{{ substr(strip_tags($banner->desc), 0, 230) }}</p>
 

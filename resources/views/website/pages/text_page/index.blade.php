@@ -30,7 +30,7 @@
                     <div class="about-position-box about-delete-after"> 
                         <div class="row wrap-row">
                             <div class="col-lg-5 col-md-6 col-sm-6 col-12">
-                                <div class="about-image">
+                                <div class="about-image about-image2">
                                     <img src="{{ image($post->thumb) }}" alt="img">
                                 </div>
                             </div>
@@ -51,24 +51,24 @@
                     {!! $model->posts[0][app()->getLocale()]->text!!}
                         <br>
                         <br>
-                        <strong>Missions</strong>
+                        <strong>{{trans('admin.Missions')}}</strong>
                         <br>
                         {!! $model->posts[0][app()->getLocale()]->Mission !!}
                         <br>
                         <br>
-                        <strong>Vission</strong>
+                        <strong>{{trans('admin.Vission')}}</strong>
                         <br>
                         {!! $model->posts[0][app()->getLocale()]->Vission !!}
                         <br>
                         <br>
-                        <strong>Our History</strong>
+                        <strong>{{trans('admin.History')}}</strong>
                         <br>
                         {!!$model->posts[0][app()->getLocale()]->History !!}
                        
                          
                     </div>
                     <div class="about-page-share-icons">
-                        <h6>Sheare this :</h6>
+                        <h6>{{trans('admin.Sheare_this')}}</h6>
                         <div class="share-icons">
                             <a href="{{settings('facebook')}}">
                                 <span class="icon-face"></span>
@@ -83,10 +83,12 @@
                     </div>
                     <div class="about-page-img-gallery">
                     @foreach ($model->posts[0]->files as $file)
+                    @if($file->file != $post->thumb)
                                 
                         <a href="/{{ config('config.image_path') . $file->file }}" data-fancybox="video-inner">
                             <img src="/{{ config('config.image_path') . $file->file }}" alt="">
                         </a>
+                        @endif
                         @endforeach
                     </div>
                 </div>

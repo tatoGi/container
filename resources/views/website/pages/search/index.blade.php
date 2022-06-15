@@ -42,7 +42,6 @@
                  </div>
              </div>
              @foreach ($posts as $item)
-           
              <div class="search-result-item">
                 <div class="container">
               
@@ -67,9 +66,8 @@
                               </svg>
                         </a>
                     </div>
-                   
+                 
                 </div>
-               
              </div>
              @endforeach
          </section>

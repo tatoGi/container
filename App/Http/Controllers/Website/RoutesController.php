@@ -14,9 +14,6 @@ class RoutesController extends Controller
         if($url == 'search'){
             return PagesController::search($request);
         }
-        if($url == 'SearchProduct'){
-            return PagesController::SearchProduct($request);
-        }
         $slug = Slug::where('fullSlug', app()->getLocale()."/{$url}")->first();
         
         // dd($slug);

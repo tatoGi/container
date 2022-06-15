@@ -24,9 +24,7 @@
 
                             <th>{{ trans('admin.author') }}</th>
                             <th>{{ trans('admin.email') }}</th>
-                            <th>{{ trans('admin.subject') }}</th>
                             <th>{{ trans('admin.text') }}</th>
-                            <th>{{ trans('admin.phone') }}</th>
                             <th>{{ trans('admin.date') }}</th>
                             <th>{{ trans('admin.more') }}</th>
                             <th>{{ trans('admin.delete') }}</th>
@@ -40,10 +38,10 @@
                                     <td>{{ $submission->name }}</td>
                                     @endif
                                     <td>{{ $submission->email }}</td>
-                                    <td>{{ $submission->subject }}</td>
+                               
                                     <td>{{ $submission->text }}</td>
                                     {{-- {{ dd($submission->additional) }} --}}
-                                    <td>{{ $submission->phone}}</td>
+                                
                                     <td>{{ $submission->created_at->format('d.m.Y') }} <br> {{ $submission->created_at->format('H:i') }}</td>
 
                                     <td><a href="/{{ app()->getLocale() }}/admin/submission/{{ $submission->id }}" type="button" class="btn btn-info waves-effect width-md waves-light">{{ trans('admin.more') }}</a></td>

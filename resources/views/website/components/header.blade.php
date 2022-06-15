@@ -20,7 +20,7 @@
                     <div class="top-navbar">
                         <div class="contact-links">
                             <li>
-                                <a href="callto:{{settings('phone')}}">
+                                <a href="tel:{{settings('phone')}}">
                                     <span class="icon icon-Calling"></span>
                                     <span class="l-links">+{{settings('phone')}}</span>
                                 </a>
@@ -29,10 +29,11 @@
                                 <a href="callto:{{settings('time')}}">
                                     <span class="icon icon-Time"></span>
                                     <span class="l-links">{{settings('time')}}</span>
+                                    <span>{{trans('website.MON')}} - {{trans('website.FRI')}}</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="callto:{{settings('email')}}">
+                                <a href="mailto:{{settings('email')}}">
                                     <span class="icon icon-Send"></span>
                                     <span class="l-links">{{settings('email')}}</span>
                                 </a>
@@ -61,18 +62,20 @@
                         <ul>
                             @foreach ($sections as $section)
                             @if ($sections !== 0)
-                            <li  @if ($model[app()->getlocale()]->slug  == $section[app()->getlocale()]->slug)  class="colored" @endif>
-                                <a href="/{{ $section->getFullSlug() }}">{{ strtoupper($section[app()->getlocale()]->title) }}</a>
+                            
+                            <li  @if (isset($model[app()->getlocale()]->slug) && ($model[app()->getlocale()]->slug  == $section[app()->getlocale()]->slug)) class="colored" @endif>
+                                <a href="@if($section->type_id == 9)javascript:void(0); @else /{{ $section->getFullSlug() }} @endif">{{ strtoupper($section[app()->getlocale()]->title) }}</a>
                                 
                                 <div class="sub-menu">
                                     @if ($section->children->count() > 0)
-                                    @foreach ($section->children as $subSec)
+                                    
                                     <div class="sub-menu-links">
+                                    @foreach ($section->children as $subSec)
                                         <a href="/{{ $subSec->getFullSlug() }}">{{ strtoupper($subSec[app()->getlocale()]->title) }}</a>
-
+                                        @endforeach
                                     </div>
                                 </div>
-                                @endforeach
+                                
                                 @endif
                             </li>
                             @endif
@@ -163,12 +166,13 @@
                             @if ($sections !== 0)
                             <li>
                                 <a href="/{{ $section->getFullSlug() }}">{{ strtoupper($section[app()->getlocale()]->title) }}</a>
-                                
+                                @if ($section->children->count() > 0)
+                                    @foreach ($section->children as $subSec)
                                  <div class="burger-submenu-2">
-                                     <a href="#">item - 1</a>
-                                     <a href="#">item - 2</a>
-                                     <a href="#">item - 3</a>
+                                     <a href="/{{ $subSec->getFullSlug() }}">{{ strtoupper($subSec[app()->getlocale()]->title) }}</a>
+                                    
                                  </div>
+                              
                                 <span class="rotate-submenu-arrow">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="9.414" height="16.828" viewBox="0 0 9.414 16.828">
                                         <g id="Arrow_-_Left_2" data-name="Arrow - Left 2" transform="translate(8 1.414) rotate(90)">
@@ -176,6 +180,8 @@
                                         </g>
                                     </svg>
                                 </span>
+                                @endforeach
+                                @endif
                             </li>
                             @endif
                             @endforeach
@@ -192,6 +198,7 @@
                          <a href="#">
                                  <span class="icon icon-Time"></span>
                                  <span class="l-links">{{settings('time')}}</span>
+                                 <span>MON - FRI</span>
                          </a>
                      </li>
                      <li>

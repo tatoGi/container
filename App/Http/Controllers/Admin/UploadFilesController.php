@@ -19,10 +19,9 @@ class UploadFilesController extends Controller
     // Generate Thumbnail
     Image::make($request->file('file'))->fit(config('config.thumbnail.width'), config('config.thumbnail.height'))
     ->save(config('config.image_path') . config('config.thumb_path') . $file_name, 70);
-   
+
     // Save original image
     Image::make($request->file('file'))->save(config('config.image_path') .  $file_name, 70);
-   
 
     DB::table('temp_files_table')->insert([
       'file_name' => $file_name,
@@ -41,6 +40,7 @@ class UploadFilesController extends Controller
   public function deleteImage(Request $request) {
     $files = $request->input('files');
 
+
     if(!is_array($files)) {
       $files = [0 => $files];
     }
@@ -48,12 +48,14 @@ class UploadFilesController extends Controller
 
 
     foreach ($files as $file) {
-      if(File::exists(config('config.image_path').$file->file)) { 
-        unlink(public_path("uploads/files/{$file->file}"));
+      if(File::exists(config('config.image_path').$file->file)) {
+        File::delete(config('config.image_path').$file->file);
+      
+        
     }
     if(File::exists(config('config.image_path').'thumb/'.$file->file)) {
       File::delete(config('config.image_path').'thumb/'.$file->file);
-      unlink(config('config.image_path').'thumb/'.$file->file);
+      
     }
 
     $file->delete();

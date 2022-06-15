@@ -30,28 +30,38 @@ return [
             'text' => [
                 'type' => 'textarea',
             ],
-           
+            'Size' => [
+                'type' => 'keywords',
+            ],
+            'Weight' =>[
+                'type' => 'keywords',
+            ],
+            'Measurement' => [
+                'type' => 'text',
+            ],
+            
             'active' => [
                 'type' => 'checkbox',
             ],
         ],
 
         'nonTrans' => [
+
+
+           
+
+           'Minimum_Quantity' => [
+                'type' => 'text',
+            ],
             'category' => [
                 'type' => 'category',
-
             ],
-            'Size' => [
-                'type' => 'text',
-            ],
-            'Weight' =>[
-                'type' => 'text',
-            ],
+            
             'images' => [
                 'type' => 'images',
             ],
             
-           
+            
             
 
         ],

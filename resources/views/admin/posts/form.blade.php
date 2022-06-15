@@ -31,7 +31,7 @@
  {{-- <div class="form-group">
     {{ Form::text($key, null, array_merge(['class' => 'form-control', 'placeholder' => "dd/mm/yyyy", 'id' => "timepicker3"])) }}
 </div>  --}}
-@if(($section->type_id !== 3) && ($section->type_id !== 4))
+@if(($section->type_id !== 3) && ($section->type_id !== 4) && ($section->type_id !== 11) && ($section->type_id !== 10)  && ($section->type_id !== 7) && ($section->type_id !== 8))
 <div class="form-group"> 
     <input type="hidden" value="0" name="active_on_home"> 
     <input type="checkbox" value="1" name="active_on_home" @if (isset($post) && $post->active_on_home != 0) checked @endif> 

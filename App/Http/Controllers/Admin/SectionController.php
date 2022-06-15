@@ -10,7 +10,6 @@ use App\Models\MenuSection;
 use App\Models\PostTranslation;
 use App\Models\Slug;
 use App\Models\SectionTranslation;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -26,7 +25,12 @@ class SectionController extends Controller
      * @return void
      */
     public function index(){
-        $sections = Section::where('parent_id', null)->orderBy('order', 'desc')->with('children')->get();
+        if (isset($_GET['type']) && ($_GET['type'] == 13)){
+            
+            $sections = Section::where('parent_id', null)->where('type_id', $_GET['type'])->orderBy('order', 'desc')->with('children')->get();
+        }else{
+            $sections = Section::where('parent_id', null)->where('type_id','!=', 13)->orderBy('order', 'desc')->with('children')->get();
+        }
         // dd($sections);
 
         return view('admin.sections.list', compact('sections'));
@@ -34,8 +38,6 @@ class SectionController extends Controller
     public function create(){
 
         $sectionTypes = sectionTypes();
-        Artisan::call('cache:clear');
-        return "Cache is cleared";
         $sections = Section::with('translations')->get();
         $menuTypes = menuTypes();
 
@@ -45,7 +47,7 @@ class SectionController extends Controller
 
     public function store(Request $request){
         $values = $request->all();
-        Artisan::call('cache:clear');
+       
         Validator::validate($values, [
             'type_id' => 'required'
         ]);
@@ -103,10 +105,11 @@ class SectionController extends Controller
     public function update($id, Request $request){
 
         $values = $request->all();
-        Artisan::call('cache:clear');
+        
         Validator::validate($values, [
             'type_id' => 'required'
         ]);
+        
         $section = Section::where('id', $id)->with('translations')->first();
       
         MenuSection::where('section_id', $id)->delete();

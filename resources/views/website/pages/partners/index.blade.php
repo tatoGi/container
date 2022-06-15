@@ -6,14 +6,16 @@
     @if(isset($breadcrumbs))
     <section>
             <div class="container">
-            @foreach ($breadcrumbs as $breadcrumb)
+          
                 <div class="b-r-c">
                     <a href="/{{app()->getlocale()}}">{{ trans('website.home') }}</a>
                     <span>/</span>
+                    @foreach ($breadcrumbs as $breadcrumb)
                     <a href="/{{ $breadcrumb['url'] }}" class="brc-active">{{ $breadcrumb['name'] }}</a>
+                    @endforeach 
                 </div>
             </div>
-            @endforeach 
+           
         </section>
         @endif
         <section>
@@ -28,7 +30,7 @@
                  @if(isset($partners_posts) && (count($partners_posts) > 0))
             @foreach($partners_posts as $partners)
                      <div class="col-lg-3 col-md-3 col-sm-6 col-6 partners-item">
-                         <a href="#">
+                         <a href="{{$partners->website}}">
                              <img src="{{ image($partners->thumb) }}" alt="partners">
                              <div class="partners-name">
                              {{$partners->translate(app()->getlocale())->title}}
@@ -53,6 +55,6 @@
             </div>
             
         </section>
-    
+        @include('website.components.progress')
     </main>
     @endsection

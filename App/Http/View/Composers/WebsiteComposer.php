@@ -32,7 +32,7 @@ class WebsiteComposer
 		}))
         ->with(['translations', 'menuTypes'])
 				->where('parent_id', null)
-        ->orderBy('order', 'desc')->orderBy('created_at', 'asc')
+        ->orderBy('order', 'asc')->orderBy('created_at', 'desc')
         ->get();
 
 

@@ -18,11 +18,10 @@
             <div style="display: flex; align-items:center; justify-content: space-between; padding:20px 0">
                 <h4 class="mt-0 header-title float-left">{{ $section [app()->getLocale()]->title }}</h4>
 
-                @if ($section->type_id ==10 && count($posts) > 0)
-                @else
+               
                 <a href="/{{ app()->getLocale() }}/admin/section/{{ $section->id }}/posts/create" type="button"
                     class="float-right btn btn-info waves-effect width-md waves-light">{{ trans('admin.add_post') }}</a>
-                @endif
+              
             </div>
 
             <div class="container-fluid">

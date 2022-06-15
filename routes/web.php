@@ -11,7 +11,6 @@ use App\Http\Controllers\Website\SearchController;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 use App\Mail\Mailers;
-use Illuminate\Support\Facades\Artisan;
 use \UniSharp\LaravelFilemanager\Lfm;
 
 
@@ -33,10 +32,6 @@ use \UniSharp\LaravelFilemanager\Lfm;
 | Auth Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/clear-cache', function() {
-    Artisan::call('cache:clear');
-    return "Cache is cleared";
-});
 
 Route::get('/testing', function () {
 
@@ -73,7 +68,6 @@ Route::middleware(['auth.check'])->group(function () {
     Route::middleware('isSuperuser')->group(function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('dashboard');
 
-       
         // Admin\UploadFilesController
         Route::post('/admin/upload/image', [UploadFilesController::class, 'uploadImage'])->name('image.upload');
         Route::post('/admin/upload/image/delete', [UploadFilesController::class, 'deleteImage'])->name('image.del');

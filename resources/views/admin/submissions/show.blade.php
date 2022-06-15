@@ -22,7 +22,7 @@
             </div> 
             
             <h4 style="font-weight: 600; line-height:20px; font-size:16px">{{ trans('admin.send_date') }} :  {{ $submission->created_at->format('H:i - d.m.Y') }}</h4>
-            <h5 style="font-weight: 500; line-height:20px"><b style="margin-right: 15px">{{trans('admin.author')}} :  {{ $submission->name}}</h5>
+            <h5 style="font-weight: 500; line-height:20px"><b style="margin-right: 15px"></h5>
                 <h5 style="font-weight: 500; line-height:20px"><b style="margin-right: 15px">{{trans('admin.text')}} :  {{ $submission->text}}</h5>
             @foreach ($submission->additional as $key => $additional) 
            

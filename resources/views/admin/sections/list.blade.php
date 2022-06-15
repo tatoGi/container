@@ -13,8 +13,13 @@
             <div style="display: flex; align-items:center; justify-content: space-between; padding:20px 0">
                 <h4 class="mt-0 header-title float-left">{{ trans('admin.sections') }}</h4>
                 @if (auth()->user()->isType('admin'))
+                @if (isset($_GET['type']) && ($_GET['type'] == 13))
+                <a href="/{{ app()->getLocale() }}/admin/sections/create?type=13" type="button"
+                    class="float-right btn btn-info waves-effect width-md waves-light">{{ trans('admin.add_section') }}</a>
+                @else
                 <a href="/{{ app()->getLocale() }}/admin/sections/create" type="button"
                     class="float-right btn btn-info waves-effect width-md waves-light">{{ trans('admin.add_section') }}</a>
+                    @endif
                 @endif
             </div>
             <div class="dd section-list">

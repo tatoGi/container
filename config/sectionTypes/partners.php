@@ -31,7 +31,9 @@ return [
             'logo' => [
                 'type' => 'logo',
             ],
-            
+            'website' => [
+                'type' => 'text',
+            ],
 
             'date' => [
                 'type' => 'date',

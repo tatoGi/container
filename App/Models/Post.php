@@ -119,5 +119,7 @@ class Post extends Model
         }
         return $slugs;
     }
-
+    public function product_category(){
+        return $this->belongsTo('App\Models\Section', 'additional->category', 'id' )->with('translations' ,'children');
+    }
 }

@@ -1,9 +1,7 @@
 @if ($paginator->hasPages())
-<section>
-    <div class="container">
-        <div class="pagination">
+
             <ul>
-                <li>
+                <li style="list-style: none;">
                     <a href="{{ $paginator->previousPageUrl() }}">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="65.542" height="33.382"
@@ -31,13 +29,13 @@
                 @if (is_array($element))
                 @foreach ($element as $page => $url)
 
-                <li @if($paginator->currentPage() == $page) class="pagination-color" @endif ><a
+                <li style="list-style: none;" @if($paginator->currentPage() == $page) class="pagination-color" @endif  ><a
                         href="{{$url}}">{{$page}}</a></li>
                 @endforeach
                 @endif
                 @endforeach
 
-                <li>
+                <li style="list-style: none;">
                     <a href="{{ $paginator->nextPageUrl() }}">
                         Next
                         <span>
@@ -62,8 +60,6 @@
                     </a>
                 </li>
             </ul>
-        </div>
-    </div>
+     
 
-</section>
 @endif

@@ -9,7 +9,7 @@
                                     <span class="count">{{settings('Business-Years')}}</span>
                                     <span></span>
                                 </div>
-                                <div class="title">{{trans('Business-Years')}}</div>
+                                <div class="title">{{trans('website.Business-Years')}}</div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-6">
@@ -18,7 +18,7 @@
                                     <span class="count">{{settings('Product-Sales')}}</span>
                                     <span>K+</span>
                                 </div>
-                                <div class="title">{{trans('Product-Sales')}}</div>
+                                <div class="title">{{trans('website.Product-Sales')}}</div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-6">
@@ -27,7 +27,7 @@
                                     <span class="count">{{settings('Happy-Customers')}}</span>
                                     <span>%</span>
                                 </div>
-                                <div class="title">{{trans('Happy-Customers')}}</div>
+                                <div class="title">{{trans('website.Happy-Customers')}}</div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-6">
@@ -36,7 +36,7 @@
                                     <span class="count">{{settings('Team-Members')}}</span>
                                     <span></span>
                                 </div>
-                                <div class="title">{{trans('Team-Members')}}</div>
+                                <div class="title">{{trans('website.Team-Members')}}</div>
                             </div>
                         </div>
                     </div>

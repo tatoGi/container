@@ -50,9 +50,10 @@ class PostController extends Controller
 
     public function store($sec, Request $request){
 
+
         $section = Section::where('id', $sec)->with('translations')->first();
         $values = $request->all();
-      
+        // dd($values);
         $values['section_id'] = $sec;
         $values['author_id'] = auth()->user()->id;
         $postFillable = (new Post)->getFillable();
@@ -66,45 +67,34 @@ class PostController extends Controller
             $values['icon'] = $values['old_icon'];
         }
         if(isset($values['cover']) && ($values['cover'] != '')){
-
             $newcoverName = uniqid() . "." . $values['cover']->getClientOriginalExtension();
             $values['cover']->move(config('config.file_path'), $newcoverName );
             $values['cover'] = '';
             $values['cover'] = $newcoverName;
         }elseif(isset($values['old_cover'])){
-
             $values['cover'] = $values['old_cover'];
         }
         $values['additional'] = getAdditional($values, array_diff(array_keys($section->fields['nonTrans']), $postFillable) );
-
+		
         foreach(config('app.locales') as $locale){
             if($values[$locale]['slug'] != ''){
                 $values[$locale]['slug'] = SlugService::createSlug(PostTranslation::class, 'slug', $values[$locale]['slug']);
-                $values[$locale]['slug'] = SlugService::createSlug(SectionTranslation::class, 'slug', $values[$locale]['slug']);
             }else{
                 $values[$locale]['slug'] = SlugService::createSlug(PostTranslation::class, 'slug', $values[$locale]['title']);
             }
-            
-            if(isset($values[$locale]['file']) && $values[$locale]['file'] != ''){
-                $newfileName = uniqid() . "." . $values[$locale]['file']->getClientOriginalExtension();
-                $orignalName = $values[$locale]['file']->getClientoriginalname();
-                $values[$locale]['file']->move(config('config.file_path'), $newfileName );
-                $values[$locale]['file'] = '';
-                $values[$locale]['file'] = $newfileName;
-                $values[$locale]['filename'] = $orignalName;
-            }
-            $values[$locale]['locale_additional'] = getAdditional($values[$locale], array_diff(array_keys($section->fields['trans']), $postTransFillable) );
+
+            $values[$locale]['locale_additional'] = getAdditional($values[$locale], array_diff(array_keys($section->fields['trans']), $postTransFillable) );   
         }
         $post = Post::create($values);
         // dd($post);
         foreach(config('app.locales') as $locale){
             $post->slugs()->create([
-                'fullSlug' => genFullSlug($post, $locale),
+                'fullSlug' => $locale.'/'.$post->translate($locale)->slug,
                 'locale' => $locale
             ]);
         }
         if (isset($values['files']) && count($values['files']) > 0) {
-
+			
             foreach($values['files'] as $key => $files){
 				foreach($files['file'] as $k => $file){
 					$postFile = new PostFile;
@@ -116,7 +106,7 @@ class PostController extends Controller
 				}
             }
         }
-
+        
         return Redirect::route('post.list', [app()->getLocale(), $section->id,]);
     }
 
@@ -167,16 +157,17 @@ class PostController extends Controller
         foreach(config('app.locales') as $locale){
 
             if($values[$locale]['slug'] != $post[$locale]->slug){
+
                 $values[$locale]['slug'] = SlugService::createSlug(PostTranslation::class, 'slug', $values[$locale]['slug']);
 
             }
-            foreach(config('app.locales') as $locale){
+           
 				$post->slugs()->create([
 					'fullSlug' => $locale.'/'.$post->translate($locale)->slug,
 					'locale' => $locale
 				]);
                
-			}
+			
             // dd($values);
             if(isset($values[$locale]['file']) && ($values[$locale]['file'] != '')){
                
@@ -230,7 +221,7 @@ class PostController extends Controller
 
         $files = PostFile::where('post_id', $post->id)->get();
         foreach($files as $file){
-            dd($files);
+           
             if(file_exists(config('config.image_path').$file->file)){
                 unlink(config('config.image_path').$file->file);
                 }else{

@@ -47,11 +47,11 @@
 
                 <div class="col-xxl-3 col-lg-4 col-md-4 col-sm-12">
                     <div class="select-categories-box">
-                        <h2>Product Categories</h2>
+                        <h2>{{trans('website.Product_Categories')}}</h2>
                         <hr>
                         <div class="categories-list">
                             <ul class="list-ul">
-                                <li class="list-li ">
+                                <li class="list-li opened">
                                     <a href="/{{$products->getfullslug()}}" >{{trans('website.all')}}</a>
                                     <span></span>
                                 </li>
@@ -116,7 +116,7 @@
                                             @foreach ($CsubSec->children as $DsubSec)
                                            
                                             <ul class="child-ul">
-                                                <li class=" @if(isset($filter_category) && ($DsubSec->id == $filter_category->id )) opened @endif">
+                                                <li class=" @if(isset($filter_category) && ($DsubSec->id == $filter_category->id )) opened color2 @endif">
                                                     <a href="/{{$products->getfullslug()}}?category={{$DsubSec->id}}" onclick="openPos(event, '{{$DsubSec->id}}')">{{ ($DsubSec[app()->getlocale()]->title) }}</a>
                                                     <span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="9.414"
@@ -166,7 +166,7 @@
                             <div class="product-search-result">
                                 <h2>{{$products->translate(app()->getlocale())->title}}</h2>
                                 <h4>
-                                    found <span>{{ $products_posts->total() }} </span> result
+                                {{trans('website.found')}} <span>{{ $products_posts->total() }} </span> 
                                 </h4>
                                 <div class="filter-button">
                                         <span>Filter</span>
@@ -176,7 +176,8 @@
                                     </div>
                             </div>
                             <form action="/{{ app()->getLocale() }}/SearchProduct" method="GET" role="SearchProduct">
-                                        <input id="MyInput" type="text" placeholder="Search..." name="que" value="">
+                                        <input id="MyInput" type="text" placeholder="{{ trans('website.search') }}..." name="que" value="@if(isset($que)) {{$que}} @endif">
+                                      
                                 <button>
                                     <svg id="search-normal" xmlns="http://www.w3.org/2000/svg" width="20.493"
                                         height="20.493" viewBox="0 0 20.493 20.493">
@@ -212,7 +213,7 @@
                                    @endif
                                     <div class="photo-hover">
                                         <div class="text">
-                                            {!! $post->translate(app()->getlocale())->text !!}
+                                            {!! $post->translate(app()->getlocale())->desc !!}
                                         </div>
                                     </div>
                                 </div>

@@ -39,13 +39,23 @@
                              <h4 class="person-name">{{$team->translate(app()->getlocale())->title}}</h4>
                              <div class="person-special">{{$team->translate(app()->getlocale())->position}}</div>
                              <div class="text">{!! $team->translate(app()->getlocale())->text !!}</div>
+                            
                              <div class="person-contact">
-                                 <a href="{{$team->facebook}}">Linkedin</a>
+                                 @if($team->Linkedin != '')
+                                 <a href="{{$team->Linkedin}}">Linkedin</a>
+                                 @endif
+                                 @if($team->facebook != '')
                                  <a href="{{$team->facebook}}">facebook</a>
-                                 <a href="{{$team->facebook}}">instagram</a>
+                                 @endif
+                                 @if($team->instagram != '')
+                                 <a href="{{$team->instagram}}">instagram</a>
+                                 @endif
                              </div>
+                             
+                       
                              <div class="person-email">
                                  <a href="#">
+                                 @if($team->mail != '')
                                      <span>
                                         <svg id="Iconly_Bold_Send" data-name="Iconly/Bold/Send" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                                             <g id="Send">
@@ -53,7 +63,8 @@
                                             </g>
                                         </svg>
                                      </span>
-                                     <span>Info@OliviaBoyd.com</span>
+                                     <span>{{$team->mail}}</span>
+                                     @endif
                                  </a>
                              </div>
                          </div>
@@ -66,6 +77,8 @@
              @endforeach
                          @endif
         </section>
+        
+
         <section>
             <div class="container">
                 <div class="pagination">

@@ -39,7 +39,7 @@ return [
             'facebook' => [
                 'type' => 'text',
             ],
-            'linkedin' => [
+            'Linkedin' => [
                 'type' => 'text',
             ],
             'instagram' => [
@@ -48,7 +48,11 @@ return [
             'mail' => [
                 'type' => 'text',
             ],
-
+            'date' => [
+                'type' => 'date',
+                'required' => 'required',
+                'validation' => 'required|max:20'
+            ],
 
         ],
 

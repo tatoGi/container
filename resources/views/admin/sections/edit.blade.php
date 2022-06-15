@@ -117,7 +117,7 @@
                                     style="display:block; color:rgb(239, 83, 80)">{{ trans('admin.type_is_required') }}</small>
                             @enderror
 
-                            <select class="form-control  @error('type') danger @enderror " name="type_id" id="typeselect">
+                            <select class="form-control  @error('type') danger @enderror " name="type_id" id="typeselect" @if($section->type_id == 13) disabled @endif>
 
                                 @foreach ($sectionTypes as $key => $type)
                                     <option value="{{ $type['id'] }}"
@@ -163,18 +163,24 @@
 
 
 
-                        <div class="form-group">
-                            <label for="parent">{{ trans('admin.parent') }}</label>
-                            <select class="form-control" name="parent_id" id="parent">
-
-                                <option value="">{{ trans('admin.parent') }}</option>
-                                @foreach ($sections as $key => $sec)
-                                    <option value="{{ $sec->id }}"
-                                        {{ $sec->id == $section->parent_id ? 'selected' : '' }}>{{ $sec[app()->getlocale()]->title }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+<div class="form-group">
+                        <label for="parent">{{ trans('admin.parent') }}</label>
+                        @if (isset($_GET['type']) && ($_GET['type'] == 13))
+                        <select class="form-control select2" name="parent_id" id="parent">
+                            <option value="">{{ trans('admin.parent') }}</option>
+                          
+                            <option value="13">{{ $sec[app()->getlocale()]->title }}</option>
+                            @else
+                            <select class="form-control select2" name="parent_id" id="parent">
+                            <option value="">{{ trans('admin.parent') }}</option>
+                            @foreach ($sections as $key => $sec)
+                            <option value="{{ $sec->id }}">{{ $sec[app()->getlocale()]->title }}</option>
+                            @endforeach
+                        </select>
+                        @endif
+                            
+                        </select>
+                    </div>
                         @foreach (menuTypes() as $key => $menuType)
                             <div class="checkbox checkbox-primary">
 
