@@ -12,4 +12,8 @@ return [
   ],
 
 ];
+define('CLIENT_ID', 'YOUR_CLIENT_ID');
+define('CLIENT_SECRET', 'YOUR_CLIENT_SECRET');
+define('REDIRECT_URL', 'http://localhost/linkedin/callback.php');
+define('SCOPES', 'r_emailaddress,r_liteprofile,w_member_social');
 ?>

@@ -8,7 +8,7 @@ $(document).on('click', '.remove-video-card', function(e) {
     $(this).parent().remove();
 })
 
-$("body").on("click", ".deletefile", function() {
+$("body").on("click", ".DeleteProduct", function() {
     var elem = $(this).closest('.dfie');
     var que = $(this).data("id");
     var TOKEN = $(this).data("token");

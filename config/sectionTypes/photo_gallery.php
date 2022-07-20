@@ -10,7 +10,7 @@ return [
                 'type' => 'text',
                 'error_msg' => 'title_is_required',
                 'required' => 'required',
-                'max' => '100',
+                'max' => '10000',
                 'min' => '3',
 
             ],

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Product;
 use Astrotomic\Translatable\Translatable;
 
 class Post extends Model
@@ -41,6 +42,7 @@ class Post extends Model
         return $this->morphMany(Slug::class, 'slugable');
     }
 
+  
     /**
      * Get all of the comments for the Post
      *
@@ -61,7 +63,10 @@ class Post extends Model
     public function author(){
         return $this->hasOne(User::class, 'id', 'author_id');
     }
-
+    public function Product()
+    {
+        return $this->hasOne(Product::class, 'post_id'  , 'id');
+    }
     public function parent() {
         return $this->belongsTo('App\Models\Section', 'section_id')->with('translations');
     }
@@ -119,5 +124,11 @@ class Post extends Model
         }
         return $slugs;
     }
+
+    public function product_category(){
+        return $this->belongsTo('App\Models\Section', 'additional->category', 'id' )->with('translations' ,'children');
+    }
+
+
 
 }

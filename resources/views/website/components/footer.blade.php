@@ -4,6 +4,7 @@
             <div class="container">
                 <div class="footer-links">
                     <ul>
+                    {!! settings('mesenger_Plugin') !!}
                    
                         @foreach ($footerSections as $key => $fsection)
                             @if ($fsection !== 0)
@@ -30,8 +31,8 @@
                         <li><a href="{{settings('instagram')}}"><span class="icon-inst"></span></a></li>
                     </div>
                     <div class="create">
-                        <a href="#" class="title">Copyright all right is reserved</>
-                        <a href="#" class="title">Made by Idea Design Group</>
+                        <a href="#" class="title">{{trans('admin.COPYRIGHT')}}</>
+                        <a href="https://ideadesigngroup.ge/ka" class="title">{{trans('admin.MADE_BY_IDEA')}}</>
                     </div>
                 </div>
             </div>

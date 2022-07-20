@@ -36,7 +36,7 @@
 
 
             <h4 class="header-title mt-0 mb-3">{{ trans('admin.add_post') }}</h4>
-            {!! Form::open(['route' => ['post.store', app()->getLocale(), $section->id], "enctype" => "multipart/form-data"]) !!}
+            {!! Form::open(['route' => ['post.store', app()->getLocale(), $section->id], "enctype" => "multipart/form-data","class" => "invoice-repeater"]) !!}
                 @include('admin.posts.form')
             {!! Form::close() !!}
 
@@ -48,6 +48,8 @@
 
 
 @push('scripts')
+
+<script src="{{ asset('/admin/js/jsrepeater.min.js') }}"></script>
     <script src="{{ asset('/admin/js/dropupload.js') }}"></script>
 
     <!-- Plugins Js -->
@@ -66,4 +68,5 @@
     <script src="{{ asset('/admin/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
     <!-- Init js-->
     <script src="{{ asset('/admin/js/pages/form-advanced.init.js') }}"></script>
+    <script src="{{ asset('/admin/js/pages/form-repeater.js') }}"></script>
 @endpush

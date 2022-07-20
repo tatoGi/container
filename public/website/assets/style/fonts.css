@@ -1,4 +1,34 @@
 @font-face {
+  font-family: 'BPG DejaVu Sans';
+  src: url('../fonts/BPGDejaVuSans-Bold.woff2') format('woff2'),
+      url('../fonts/BPGDejaVuSans-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BPG DejaVu Sans';
+  src: url('../fonts/BPGDejaVuSans.woff2') format('woff2'),
+      url('../fonts/BPGDejaVuSans.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+@font-face {
+  font-family: 'BPG DejaVu Sans Caps';
+  src: url('../fonts/BPGDejaVuSansCaps-Book.woff2') format('woff2'),
+      url('../fonts/BPGDejaVuSansCaps-Book.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
   font-family: 'Arial MT';
   src: url('../fonts/ArialMTBlack.woff2') format('woff2'),
       url('../fonts/ArialMTBlack.woff') format('woff');
@@ -191,6 +221,9 @@
   .icon-inst:before {
     content: "\e906";
     /* color: #e3662a; */
+  }
+  .icon-linkedin:before {
+    content: "\e907";
   }
   .icon-box:before {
     content: "\e900";

@@ -10,6 +10,7 @@ use App\Models\Section;
 use App\Models\SectionTranslation;
 use App\Models\Subscription;
 use App\Models\Post;
+use App\Models\Product;
 use App\Models\PostTranslation;
 use App\Models\PostFile;
 use App\Models\Slug;
@@ -73,7 +74,7 @@ class PagesController extends Controller
 
 			$news = Section::where('type_id', 2)->with('translations', 'posts')->first();
 			
-         	$news_posts = Post::where('section_id', $news->id)->with('translations')->paginate(settings('news_pagination'));
+         	$news_posts = Post::where('section_id', $news->id)->with('translations')->orderby('date', 'desc')->paginate(settings('paginate'));
 
 			return view("website.pages.news.index", compact('model', 'breadcrumbs',  'language_slugs' ,'news_posts'));
 		}
@@ -86,22 +87,16 @@ class PagesController extends Controller
 			$contact = Section::where('type_id', 4)->with('translations', 'posts')->first();
 			return view("website.pages.contact.index", compact('model', 'breadcrumbs', 'contact', 'language_slugs'));
 		}
-		if ($model->type_id == 6) {
-			$services = Section::where('type_id', 6)->with('translations', 'posts')->first();
-			$service_posts = Post::where('section_id', $services->id)->with('translations')->paginate(settings('service_pagination'));
-			// dd($service_posts);
-			$projects = Section::where('type_id', 7)->with('translations', 'posts')->first();
-			return view("website.pages.service.index", compact('model', 'breadcrumbs', 'services', 'projects', 'language_slugs' ,'service_posts'));
-		}
+	
 		if ($model->type_id == 7) {
 			$partners = Section::where('type_id', 7)->with('translations', 'posts')->first();
 		
-			$partners_posts = Post::where('section_id', $partners->id)->with('translations')->paginate(settings('projects_pagination'));
+			$partners_posts = Post::where('section_id', $partners->id)->with('translations')->orderby('date', 'desc')->paginate(settings('partners_pagination'));
 			return view("website.pages.partners.index", compact('model', 'breadcrumbs', 'partners', 'partners_posts',  'language_slugs'));
 		}
 		if ($model->type_id == 8) {
-			$teams = Section::where('type_id', 8)->with('translations')->first();
-			$team_posts = Post::where('section_id', $teams->id)->with('translations')->paginate(settings('paginate'));
+			$teams = Section::where('type_id', 8)->with('translations')->orderby('created_at', 'asc')->first();
+			$team_posts = Post::where('section_id', $teams->id)->with('translations')->orderby('date', 'desc')->paginate(settings('paginate'));
 		
 			return view("website.pages.team.index", compact('model', 'breadcrumbs',  'teams', 'language_slugs','team_posts'));
 		}
@@ -111,19 +106,19 @@ class PagesController extends Controller
 		}
         if ($model->type_id == 10) {
 			$photo  = Section::where('type_id', 10)->with('translations', 'posts')->first();
-			$photo_posts = Post::where('section_id', $photo->id)->with('translations')->paginate(settings('pagination'));
+			$photo_posts = Post::where('section_id', $photo->id)->with('translations')->orderby('date', 'asc')->paginate(settings('paginate'));
 			
 			return view("website.pages.photo.index", compact('model', 'breadcrumbs', 'photo','photo_posts', 'language_slugs'));
 		}
         if ($model->type_id == 11) {
 			$video  = Section::where('type_id', 11)->with('translations', 'posts')->first();
-			$video_posts = Post::where('section_id', $video->id)->with('translations')->paginate(settings('pagination'));
+			$video_posts = Post::where('section_id', $video->id)->with('translations')->orderby('date', 'desc')->paginate(settings('paginate'));
 			return view("website.pages.video.index", compact('model', 'breadcrumbs', 'video','video_posts', 'language_slugs'));
 		}
 		if ($model->type_id == 12) {
 			
 			$projects  = Section::where('type_id', 12)->with('translations', 'posts')->first();
-			$projects_posts = Post::where('section_id', $projects->id)->with('translations')->paginate(settings('pagination'));
+			$projects_posts = Post::where('section_id', $projects->id)->with('translations')->orderby('date', 'desc')->paginate(settings('paginate'));
 			return view("website.pages.project.index", compact('model', 'breadcrumbs', 'language_slugs'));
 		}
 		
@@ -134,10 +129,14 @@ class PagesController extends Controller
 		}
 	
 		if ($model->type_id == 14) {
-			$products  = Section::where('type_id', 14)->with('translations', 'posts')->first();
-			$popular_products = Post::where('section_id', $products->id)->with('translations')->get();
+			
+			$products  = Section::where('type_id', 14)->with('translations', 'posts'  )->first();
+			
+			$popular_products = Post::where('section_id', $products->id)->with('translations')->orderby('date', 'asc')->get();
 			$category  = Section::where([['type_id', 13],['parent_id',null]])->with('translations','children','children.children')->get();
 			$filter_cat_arr = array();
+			$filter_category = null;
+			
 			if($request->category != null)
 			{
 				 $filter_category = Section::where([['type_id', 13],['id',$request->category]])->with('translations','children','children.children')->first();
@@ -156,10 +155,10 @@ class PagesController extends Controller
 				$products_posts = Post::where('section_id', $products->id)->with('translations')->paginate(settings('products_pagination'));
 			}
 			else{
-				$products_posts = Post::where('section_id', $products->id)->whereIn('additional->category',$filter_cat_arr)->with('translations')->paginate(settings('products_pagination'));
+				$products_posts = Post::where('section_id', $products->id)->whereIn('additional->category',$filter_cat_arr)->with('translations')->orderby('date', 'asc')->paginate(settings('products_pagination'));
 			}
 			
-			return view("website.pages.products.index", compact('model', 'breadcrumbs','products_posts','products', 'category', 'language_slugs'));
+			return view("website.pages.products.index", compact('model', 'breadcrumbs','products_posts','products', 'category', 'language_slugs','filter_category'));
 		}
 		return view("website.pages.{$model->type['folder']}.index", compact(['model', 'breadcrumbs', 'language_slugs']));
 	}
@@ -194,13 +193,23 @@ class PagesController extends Controller
 			$model = Section::where('type_id', 1)->with('translations')->first();
 		}
 
+		$news = Section::where('type_id', 2)->with('translations', 'posts')->first();
+		$news_section_post = Post::Where('section_id', $news->id)->with('translations', function ($q) {
+			$q->where('active', 1);
+		})->where('active_on_home', 1)->get();
 
+		$teams = Section::where('type_id', 8)->with('translations')->first();
+		$teams_section_post = Post::Where('section_id', $teams->id)->with('translations', function ($q) {
+			$q->where('active', 1);
+		})->where('active_on_home', 1)->get();
 		$about_section = Section::where('type_id', 3)->with('translations', 'posts')->first();
 		$contact = Section::where('type_id', 4)->with('translations', 'posts')->first();
 		$products  = Section::where('type_id', 14)->with('translations', 'posts')->first();
-		$products_posts = Post::where('section_id', $products->id)->with('translations',function ($q) {
+		
+		$products_section_post = Post::where('section_id', $products->id)->with('translations',function ($q) {
 			$q->where('active', 1);
 		})->where('active_on_home', 1)->get();
+		
 		$popular_products = Post::where('section_id', $products->id)->with('translations',function ($q) {
 			$q->where('active', 1);
 		})->where('populars', 1)->get();
@@ -209,20 +218,11 @@ class PagesController extends Controller
 
 
 
-		$news = Section::where('type_id', 2)->with('translations', 'posts')->first();
-		$news_section_post = Post::Where('section_id', $news->id)->with('translations', function ($q) {
-			$q->where('active', 1);
-		})->where('active_on_home', 1)->get();
-
-
-		$teams = Section::where('type_id', 8)->with('translations')->first();
-		$teams_section_post = Post::Where('section_id', $teams->id)->with('translations', function ($q) {
-			$q->where('active', 1);
-		})->where('active_on_home', 1)->get();
+		
 // dd($teams_section_post);
 		$services = Section::where('type_id', 6)->with('translations', 'posts')->first();
 
-		return view('website.home', compact('contact', 'about_section','popular_products', 'model', 'services', 'products', 'teams', 'news','news_section_post', 'teams_section_post'));
+		return view('website.home', compact('contact', 'about_section','popular_products', 'products_section_post','model', 'services', 'products', 'teams', 'news','news_section_post', 'teams_section_post'));
 	}
 
 
@@ -288,8 +288,9 @@ class PagesController extends Controller
 
 	public static function show($model)
 	{
+		;
 		$language_slugs = $model->getTranslatedFullSlugs();
-		
+		// dd($language_slugs);
 			// BreadCrumb ----------------------------
 		$breadcrumbs = [];
 		$breadcrumbs[] = [
@@ -302,40 +303,93 @@ class PagesController extends Controller
 				'name' => $section->title,
 				'url' => $section->getFullSlug()
 			];
-			while ($section->parent_id !== null) {
+			while ($model->parent_id !== null) {
 				$sec = Section::where('id', $section->section_id)->with('translations')->first();
+		
 				$breadcrumbs[] = [
 					'name' => $sec->title,
 					'url' => $sec->getFullSlug()
 				];
 			}
 		}
+
+		$filter_category = Section::where([['type_id', 13],['id', $model->category]])->with('translations' , 'parent.parent' , 'parent')->get();
+
+		
+
+
+
 		// $teams_section_post = Post::Where('section_id', $model->id)->with('translations', function ($q) {
 		// 	$q->where('active', 1);
 		// })->where('active_on_home', 1)->get();
 		
 		$teams = Section::where('type_id', 8)->with('translations', 'posts')->first();
 		$projects = Section::where('type_id', 7)->with('translations', 'posts')->first();
-		$products = Section::where('type_id', 14)->with('translations', 'posts')->first();
-		$products_posts = Post::where('section_id', $products->id)->with('translations')->paginate(settings('pagination'));
+		$products = Section::where('type_id', 14 )->with('translations', 'posts')->first();
+		
+		$products_slider = Post::where('section_id', $products->id)->with('translations', function($q){
+			$q->where('active', 1);
+		})->where('active_on_home', 1)->paginate(settings('pagination'));
+		
 		$photo  = Section::where('type_id', 10)->with('translations', 'posts')->first();
-		$photo_posts = Post::where('section_id', $photo->id)->with('translations')->paginate(settings('projects_pagination'));
-		$video  = Section::where('type_id', 11)->with('translations', 'posts')->first();
-		$video_posts = Post::where('section_id', $video->id)->with('translations')->paginate(settings('pagination'));
+
+		
+		
+		$photo_posts = Post::where('section_id', $photo->id)->with('translations',function($q){
+			$q->where('active', 1);
+		})->where('active_on_home', 1)->paginate(settings('projects_pagination'));
+		
 		$news = Section::where('type_id', 2)->with('translations', 'posts')->first();
+		$news_posts = Post::where('section_id', $news->id)->with('translations',function($q){
+			$q->where('active', 1);
+		})->where('active_on_home', 1)->orderby('date', 'desc')->paginate(settings('paginate'));
+		$news->posts()->with('translations')->orderby('date' , 'desc')->get();
+		
+		$news_slider = Post::where('section_id', $news->id)
+		->with('translations') 
+		->where('posts.id' , '!=', $model->id)
+		->orderby('date', 'desc')->limit(settings('news_slider'))
+		
+		->get(); 
+		$photo_slider = Post::where('section_id', $photo->id)
+		->with('translations')
+		->where('id', '!=' , $model->id)
+		->orderby('date', 'desc')->limit(settings('photo_slider'))
+		
+		->get(); 
+		
+	
+		
+				
+		
 		$breadcrumbs = array_reverse($breadcrumbs);
 		$post = Post::where('posts.id', $model->id)
-		
+	
 			->join('post_translations', 'posts.id', '=', 'post_translations.post_id')
 			->where('post_translations.locale', '=', app()->getLocale())
-			->select('posts.*', 'post_translations.text', 'post_translations.desc', 'post_translations.title', 'post_translations.locale_additional', 'post_translations.slug')
+			->select('posts.*', 'post_translations.text', 'post_translations.desc',  'post_translations.title', 'post_translations.locale_additional', 'post_translations.slug')
 			->with('files')->first();
 
 	
 
 		$model->views = $model->views + 1;
 		$model->save();
+		
 
+		
+			$products_slider = Post::where('section_id', $products->id)
+			
+			->with('translations') 
+			->where('id' , '!=', $model->id)
+			->where('additional->category','=', $model->category)
+			->orderby('date', 'desc')->limit(settings('products_slider'))
+		
+			->get();
+			
+
+	
+		
+		
 		return view("website.pages.{$section->type['folder']}.show", [
 			'model' => $model,
 			'section' => $section,
@@ -343,15 +397,18 @@ class PagesController extends Controller
 			'post' => $model,
 			'breadcrumbs' => $breadcrumbs,
 			'language_slugs' => $language_slugs,
+			'filter_category' => $filter_category,
 			'teams' => $teams,
 			'news' => $news,
+			'news_posts'=> $news_posts,
 			'projects' => $projects,
 			'products' => $products,
-			'products_posts' => $products_posts,
+			'photo_slider' => $photo_slider,
 			'photo' => $photo,
 			'photo_posts' => $photo_posts,
-			'video' => $video,
-			'video_posts' => $video_posts,
+			'products_slider' => $products_slider,
+			'news_slider' => $news_slider
+			
 
 		])->render();
 	}
@@ -378,13 +435,14 @@ class PagesController extends Controller
 	}
 	public static function search(Request $request)
 	{
-		
+		$model = [];
 		$language_slugs['ka'] = 'ka/search?que='.$request->que;
 		$language_slugs['en'] = 'en/search?que='.$request->que;
 		$validatedData = $request->validate([
 			'que' => 'required',
 		]);
 		$searchText = $validatedData['que'];
+		
 		$postTranlations = PostTranslation::whereActive(true)->whereLocale(app()->getLocale())
 			->where('title', 'LIKE', "%{$searchText}%")
 			->orWhere('desc', 'LIKE', "%{$searchText}%")
@@ -401,38 +459,37 @@ class PagesController extends Controller
 				'desc' => str_limit(strip_tags($post->translate(app()->getLocale())->desc)),
 			];
 		}
-		return view('website.pages.search.index', compact('posts', 'language_slugs'));
+		return view('website.pages.search.index', compact('posts', 'language_slugs' ,'searchText'));
 	}	
-	public static function prosearch(Request $request)
-	{
-		
-		$language_slugs['ka'] = 'ka/products?que='.$request->que;
-		$language_slugs['en'] = 'en/products?que='.$request->que;
-		$validatedData = $request->validate([
-			'que' => 'required',
-		]);
-		$searchText = $validatedData['que'];
-		
-		$postTranlations = PostTranslation::whereActive(true)->whereLocale(app()->getLocale())
-	
-			->where('title', 'LIKE', "%{$searchText}%")
-			->orWhere('desc', 'LIKE', "%{$searchText}%")
-			->orWhere('text', 'LIKE', "%{$searchText}%")
-			->orWhere('keywords', 'LIKE', "%{$searchText}%")
-			->orWhere('locale_additional', 'LIKE', "%{$searchText}%")->pluck('post_id')->toArray();
 
-		$posts  = Post::whereIn('id', $postTranlations)->with('translations', 'parent', 'parent.translations')->paginate(settings('paginate'));
+
+		public static function SearchProduct(request $request){
 		
-		$posts->appends(['que' => $searchText]);
-		$data = [];
-		foreach ($posts as $post) {
-			$data[] = [
-				'slug' => $post->getFullSlug() ?? '#',
-				'title' => $post->translate(app()->getLocale())->title,
-				'desc' => str_limit(strip_tags($post->translate(app()->getLocale())->desc)),
-			];
-		}
-		return view('website.pages.products.index', compact('posts', 'language_slugs'));
-	}	
+		$que = $request->que;
+		$model = Section::where('type_id', 14)->with('translations')->first();
+		
+		$products  = Section::where('type_id', 14)->with('translations', 'posts')->first();
+		$category  = Section::where([['type_id', 13], ['parent_id', null]])->with('translations', 'children', 'children.children')->get();
+		$language_slugs = $model->getTranslatedFullSlugs();
+		
+
+
+
+		
+		$products_posts = Post::Where('section_id', $model->id)
 	
+		->whereHas('translations', function ($q) use ($que) {
+			$q->where('title', 'LIKE', "%{$que}%");
+			$q->orWhere('desc', 'LIKE', "%{$que}%");
+			$q->orWhere('text', 'LIKE', "%{$que}%");
+			
+		})->orWhereHas('product_category', function($p) use($que){
+			
+			$p->whereHas('translations',  function ($i) use ($que) {
+				$i->where('title', 'LIKE', "%{$que}%");
+			});
+		})->paginate(settings('products_pagination'));
+		
+		return view('website.pages.products.index', compact('products_posts', 'model', 'category', 'products', 'language_slugs'));
+	}
 }

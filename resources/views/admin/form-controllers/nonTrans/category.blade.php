@@ -5,7 +5,7 @@
         @foreach (getCategory()->section as $key => $item)
         <option value="{{ $item->id }}" @if(isset($post->category) &&
     
-            ($item[app()->getlocale()]->title == $post->category)) selected
+            ($item->id == $post->category)) selected
 
             @endif>{{$item[app()->getlocale()]->title}}</option>
         @endforeach

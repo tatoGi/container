@@ -52,23 +52,13 @@ return [
                 'type' => 'images',
 
             ],
-            
-            'facebook' => [
-                'type' => 'text',
-            ],
-            'linkedin' => [
-                'type' => 'text',
-            ],
-            'instagram' => [
-                'type' => 'text',
-            ],
+          
             'date' => [
                 'type' => 'date',
                 'required' => 'required',
                 'validation' => 'required|max:20'
             ],
-
-
+          
 
         ],
 

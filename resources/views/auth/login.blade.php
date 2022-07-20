@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>IEC  - ავტორიზაცია</title>
+	<title>europack</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -29,7 +29,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" style="text-align: center" data-tilt>
-					<img  src="/website/img/Group 135.svg" alt="IMG">
+					<img  src="/website/img/logo.png" alt="IMG">
 				</div>
 
 				<form method="POST" class="login100-form validate-form" action="{{ route('login', app()->getLocale()) }}">

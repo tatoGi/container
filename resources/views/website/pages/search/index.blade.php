@@ -18,7 +18,10 @@
          <section>
              <div class="container">
                  <form class="form-control-1 p-t-5">
-                 <input type="text" class="form-controller" id="search" name="que"></input>
+                 <input type="text" class="form-controller" id="search" name="que" value="@if(isset($searchText)) {{$searchText}} @endif">
+                 
+                </input>
+                
                    
                     <button class="search-btn">
                         <svg id="search-normal" xmlns="http://www.w3.org/2000/svg" width="20.493" height="20.493" viewBox="0 0 20.493 20.493">
@@ -41,19 +44,32 @@
                      
                  </div>
              </div>
+             @foreach ($posts as $item)
+             
              <div class="search-result-item">
                 <div class="container">
-                @foreach ($posts as $item)
+              
                     <div class="result-item">
-                    @if (($item->parent->type_id == 3) || ($item->parent->type_id == 6) || ($item->parent->type_id == 4))
+                    @if ( ($item->parent->type_id == 6) || ($item->parent->type_id == 4))
+                    
                         <h2>{!! strip_tags($item->translate(app()->getlocale())->title) !!} 
                         </h2>
                         @else
-                        <h4>{!! $item->translate(app()->getlocale())->title !!}</h4>
+                        <h2>{!! $item->translate(app()->getlocale())->title !!}
+                        </h2>
+                        <h4>{!! strip_tags($item->parent->translate(app()->getlocale())->title) !!} </h4>
+                        <h4>{!! strip_tags($item->parent->translate(app()->getlocale())->Specialised) !!} </h4>
                         <div class="text"> {!! strip_tags($item->translate(app()->getlocale())->text) !!}
                         </div>
                         @endif
-                        <a href="/{{ $item->getfullslug() }}@if($item->parent->type_id == 6)#{{$item->id}}@endif" class="about-read-link">
+                       
+                        @if($item->parent->type_id == 11 || $item->parent->type_id == 3 || $item->parent->type_id == 8 )
+                       
+                        <a href="/{{ $item->parent->getfullslug() }}" class="about-read-link">
+                           
+                        @else
+                        <a href="/{{ $item->getfullslug() }}" class="about-read-link">
+                        @endif
                             <div class="read-link">Read more</div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="36.514" height="11.852" viewBox="0 0 36.514 11.852">
                                 <g id="Iconly_Light_Arrow_-_Right" data-name="Iconly/Light/Arrow - Right" transform="translate(0.75 1.061)">
@@ -65,10 +81,10 @@
                               </svg>
                         </a>
                     </div>
-                    @endforeach
+                 
                 </div>
              </div>
-          
+             @endforeach
          </section>
         <section>
             <div class="container">

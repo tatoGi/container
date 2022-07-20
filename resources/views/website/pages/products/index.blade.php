@@ -39,7 +39,6 @@
                     </div>  
                 </div> 
             </div>
-
         <div class="container">
 
             <div class="row">
@@ -48,11 +47,11 @@
 
                 <div class="col-xxl-3 col-lg-4 col-md-4 col-sm-12">
                     <div class="select-categories-box">
-                        <h2>Product Categories</h2>
+                        <h2>{{trans('website.Product_Categories')}}</h2>
                         <hr>
                         <div class="categories-list">
                             <ul class="list-ul">
-                                <li class="list-li ">
+                                <li class="list-li opened">
                                     <a href="/{{$products->getfullslug()}}" >{{trans('website.all')}}</a>
                                     <span></span>
                                 </li>
@@ -61,8 +60,8 @@
                                 @if($cat ==! 0)
                                 @if ($cat->children ==! 0)
                                     
-                                <li class="list-li tablinks" >
-                                
+                                <li  class="list-li tablinks @if(isset($filter_category) && ($cat->id == $filter_category->id )) opened @endif" >
+                               
                                   
                                     <a href="/{{$products->getfullslug()}}?category={{$cat->id}}" >{{ $cat->translate(app()->getlocale())->title }}</a>
                                  
@@ -81,7 +80,7 @@
                                     @foreach ($cat->children as $subSec)
                                     <ul class="child-ul tablinks">
 
-                                        <li>
+                                        <li  class=" @if(isset($filter_category) && ($subSec->id == $filter_category->id )) opened @endif">
                                             <a href="/{{$products->getfullslug()}}?category={{$subSec->id}}" >{{ ($subSec[app()->getlocale()]->title) }}</a>
                                             <span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="9.414" height="16.828"
@@ -99,7 +98,7 @@
                                             @foreach ($subSec->children as $CsubSec)
 
                                             <ul class="child-ul tablinks">
-                                                <li>
+                                                <li class=" @if(isset($filter_category) && ($CsubSec->id == $filter_category->id )) opened @endif">
                                                     <a href="/{{$products->getfullslug()}}?category={{$CsubSec->id}}">{{ ($CsubSec[app()->getlocale()]->title) }}</a>
                                                     <span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="9.414"
@@ -117,7 +116,7 @@
                                             @foreach ($CsubSec->children as $DsubSec)
                                            
                                             <ul class="child-ul">
-                                                <li>
+                                                <li class=" @if(isset($filter_category) && ($DsubSec->id == $filter_category->id )) opened color2 @endif">
                                                     <a href="/{{$products->getfullslug()}}?category={{$DsubSec->id}}" onclick="openPos(event, '{{$DsubSec->id}}')">{{ ($DsubSec[app()->getlocale()]->title) }}</a>
                                                     <span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="9.414"
@@ -164,11 +163,14 @@
                 <div class="col-xxl-9 col-lg-8 col-md-8 col-sm-12">
                     <div class="products-container">
                         <div class="form-box">
-
                             <div class="product-search-result">
-                                <h2>{{$products->translate(app()->getlocale())->title}}</h2>
+                                @if(isset($filter_category))
+                                <h2>{{ $filter_category->translate(app()->getlocale())->title }}</h2>
+                                @else
+                                <h2>{{trans('website.all')}}</h2>
+                                @endif
                                 <h4>
-                                    found <span>{{ $products_posts->total() }} </span> result
+                                {{trans('website.found')}} <span>{{ $products_posts->total() }} </span> 
                                 </h4>
                                 <div class="filter-button">
                                         <span>Filter</span>
@@ -177,9 +179,9 @@
                                         </svg>
                                     </div>
                             </div>
-                            <form action="/{{ app()->getLocale() }}/products{id}" method="GET" role="prosearch">
-                                        <input id="MyInput" type="text" placeholder="Search..." name="que">
-                                        <input type="hidden" name="que" value="{{ csrf_token() }}">
+                            <form action="/{{ app()->getLocale() }}/SearchProduct" method="GET" role="SearchProduct">
+                                        <input id="MyInput" type="text" placeholder="{{ trans('website.search') }}..." name="que" value="@if(isset($que)) {{$que}} @endif">
+                                      
                                 <button>
                                     <svg id="search-normal" xmlns="http://www.w3.org/2000/svg" width="20.493"
                                         height="20.493" viewBox="0 0 20.493 20.493">
@@ -201,26 +203,27 @@
                         <div class="products-list" id="prosearch">
                         @if(isset($products_posts) && (count($products_posts) > 0))
                             @foreach($products_posts as $post)
-                         
-                            @if(isset($post->category) && ($post->category) != 0)
+                          
+                           
                         
                             <a href="/{{$post->getfullslug()}}#{{$post->id}}" class="product-list-item"  id="{{$post->category}}">
-                              
+                           
                                 <div class="list-img">
                                    @if(isset($post->thumb))
+                                   
                                     <img src="{{ image($post->thumb) }}" alt="img">
                                     @else
                                    <img src="/uploads/img/blue.png" alt="img">
                                    @endif
                                     <div class="photo-hover">
                                         <div class="text">
-                                            {!! $post->translate(app()->getlocale())->text !!}
+                                            {!! $post->translate(app()->getlocale())->desc !!}
                                         </div>
                                     </div>
                                 </div>
                                 <h3>{{$post->translate(app()->getlocale())->title}}</h3>
                             </a>
-                            @endif
+                           
                             @endforeach
                             @endif
                         </div>

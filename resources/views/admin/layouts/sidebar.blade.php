@@ -2,7 +2,6 @@
 <div class="left-side-menu">
 
     <div class="slimscroll-menu">
-
         <!-- User box -->
         <div class="user-box text-center">
             <div class="dropdown">
@@ -63,13 +62,19 @@
                         <span > {{ trans('admin.submissions') }} </span>
                     </a>
                 </li>
+
                 <li>
                     <a href="/{{ app()->getLocale() }}/admin/sections">
                         <i class="mdi mdi-view-list"></i>
                         <span> {{ trans('admin.sections') }} </span>
                     </a>
                 </li>
-                
+                <li >
+                    <a href="/{{ app()->getLocale() }}/admin/sections?type=13">
+                        <i class="mdi mdi-view-list"></i>
+                        <span> {{ trans('admin.categories') }} </span>
+                    </a>
+                </li>
                 <li>
                     
                     @foreach (bannerTypesOrdered() as $key => $bannerType)

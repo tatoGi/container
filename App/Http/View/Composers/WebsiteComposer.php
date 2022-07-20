@@ -28,25 +28,22 @@ class WebsiteComposer
             $query->whereHas('menuTypes', function($q){
                 $q->where('menu_type_id', 1);
             })
-            ->orderBy('order', 'desc')->orderBy('created_at', 'asc');
+            ->orderBy('order', 'asc');
 		}))
         ->with(['translations', 'menuTypes'])
 				->where('parent_id', null)
-        ->orderBy('order', 'desc')->orderBy('created_at', 'asc')
+        ->orderBy('order', 'asc')
         ->get();
 
 
-        $this->footerSections = Section::where('parent_id',NULL)->whereHas('translations', function($q) {
-
+        $this->footerSections = Section::whereHas('translations', function($q) {
             $q->whereActive(true)->whereLocale(app()->getLocale());
         })->whereHas('menuTypes', function($q) {
-            $q->where('menu_type_id', 2  , menuTypeByKey('footerMenu'));
-        })
-        ->with(['translations', 'menuTypes'])
-				->where('parent_id', null)
-        ->orderBy('order', 'asc')->orderBy('created_at', 'desc')->limit(6)
-        ->get();
-       
+            $q->where('menu_type_id', 2);
+        
+        })        ->with(['translations', 'menuTypes', 'children'])
+        ->orderBy('order', 'asc')
+        ->limit(12)->get();
         // $this->footerSections = Section::whereHas('translations', function($q) {
         //     $q->where('active' , 1)->whereLocale(app()->getLocale());
         // })->orderBy('order', 'asc')->limit(6)->get();

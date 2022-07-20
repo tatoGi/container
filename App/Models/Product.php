@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Post;
 
 class Product extends Model
 {
+    use HasFactory;
     /**
      * @var string
      */
@@ -16,58 +19,29 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'brand_id', 'sku', 'name', 'slug', 'description', 'quantity',
-        'weight', 'price', 'sale_price', 'status', 'featured',
+        
+        'post_id',
+        'sort',
+         'price', 
+         'color',
+          'weight', 
+          'size', 
+          
+        
     ];
 
-    /**
-     * @var array
-     */
-    protected $casts = [
-        'quantity'  =>  'integer',
-        'brand_id'  =>  'integer',
-        'status'    =>  'boolean',
-        'featured'  =>  'boolean'
-    ];
+ 
 
-    /**
-     * @param $value
-     */
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = $value;
-        $this->attributes['slug'] = Str::slug($value);
-    }
 
-    /**
+  
+  /**
+     * Get the Product associated with the Post
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function categories()
+    public function Post()
     {
-        return $this->belongsToMany(Category::class, 'product_categories', 'product_id', 'category_id');
+        return $this->hasOne(Post::class, 'id' , 'post_id');
     }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function images()
-    {
-        return $this->hasMany(ProductImage::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function brand()
-    {
-        return $this->belongsTo(Brand::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function attributes()
-    {
-        return $this->hasMany(ProductAttribute::class);
-    }
+    
 }

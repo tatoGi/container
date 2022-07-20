@@ -69,11 +69,20 @@
                         @error('active')
                         <small style="display:block; color:rgb(239, 83, 80)">{{ trans('admin.type_is_required') }}</small>
                         @enderror
+                        
+                        @if (isset($_GET['type']) && ($_GET['type'] == 13))
+                            <select class="form-control  @error('type') danger @enderror " name="type_id" id="typeselect">
+                            
+                            <option value="13" id="typeoption" selected>{{ trans('sectionTypes.category') }}</option>
+                            
+                        </select>
+                        @else
                         <select class="form-control  @error('type') danger @enderror " name="type_id" id="typeselect">
                             @foreach ($sectionTypes as $key => $type)
                             <option value="{{ $type['id'] }}" id="typeoption">{{ trans('sectionTypes.'.$key) }}</option>
                             @endforeach
                         </select>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="parent">{{ trans('admin.parent') }}</label>

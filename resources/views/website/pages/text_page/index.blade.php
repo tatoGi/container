@@ -30,7 +30,7 @@
                     <div class="about-position-box about-delete-after"> 
                         <div class="row wrap-row">
                             <div class="col-lg-5 col-md-6 col-sm-6 col-12">
-                                <div class="about-image">
+                                <div class="about-image about-image2">
                                     <img src="{{ image($post->thumb) }}" alt="img">
                                 </div>
                             </div>
@@ -51,41 +51,66 @@
                     {!! $model->posts[0][app()->getLocale()]->text!!}
                         <br>
                         <br>
-                        <strong>Missions</strong>
+                        <strong>{{trans('admin.Missions')}}</strong>
                         <br>
-                        {!! $model->posts[0][app()->getLocale()]->mission !!}
+                        {!! $model->posts[0][app()->getLocale()]->Mission !!}
                         <br>
                         <br>
-                        <strong>Vission</strong>
+                        <strong>{{trans('admin.Vission')}}</strong>
                         <br>
                         {!! $model->posts[0][app()->getLocale()]->Vission !!}
                         <br>
                         <br>
-                        <strong>Our History</strong>
+                        <strong>{{trans('admin.History')}}</strong>
                         <br>
                         {!!$model->posts[0][app()->getLocale()]->History !!}
+                       
                          
                     </div>
                     <div class="about-page-share-icons">
-                        <h6>Sheare this :</h6>
+                        <h6>{{trans('admin.Sheare_this')}}</h6>
                         <div class="share-icons">
-                            <a href="{{settings('facebook')}}">
-                                <span class="icon-face"></span>
-                            </a>
-                            <a href="{{settings('linkedin')}}">
-                                <span class="icon-tw"></span>
-                            </a>
-                            <a href="{{settings('instagram')}}">
-                                <span class="icon-inst"></span>
-                            </a>
-                        </div>
+
+    <a  data-href="/{{$model->posts[0]->getfullslug()}}"
+            data-layout="button_count" data-size="small" target="_blank"
+            href="https://www.facebook.com/sharer/sharer.php?u=https://europack.ge/{{$model->getfullslug()}}&amp;src={{$post->translate(app()->getlocale())->title}}" class="fb-xfbml-parse-ignore">
+
+
+            
+
+            <span class="icon-face"></span>
+
+        </a>
+        
+
+        <a class="twitter-share-button"
+        href="https://twitter.com/intent/tweet?text=https://europack.ge/{{$model->getfullslug()}}" target="_blank">
+
+            <span class="icon-tw"></span>
+
+        </a>
+
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://europack.ge/{{$model->posts[0]->getfullslug()}}" target="_blank">
+
+            <span class="icon-linkedin"></span>
+
+        </a>
+
+</div>
+                        <div class="det-socials">
+
+
+
+</div>
                     </div>
                     <div class="about-page-img-gallery">
                     @foreach ($model->posts[0]->files as $file)
+                    @if($file->file != $post->thumb)
                                 
                         <a href="/{{ config('config.image_path') . $file->file }}" data-fancybox="video-inner">
                             <img src="/{{ config('config.image_path') . $file->file }}" alt="">
                         </a>
+                        @endif
                         @endforeach
                     </div>
                 </div>

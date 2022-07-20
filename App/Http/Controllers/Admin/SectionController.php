@@ -25,7 +25,12 @@ class SectionController extends Controller
      * @return void
      */
     public function index(){
-        $sections = Section::where('parent_id', null)->orderBy('order', 'desc')->with('children')->get();
+        if (isset($_GET['type']) && ($_GET['type'] == 13)){
+            
+            $sections = Section::where('parent_id', null)->where('type_id', $_GET['type'])->orderBy('order', 'desc')->with('children')->get();
+        }else{
+            $sections = Section::where('parent_id', null)->where('type_id','!=', 13)->orderBy('order', 'desc')->with('children')->get();
+        }
         // dd($sections);
 
         return view('admin.sections.list', compact('sections'));
@@ -42,6 +47,7 @@ class SectionController extends Controller
 
     public function store(Request $request){
         $values = $request->all();
+       
         Validator::validate($values, [
             'type_id' => 'required'
         ]);
@@ -99,6 +105,7 @@ class SectionController extends Controller
     public function update($id, Request $request){
 
         $values = $request->all();
+        
         Validator::validate($values, [
             'type_id' => 'required'
         ]);
@@ -119,11 +126,7 @@ class SectionController extends Controller
                 
                 $values[$locale]['slug'] = SlugService::createSlug(SectionTranslation::class, 'slug', $values[$locale]['slug']);
             }
-            $section->slugs()->create([
-                'fullSlug' => $locale.'/'.$values[$locale]['slug'],
-                'slugable_id' => $id,
-                'locale' => $locale
-            ]);
+           
             $values[$locale]['locale_additional'] = getAdditional($values[$locale], config('sectionAttr.translateable_additional'));
     
         }

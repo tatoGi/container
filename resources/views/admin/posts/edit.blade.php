@@ -10,7 +10,7 @@
             <div class="card-box">
 
                 <h4 class="header-title mt-0 mb-3">{{ trans('admin.edit_post') }}</h4>
-                {!! Form::model($post, ['route' => ['post.update', app()->getLocale(), $post->id], 'enctype' => 'multipart/form-data']) !!}
+                {!! Form::model($post, ['route' => ['post.update', app()->getLocale(), $post->id], 'enctype' => 'multipart/form-data', 'class' => 'invoice-repeater']) !!}
                 @include('admin.posts.form')
                 {!! Form::close() !!}
             </div>
@@ -43,6 +43,7 @@
 @endpush
 
 @push('scripts')
+<script src="{{ asset('/admin/js/jsrepeater.min.js') }}"></script>
     <script src="{{ asset('/admin/js/dropupload.js') }}"></script>
 
     <!-- Plugins Js -->
@@ -61,4 +62,5 @@
     <script src="{{ asset('/admin/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
     <!-- Init js-->
     <script src="{{ asset('/admin/js/pages/form-advanced.init.js') }}"></script>
+    <script src="{{ asset('/admin/js/pages/form-repeater.js') }}"></script>
 @endpush

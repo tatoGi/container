@@ -119,7 +119,8 @@ Route::middleware(['auth.check'])->group(function () {
         Route::get('/admin/submission/destroy/{submission}', [SubmissionController::class, 'destroy']);
 
         Route::delete('/admin/sections/DeleteCover/{que}', [SectionController::class, 'DeleteCover']);
-        Route::delete('/admin/section/posts/DeleteFile/{que}', [PostController::class, 'DeleteFile']);
+        // Route::delete('/admin/section/posts/DeleteFile/{que}', [PostController::class, 'DeleteFile']);
+        Route::delete('/admin/section/posts/DeleteProduct/{que}', [PostController::class, 'DeleteProduct']);
 
 
 
@@ -166,6 +167,6 @@ Route::middleware(['auth.check'])->group(function () {
 Route::post('/submission', [PagesController::class, 'submission'])->name('submission');
 Route::post('/subscribe', [PagesController::class, 'subscribe'])->name('subscribe');
 Route::get('/search', [PagesController::class, 'search'])->name('search');
-Route::get('/products{id}', [PagesController::class, 'prosearch'])->name('prosearch');
+Route::get('/SearchProduct', [PagesController::class, 'SearchProduct'])->name('SearchProduct');
 Route::any('/', [PagesController::class, 'homePage']);
 Route::any('/{all}', [RoutesController::class, 'index'])->where('all', '.*');

@@ -34,6 +34,9 @@ a:hover{
 *{
     box-sizing: border-box;
 }
+li{
+    list-style: none!important;
+}
 /* body{
     overflow-x: hidden;
 } */
@@ -52,7 +55,7 @@ a:hover{
     border-radius: 5px;
 } */
 /* ScrollBar */
-
+ 
 .b-r-c{
     display: flex;
     align-items: center;
@@ -65,6 +68,10 @@ a:hover{
     color: #1B1B1B;
     transition: 0.2s;
     font-family: 'Heebo';
+    text-transform: capitalize;
+}
+.b-r-c a:last-child{
+    font-weight: bold;
 }
 .brc-active{
     font-weight: bold;
@@ -79,7 +86,6 @@ a:hover{
 .b-r-c a:hover{
     font-weight: bold;
 }
-
 header{
     overflow-x: hidden;
 }
@@ -88,7 +94,7 @@ header{
     height: 165px;
     position: fixed;
     top: 0;
-    z-index: 99999;
+    z-index: 1049;
 }
 .h-bg-1{
     width: 100%;
@@ -177,7 +183,9 @@ header{
     position: relative;
     transition: 0.4s;
 }
-
+.contact-links li:nth-child(2){
+    pointer-events: none;
+}
 .contact-links li:before{
     position: absolute;
     content: "";
@@ -212,7 +220,8 @@ header{
 .contact-links li a span:first-child.icon{
     font-size: 20px;
 }
-.contact-links li a span:last-child{
+.contact-links li a span:last-child,
+.contact-links li a span:nth-child(2){
     color: #1B1B1B;
     margin-left: 12px;
     font-size: var(--nav-links-font);
@@ -394,6 +403,7 @@ header{
     border: none;
     border-radius: 4px;
     padding-left: 15px;
+    padding-right: 45px;
     font-size: var(--search-font);
     color: #1B1B1B;
 }
@@ -403,7 +413,7 @@ header{
 button.search-button{
     position: absolute;
     height: 40px;
-    right: 0;
+    right: 9px;
     border: none;
     outline: none;
     background-color: transparent;
@@ -733,6 +743,7 @@ main{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 4px;
 }
 .absolute-position{
     padding-right: 0;
@@ -755,6 +766,7 @@ main{
     max-height: 93px;
     overflow: hidden;
     margin-bottom: 20px;
+    text-transform: capitalize;
 }
 .absolute-position .about-text{
     font-size: var(--text-font);
@@ -765,6 +777,7 @@ main{
     margin-bottom: 25px;
     font-family: 'Heebo';
     line-height: 30px;
+    
 }
 .about-read-link{
     display: flex;
@@ -820,6 +833,7 @@ main{
     height: 100%;
     position: relative;
     z-index: 555;
+    object-fit: cover;
 }
 .popular-product-text{
     padding-right: 10%;
@@ -835,6 +849,7 @@ main{
     overflow: hidden;
     margin-bottom: 35px;
     color: #1B1B1B;
+    text-transform: capitalize;
 }
 .popular-product-text .text{
     font-size: var(--text-font);
@@ -908,21 +923,10 @@ main{
     height: 346px;
     position: relative;
 }
-/* .news-img-box:before{
-    position: absolute;
-    content: "";
-    height: 143px;
-    border-bottom-right-radius: 8px;
-    bottom: -58px;
-    width: 300%;
-    right: 120px;
-    background: #E3662A;
-    z-index: 1;
-} */
- 
 .news-slider-2-item{
     width: 100%;
     position: relative;
+    height: 404px;
 }
 .news-img-box img{
     width: 100%;
@@ -930,11 +934,13 @@ main{
     object-fit: cover;
     position: absolute;
     z-index: 2;
+    border-radius: 8px;
 }
  
 .news-text-box{
     padding-left: 24px;
     padding-top: 42px;
+    
 }
 .news-text-box .time{
     display: flex;
@@ -952,6 +958,9 @@ main{
 .news-text-box .time span:first-child{
     font-size: 50px;
 }
+html:lang(ka) .news-text-box .time span:first-child{
+    font-size: 36px;
+}
 .news-text-box h2{
     font-size: var(--title-font-2);
     font-family: 'Heebo';
@@ -961,6 +970,10 @@ main{
     max-height: 61px;
     overflow: hidden;
     margin-bottom: 40px;
+     
+}
+.news-text-box h2::first-letter{
+    text-transform: uppercase;
 }
 .news-text-box .text{
     font-size: var(--text-font);
@@ -970,6 +983,9 @@ main{
     color: #1B1B1B;
     max-height: 83px;
     overflow: hidden;
+}
+.m-b-b-s{
+    margin-bottom: 100px;
 }
 /* News section */
 
@@ -1010,9 +1026,10 @@ footer{
     margin-top: 100px!important;
 } */
 .footer-adv{
-    margin-top: 152px;
+    margin-top: 0;
     background-color: #E3662A;  
 }
+
 .adv-text{
     width: 100%;
     padding-left: 10%;
@@ -1024,6 +1041,9 @@ footer{
     font-weight: bold;
     margin-bottom: 20px;
     font-family: 'Heebo';
+}
+.adv-text h2 p{
+    margin-bottom: 0;
 }
 .adv-text .text{
     font-size: var(--adv-text-font);
@@ -1059,6 +1079,9 @@ footer{
     line-height: 32px;
     transition: 0.2s;
 }
+html:lang(ka) .adv-link span:first-child{
+        font-size: 26px;
+}
 .adv-link:hover span svg{
     transition: 0.3s;
 }
@@ -1085,6 +1108,7 @@ footer{
 .footer-links ul {
     display: flex;
     align-items: center;
+    padding: 0;
 }
 .footer-links ul li{
     margin-right: 88px;
@@ -1165,6 +1189,9 @@ footer{
     text-transform: uppercase;
     font-family: 'Lato';
 }
+.create .title:first-child{
+    pointer-events: none;
+}
 /* Footer */
 
 /* About Page */
@@ -1197,10 +1224,12 @@ footer{
 }
 .about-page-share-icons .share-icons a span{
     font-size: 20px;
-    color: #E3662A;
+    color: #3B5998;
     transition: 0.3s;
 }
- 
+.about-page-share-icons .share-icons a span:hover{
+    color: #E3662A;
+}
 .about-page-img-gallery{
     margin-top: 60px;
     width: 100%;
@@ -1236,6 +1265,12 @@ footer{
     background-color: #FBD442;
     z-index: -1;
 }
+.after-remove:after{
+    width: 0;
+}
+.counter-cards{
+    margin-bottom: 152px;
+}
 .count-card{
     display: flex;
     flex-direction: column;
@@ -1260,6 +1295,7 @@ footer{
     font-weight: 600;
     line-height: 32px;
     margin-top: 19px;
+    text-align: center;
 }
 .counter-cards{
     position: relative;
@@ -1372,10 +1408,9 @@ footer{
 }
 .pagination ul li:last-child a,
 .pagination ul li:first-child a{
-    font-size: 13px;
+    font-size: 16px;
     align-items: center;
-    display: flex;
-    
+    display: flex;  
 }
 .pagination ul li a{
     font-size: 17px;
@@ -1383,7 +1418,9 @@ footer{
     margin: 0 6px;
     transition: 0.3s;
     font-family: 'Heebo';
-
+}
+.pagination ul li.pagination-color a{
+    color: #E3662A;
 }
 .pagination ul li a span{
     margin-right: 20px;
@@ -1415,6 +1452,7 @@ footer{
 /* News det page */
 .p-t-5{
     padding-top: 46px;
+    
 }
 .news-slider{
     margin-bottom: 40px;
@@ -1468,17 +1506,11 @@ footer{
 }
 .det-socials .share-icons a span{
     font-size: 30px;
-    color: #E3662A;
+    color: #3B5998;
     transition: 0.3s;
 }
-.share-icons a:nth-child(3n-2) span:hover{
-    color: #3B5998;
-}
-.share-icons a:nth-child(2n):hover span{
-    color: #1DA1F2;
-}
-.share-icons a:nth-child(3n):hover span{
-    color: #DD2A7B;
+.share-icons a span:hover{
+    color: #E3662A;
 }
 .det-socials .share-icons a{
     margin-right: 30px;
@@ -1506,6 +1538,9 @@ footer{
     padding: 60px 0;
     background: #F9F9F9;
     margin-bottom: 60px;
+}
+.team-member-2 .person-info .text{
+    text-align: end;
 }
 .team-member-1:before{
     position: absolute;
@@ -1590,6 +1625,7 @@ footer{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 4px;
 }
 .personal-hidden-text{
     display: none;
@@ -1607,7 +1643,9 @@ footer{
     font-family: 'Heebo';
     line-height: 32px;
     margin-bottom: 15px;
+    text-transform: capitalize;
 }
+ 
 .person-special{
     text-transform: uppercase;
     color: #E3662A;
@@ -1623,6 +1661,11 @@ footer{
     line-height: 28px;
     font-family: 'Heebo';
     margin-bottom: 20px;
+    max-height: 52px;
+    overflow: hidden;
+}
+.person-info .text p{
+    margin: 0;
 }
 .person-contact{
     display: flex;
@@ -1704,7 +1747,7 @@ footer{
     right: 0;
     top: 0;
     background-color: #E3662A;
-    border-radius: 0 0 0 8px;
+    border-radius: 8px 0 0 8px;
 }
 .gallery-2:before{
     position: absolute;
@@ -1714,7 +1757,7 @@ footer{
     left: 0;
     bottom: 0;
     background-color: #1860A2;
-    border-radius: 0 8px 0 8px;
+    border-radius: 0 8px 0 0;
     z-index: 1;
 }
 .gallery-2 .position-img{
@@ -1771,6 +1814,8 @@ footer{
     line-height: 28px;
     color: #1B1B1B;
     margin-bottom: 20px;
+    max-height: 52px;
+    overflow: hidden;
 }
 /* img gallery */
 
@@ -1789,12 +1834,21 @@ footer{
 .albums-title{
     margin-bottom: 30px;
 }
+.albums-title .text{
+    font-size: var(--text-font);
+    line-height: 28px;
+    font-weight: 400;
+    font-family: 'Heebo';
+    color: #1B1B1B;
+    margin-top: 30px;
+}
 .albums-title h1{
     font-size: var(--title-font-2);
     font-weight: bold;
     line-height: 29px;
     color: #1B1B1B;
     font-family: 'Heebo';
+    text-transform: capitalize;
 }
 .photo-box{
     display: flex;
@@ -1857,7 +1911,7 @@ footer{
 /* Albums */
 /* Video Gallery */
 .video-item a{
-    height: 470px;
+    height: 494px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -1866,7 +1920,7 @@ footer{
     margin-top: 30px;
 }
 .video-item a .img-box{
-    height: 393px;
+    height: 398px;
     width: 100%;
     position: relative;
     border-radius: 8px;
@@ -1913,13 +1967,13 @@ footer{
 .video-item a .text-side{
     width: 100%;
     padding-right: 10%;
-    line-height: 28px;
+    line-height: 26px;
     font-size: var(--title-font-2);
     font-weight: 600;
     font-family: 'Heebo';
-    height: 57px;
+    height: 82px;
     overflow: hidden;
-    display: flex;
+  
     align-items: center;
     
 }
@@ -1955,6 +2009,7 @@ footer{
     left: -100%;
     background-color: #1860A2;
     padding: 12px 20px;
+    padding-right: 54px;
     color: #FFFFFF;
     font-weight: 500;
     line-height: 28px;
@@ -2310,6 +2365,27 @@ footer{
 .m-tt-22{
     margin-bottom: 30px;
 }
+.alert{
+    position: absolute;
+    top: 330px;
+    width: 400px;
+    left: 50%;
+    height: 150px;
+    border-radius: 4px;
+    display: grid;
+    place-content: center;
+    font-size: 24px;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 24px;
+    font-family: 'Heebo';
+    text-transform: capitalize;
+    z-index: 999;
+}
+.alert-info{
+    background-color: #E3662A;
+    border-color: #E3662A;
+}
 /* Contact */
 
 /* Products-det */
@@ -2328,6 +2404,8 @@ footer{
 .tab-img-products a img{
     width: 100%;
     height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
 }
  .tab-img-box-position{
     position: absolute;
@@ -2336,7 +2414,8 @@ footer{
     align-items: center;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1;
+    z-index: 9;
+    gap: 20px;
  }
  .tab-img-item{
      width: 80px;
@@ -2346,9 +2425,12 @@ footer{
      cursor: pointer;
      transition: 0.4s;
  }
- .tab-img-item:nth-child(2){
-     margin: 0 20px;
+ .tab-img-box-position .active{
+    display: none;
  }
+ /* .tab-img-item:nth-child(2){
+     margin: 0 20px;
+ } */
  .tab-img-item:hover{
      border: 4px solid  #E3662A;
  }
@@ -2371,12 +2453,43 @@ footer{
      height: 44px;
      cursor: pointer;
      pointer-events: none;
+     z-index: 10;
  }
  .container-components-box{
      width: 100%;
      display: flex;
      flex-direction: column;
      padding-left: 72px;
+ }
+ .left-product-container-box{
+    display: flex;
+    gap: 80px;
+ }
+ .left-name-box{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    max-width: 68%;
+ }
+ .right-price-box{
+    display: flex;
+    flex-direction: column;
+ }
+ .right-price-box .pp-rice{
+    font-size: var(--title-font);
+    color: #1B1B1B;
+    font-weight: bold;
+    line-height: 32px;
+    font-family: 'Heebo';
+    margin-bottom: 20px;
+    text-transform: capitalize;
+ }
+ .price-box span{
+    font-weight: bold;
+    font-size: var(--title-font);
+    color: #E3662A;
+    line-height: 32px;
+    font-family: 'Heebo';
  }
  .container-name{
     font-size: var(--title-font);
@@ -2385,19 +2498,36 @@ footer{
     line-height: 32px;
     font-family: 'Heebo';
     margin-bottom: 20px;
+    text-transform: capitalize;
  }
  .cont-snt{
      font-size: var(--c-components-text);
      font-family: 'Heebo';
      color: #FFFFFF;
      font-weight: 600;
-     line-height: 24px;
-     padding: 15px 64px 15px 20px;
+     line-height: 29px;
+     padding: 7px 64px 2px 20px;
      background: #3A7BB7;
      width: fit-content;
-     clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
+     clip-path: polygon(0 0, 95% 0, 100% 100%, 0% 100%);
      margin-bottom: 25px;
+     max-height: 42px;
+     overflow: hidden;
+     transition: 0.3s;
+     padding-bottom: 6px;
  }
+ .cont-snt:hover{
+     max-height: 150px;
+ }
+ .cont-snt p{
+    margin: 0;
+}
+.cont-snt a{
+    text-transform: capitalize;
+}
+.cont-snt a:last-child span{
+    display: none
+}
  .container-description h3{
     font-size: var(--text-font);
     font-family: 'Heebo';
@@ -2429,7 +2559,7 @@ footer{
     font-family: 'Heebo';
     color: #1B1B1B;
  }
- .weight{
+ .weight, .size{
      display: flex;
      flex-direction: column;
      padding-right: 25px;
@@ -2447,20 +2577,23 @@ footer{
  .c-m-q h5 span{
      margin-left: 25px;
      font-weight: 400;
+     text-transform: capitalize;
  }
- .weight::-webkit-scrollbar {
+ .weight::-webkit-scrollbar,
+ .size::-webkit-scrollbar  {
     width: 2px;
-  
   }
   
   /* Track */
-  .weight::-webkit-scrollbar-track {
+  .weight::-webkit-scrollbar-track,
+  .size::-webkit-scrollbar-track {
     background: #EEEEEE;
   
   }
   
   /* Handle */
-  .weight::-webkit-scrollbar-thumb {
+  .weight::-webkit-scrollbar-thumb,
+  .size::-webkit-scrollbar-thumb  {
     background: #3A7BB7;
     
   }
@@ -2580,6 +2713,8 @@ footer{
     font-family: 'Heebo';
     margin-top: 20px;
     font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
 }
 .list-img{
     width: 100%;
@@ -2618,7 +2753,9 @@ footer{
     font-family: 'Heebo';
     padding: 0 40px;
 }
- 
+.list-img .photo-hover .text p{
+    overflow: hidden;
+}
 .product-list-item:hover .photo-hover{
     transform: scaleY(1);
 }
@@ -2658,12 +2795,15 @@ footer{
     text-transform: capitalize;
     transition: 0.3s;
     font-family: 'Heebo';
+    width: 80%;
+}
+html:lang(ka) .list-ul li a{
+    font-size: 17px;
 }
 .list-ul li a:hover{
     font-weight: bold;
 }
 .list-ul li span{
-    /* display: inline-block; */
     float: right;
     transform: rotate(-90deg);
     margin-right: 30px;
@@ -2689,17 +2829,23 @@ footer{
 .list-ul li.opened > a{
     font-weight: bold;
 }
+.list-ul li.remove-bold a{
+    font-weight: initial;
+}
+.list-ul li.remove-bold a:hover{
+    font-weight: bold;
+}
 .child-ul li{
     width: 100%;
     max-height: 47px;
     overflow: hidden;
     transition: 0.3s;
-    /* margin-bottom: 20px; */
 }
  
 .child-ul li a{
     padding-top: 20px;
 }
+
 .child-ul{
     padding-left: 20px;
 }
@@ -2718,4 +2864,65 @@ footer{
  .filter-button{
      display: none;
  }
+ 
 /* Products */
+.text p:first-letter{
+    text-transform: uppercase;
+}
+.text p{
+    margin: 0;
+}
+.fancy-gallery-items a.active{
+    z-index: 3;
+}
+ 
+
+html:lang(ka) .bottom-navbar ul li a,
+html:lang(ka) .important-title h1,
+html:lang(ka) .title,
+html:lang(ka) .absolute-position .text-box-h h2,
+html:lang(ka) .popular-product-text h1,
+html:lang(ka) .news-text-box h2,
+html:lang(ka) .adv-text h2,
+html:lang(ka) .adv-link span:first-child,
+html:lang(ka) .footer-links ul li a,
+ 
+html:lang(ka) .b-r-c a,
+html:lang(ka) .select-categories-box h2,
+html:lang(ka) .product-search-result h2,
+html:lang(ka) .product-list-item h3,
+html:lang(ka) .container-name,
+html:lang(ka) .container-description h3,
+html:lang(ka) .c-c-t h5,
+html:lang(ka) .slider-arrows li a,
+html:lang(ka) .person-name,
+html:lang(ka) .person-special,
+html:lang(ka) .gallery-text h2,
+html:lang(ka) .albums-title h1,
+html:lang(ka) .contact-title,
+html:lang(ka) .full-name label, .email label, .text-area label,.submit button,.phone-icon h2{
+    font-family: 'BPG DejaVu Sans Caps';
+}
+html:lang(ka) .read-more-links .read-more,
+ html:lang(ka) .about-read-link .read-link,
+ html:lang(ka) .absolute-position .about-text,
+ html:lang(ka) .text,
+ html:lang(ka) .see-all-link,
+ html:lang(ka) .about-page-text,
+ html:lang(ka) .product-search-result h4,
+ html:lang(ka) .list-img .photo-hover .text,
+ html:lang(ka) .cont-snt,
+ html:lang(ka) .c-c-t div span:nth-child(2),
+ html:lang(ka) .c-slider-item h2,
+ html:lang(ka) .person-info .text,
+ html:lang(ka) .list-ul li a,
+ html:lang(ka) .phone-icon .numbers a,
+ html:lang(ka) .partners-item a .partners-name,
+ html:lang(ka) .photo-box a .photo-hover .text,
+ html:lang(ka) .video-item a .text-side,
+ html:lang(ka) .burger-container ul li a,
+ html:lang(ka) .c-m-q h5 span,
+ html:lang(ka) .news-text-box .time span{
+    font-family: 'BPG DejaVu Sans';
+}
+

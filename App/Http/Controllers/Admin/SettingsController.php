@@ -44,7 +44,7 @@ class SettingsController extends Controller
               }
             }
           }
-
+       
         // foreach($request->all() as $key => $values){
         //     if ($key !== '_token') {
         //         $settings = config('settings.settings.'.$key);

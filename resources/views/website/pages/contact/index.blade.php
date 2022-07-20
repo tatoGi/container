@@ -38,20 +38,20 @@
                                 <div class="full-name">
                                 <input type="hidden" placeholder="Name" name="post_id"  value="{{$model->posts[0]->id}}">
                                
-                                    <label>{{trans('name')}}</label>
+                                    <label>{{trans('website.Full_Name')}}</label>
                                     <input  type="text" placeholder=" {{trans('admin.name')}}" name="name"  required>
                                 </div>
                                 <div class="email">
-                                    <label>{{trans('website.mail')}}</label>
+                                    <label>{{trans('website.Mail')}}</label>
                                     <input  type="text" placeholder="{{trans('admin.email')}}" name="email"  required>
                                 </div>
                                 <div class="text-area">
-                                    <label>{{trans('website.messege')}}</label>
-                                    <textarea></textarea>
+                                    <label>{{trans('website.MESSAGE')}}</label  required>
+                                    <textarea placeholder="{{trans('website.MESSAGE')}}"  name="text" required></textarea>
                                 </div>
                                 <div class="submit">
                                     <button>
-                                        Submit
+                                    {{trans('website.SUBMIT')}}
                                     </button>
                                 </div>
                                  @if(Session::has('message'))
@@ -80,7 +80,7 @@
                                             </svg>
   
                                         </span>
-                                        <h2>Phone Number</h2>
+                                        <h2>{{trans('website.Phone_Number')}}</h2>
                                         <div class="numbers">
                                             <a href="#">{{$model->posts[0]->mobile}}</a>
                                             <a href="#">{{$model->posts[0]->mobile}}</a>
@@ -96,7 +96,7 @@
                                                 </g>
                                             </svg>
                                         </span>
-                                        <h2>address</h2>
+                                        <h2>{{trans('website.adress')}}</h2>
                                         <div class="address">
                                         {{$model->posts[0]->translate(app()->getlocale())->adress}}
                                         </div>
@@ -110,7 +110,7 @@
          </section>
          <section class="padding">
             <div class="map">
-            {!! settings('Iframe') !!}
+            {!! settings('iframe') !!}
             </div>
         </section>
     @endif

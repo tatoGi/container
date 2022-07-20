@@ -1,7 +1,7 @@
 <?php
 return [
     'id' => 4,
-    'type' => 4,
+    'type' => 3,
     'folder' => 'contact',
     'fields' => [
         'trans' => [
@@ -38,9 +38,7 @@ return [
             'phone' => [
                 'type' => 'text',
             ],
-            'map' => [
-                'type' => 'text',
-            ],
+          
             'woking_hours' => [
                 'type' => 'text',
             ],

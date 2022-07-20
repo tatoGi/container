@@ -5,10 +5,7 @@ return [
     'name' => 'main_banner',
     'fields' => [
         'trans' => [
-            'title' => [
-                'type' => 'text',
-
-            ],
+           
             'slug' => [
                 'type' => 'text',
 
@@ -16,10 +13,7 @@ return [
             'active' => [
                 'type' => 'checkbox',
             ],
-            'desc' => [
-                'type' => 'textarea',
-
-            ],
+         
         ],
 
         'nonTrans' => [
