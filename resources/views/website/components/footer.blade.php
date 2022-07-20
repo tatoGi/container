@@ -4,7 +4,11 @@
             <div class="container">
                 <div class="footer-links">
                     <ul>
+<<<<<<< HEAD
                     {!! settings('mesenger_Plugin') !!}
+=======
+                    {!! settings('mesenger_plugin') !!}
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                    
                         @foreach ($footerSections as $key => $fsection)
                             @if ($fsection !== 0)

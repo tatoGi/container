@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @if(isset($model[app()->getlocale()]->slug))
+=======
+
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 @if($model->type_id !== 4)
         <section>
 
@@ -76,5 +80,8 @@
             </div>
 
         </section>
+<<<<<<< HEAD
         @endif
+=======
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
         @endif

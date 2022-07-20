@@ -32,7 +32,11 @@ class WebsiteComposer
 		}))
         ->with(['translations', 'menuTypes'])
 				->where('parent_id', null)
+<<<<<<< HEAD
         ->orderBy('order', 'asc')
+=======
+        ->orderBy('order', 'asc')->orderBy('created_at', 'desc')
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
         ->get();
 
 

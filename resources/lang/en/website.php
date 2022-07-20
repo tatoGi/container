@@ -25,7 +25,13 @@ return [
 	"Product_Categories" => "Product Categories",
 	"Phone_Number" => "Phone Number",
 	"SUBMIT" => "SUBMIT",
+<<<<<<< HEAD
 	"adress" => "Adress",
+=======
+	"adress" => "adress",
+	"MON" => "MON",
+	"FRI" => "FRI",
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 	"Jan" => "Jan",
 	"Feb" => "Feb",
 	"Mar" => "Mar",

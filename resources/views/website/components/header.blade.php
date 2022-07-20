@@ -29,7 +29,11 @@
                                 <a href="callto:{{settings('time')}}">
                                     <span class="icon icon-Time"></span>
                                     <span class="l-links">{{settings('time')}}</span>
+<<<<<<< HEAD
                                     <span>{{settings('Working_day - First')}} - {{settings('Working_day - last')}}</span>
+=======
+                                    <span>{{trans('website.MON')}} - {{trans('website.FRI')}}</span>
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                                 </a>
                             </li>
                             <li>
@@ -198,7 +202,11 @@
                          <a href="#">
                                  <span class="icon icon-Time"></span>
                                  <span class="l-links">{{settings('time')}}</span>
+<<<<<<< HEAD
                                  <span>{{trans('website.MON')}} - {{trans('website.FRI')}}</span>
+=======
+                                 <span>MON - FRI</span>
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                          </a>
                      </li>
                      <li>

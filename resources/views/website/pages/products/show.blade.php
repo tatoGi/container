@@ -17,7 +17,11 @@
     <section>
 
         <div class="container">
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
             <div class="b-r-c">
 
                 <a href="/{{app()->getlocale()}}">{{ trans('website.home') }}</a>
@@ -65,6 +69,7 @@
 
                             <div class="tab-img-box-position">
 
+<<<<<<< HEAD
                                
                                 @if($model->files != $model->thumb)
                                 @foreach ($model->files as $file)
@@ -77,6 +82,20 @@
                                 @endif
                                 
 
+=======
+                                @foreach ($model->files as $file)
+                                @if($file->file != $model->thumb)
+
+                                <div class="tab-img-item">
+
+                                    <img src="/{{ config('config.image_path') . $file->file }}" alt="Nature"
+                                        onclick="myFunction(this);">
+
+                                </div>
+                                @endif
+                                @endforeach
+
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                             </div>
 
                             <div class="fancy-gallery-items">
@@ -130,12 +149,17 @@
 
                     </div>
 
+<<<<<<< HEAD
               
+=======
+
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 
                     <div class="col-xxl-9 col-lg-8 col-md-8 col-sm-12 col-12">
 
                         <div class="container-components-box">
 
+<<<<<<< HEAD
                              
 
                             <div class="left-product-container-box">
@@ -178,6 +202,39 @@
                              
 
 
+=======
+                            <h1 class="container-name">
+
+                                {{ $model[app()->getlocale()]->title }}
+
+                            </h1>
+                            @if(isset($filter_category))
+
+                            <div class="cont-snt">
+
+                                @foreach($filter_category as  $filter)
+                                
+                                @if(isset($filter->parent->parent))
+                                <a href="/{{$products->getfullslug()}}?category={{$filter->parent->parent->id}}">{{$filter->parent->parent->translate(app()->getlocale())->title}}
+                                    <span>-</span> </a>
+                                    @endif
+                                    @if(isset($filter->parent))
+                                <a href="/{{$products->getfullslug()}}?category={{$filter->parent->id}}">{{$filter->parent->translate(app()->getlocale())->title}}
+                                    <span>-</span> </a>
+                                    @endif
+                                <a href="/{{$products->getfullslug()}}?category={{$filter->id}}">{{$filter->translate(app()->getlocale())->title}}
+                                    <span>-</span>
+                                </a>
+                                   
+                                @endforeach
+
+
+
+
+
+                            </div>
+                            @endif
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                             <div class="container-description">
 
                                 <h3> {{trans('admin.Description')}}:</h3>
@@ -189,7 +246,11 @@
                                 </div>
 
                             </div>
+<<<<<<< HEAD
                          
+=======
+
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                             <div class="container-components">
 
                                 <div class="c-weight c-c-t">
@@ -197,10 +258,17 @@
                                     <h5> {{trans('admin.Weight')}}:</h5>
 
                                     <div class="weight">
+<<<<<<< HEAD
                                         
                                         @if(($model->product['weight'] != '') && is_array(explode(",",
                                         $model->product['weight'])))
                                         @foreach(explode(",", $model->product['weight']) as $Weight)
+=======
+
+                                        @if(($model[app()->getLocale()]->Weight != '') && is_array(explode(",",
+                                        $model[app()->getLocale()]->Weight)))
+                                        @foreach(explode(",", $model[app()->getLocale()]->Weight) as $Weight)
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                                         <div>
 
                                             <span>
@@ -232,17 +300,31 @@
                                     </div>
 
                                 </div>
+<<<<<<< HEAD
                         
+=======
+
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                                 <div class="c-size c-c-t">
                                     <h5> {{trans('admin.Size')}}:</h5>
 
                                     <div class="size">
+<<<<<<< HEAD
                                      
                                         @if(($model->product['size'] != '') && is_array(explode(",",
                                         $model->product['size'])))
                                         @foreach(explode(",", $model->product['size']) as $Size)
                                         <div>
                                             
+=======
+
+
+                                        @if(($model[app()->getLocale()]->Size != '') && is_array(explode(",",
+                                        $model[app()->getLocale()]->Size)))
+                                        @foreach(explode(",", $model[app()->getLocale()]->Size) as $Size)
+                                        <div>
+
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                                             <span>
 
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="12.6" height="9.226"
@@ -363,11 +445,19 @@
             <div class="row">
                 
                 <div class="containers-slider">
+<<<<<<< HEAD
                     @if(isset($products_slider) && (count($products_slider) > 0))
                     @foreach($products_slider as $post)
                     
                    
                   
+=======
+                    @if(isset($products_posts) && (count($products_posts) > 0))
+                    @foreach($products_posts as $post)
+                    @if(isset($post->additional['category']))
+
+                    @if($model->id !== $post->id)
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 
                     <div class="col-xxl-2 col-lg-2 col-md-2 col-sm-4 col-6">
                         <a href="/{{$post->getfullslug()}}" class="c-slider-item">
@@ -381,8 +471,13 @@
                             </h2>
                         </a>
                     </div>
+<<<<<<< HEAD
                    
                    
+=======
+                    @endif
+                    @endif
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                     @endforeach
                     @endif
 

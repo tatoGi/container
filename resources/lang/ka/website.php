@@ -26,8 +26,13 @@ return [
 	"Phone_Number" => "ტელეფონის ნომერი",
 	"SUBMIT" => "გაგზავნა",
 	"adress" => "მისამართი",
+<<<<<<< HEAD
 	"Working day - First" => "ორშ",
 	"Working day - Last" => "პარ",
+=======
+	"MON" => "ორშ",
+	"FRI" => "პარ",
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 	"Jan" => "იან",
 	"Feb" => "თებ",
 	"Mar" => "მარ",

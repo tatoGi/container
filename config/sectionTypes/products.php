@@ -30,6 +30,15 @@ return [
             'text' => [
                 'type' => 'textarea',
             ],
+<<<<<<< HEAD
+=======
+            'Size' => [
+                'type' => 'keywords',
+            ],
+            'Weight' =>[
+                'type' => 'keywords',
+            ],
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
             'Measurement' => [
                 'type' => 'text',
             ],
@@ -43,9 +52,13 @@ return [
 
 
            
+<<<<<<< HEAD
             'product' =>[
                 'type' => 'product',
             ],
+=======
+
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
            'Minimum_Quantity' => [
                 'type' => 'text',
             ],

@@ -68,7 +68,11 @@
                                 <span>{{ getDates($model->date) }}</span>
 
 
+<<<<<<< HEAD
                                 
+=======
+
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                             </div>
 
                             <h2>{{ $model->translate(app()->getlocale())->title }}
@@ -77,6 +81,7 @@
 
                             <div class="det-socials">
 
+<<<<<<< HEAD
                     <div class="share-icons">
 
                         <a  data-href="/{{$model->getfullslug()}}"
@@ -103,11 +108,44 @@
                                 <span class="icon-linkedin"></span>
 
                             </a>
+=======
+                                <div class="share-icons">
+                                    @if(isset($model->facebook))
+                                    <a href="{{$model->facebook}}">
+    
+                                        <span class="icon-face"></span>
+
+                                    </a>
+                                    @endif
+                                    @if(isset($model->Twitter))
+                                    <a href="{{$model->Twitter}}">
+
+                                        <span class="icon-tw"></span>
+
+                                    </a>
+                                    @endif
+                                    @if(isset($model->instagram))
+                                    <a href="{{$model->instagram}}">
+
+                                        <span class="icon-inst"></span>
+
+                                    </a>
+                                    @endif
+
+                                </div>
+
+                            </div>
+
+                        </div>
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
+
+
 
                     </div>
 
                 </div>
 
+<<<<<<< HEAD
                         </div>
 
 
@@ -116,6 +154,8 @@
 
                 </div>
 
+=======
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                 <div class="text">
 
                     {!! $model->translate(app()->getlocale())->desc !!}
@@ -173,12 +213,23 @@
 
             <div class="news-slider">
 
+<<<<<<< HEAD
             @if (isset($news_slider))
 
           
 
               @foreach ($news_slider as $post)
         
+=======
+            @if (isset($news->posts) && count($news->posts) > 0)
+
+          
+
+              @foreach ($news->posts->slice(0, 4) as $post)
+            
+              @if($model->id !== $post->id)
+            
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                 <div class="news-section padding m-b-22">
 
                     <div class="container">
@@ -248,7 +299,11 @@
                     </div>
 
                 </div>
+<<<<<<< HEAD
        
+=======
+            @endif
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                 @endforeach
 
             @endif
@@ -258,7 +313,11 @@
             <div class="container">
             <div class="slider-arrows">
                 <li>
+<<<<<<< HEAD
                     <a id="prev">
+=======
+                    <a id="prev2">
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="65.542" height="33.382"
                                 viewBox="0 0 65.542 33.382">
@@ -282,7 +341,11 @@
                     </a>
                 </li>
                 <li class="last-li">
+<<<<<<< HEAD
                     <a id="next">
+=======
+                    <a id="next2">
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                     {{trans('admin.Next')}}
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="65.542" height="33.382"

@@ -163,6 +163,7 @@
 
 
 
+<<<<<<< HEAD
                             <div class="form-group">
                             <label for="parent">{{ trans('admin.parent') }}</label>
                             
@@ -176,6 +177,26 @@
                                 @endforeach
                             </select>
                         </div>
+=======
+<div class="form-group">
+                        <label for="parent">{{ trans('admin.parent') }}</label>
+                        @if (isset($_GET['type']) && ($_GET['type'] == 13))
+                        <select class="form-control select2" name="parent_id" id="parent">
+                            <option value="">{{ trans('admin.parent') }}</option>
+                          
+                            <option value="13">{{ $sec[app()->getlocale()]->title }}</option>
+                            @else
+                            <select class="form-control select2" name="parent_id" id="parent">
+                            <option value="">{{ trans('admin.parent') }}</option>
+                            @foreach ($sections as $key => $sec)
+                            <option value="{{ $sec->id }}">{{ $sec[app()->getlocale()]->title }}</option>
+                            @endforeach
+                        </select>
+                        @endif
+                            
+                        </select>
+                    </div>
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                         @foreach (menuTypes() as $key => $menuType)
                             <div class="checkbox checkbox-primary">
 

@@ -30,7 +30,10 @@
                  @if(isset($partners_posts) && (count($partners_posts) > 0))
             @foreach($partners_posts as $partners)
                      <div class="col-lg-3 col-md-3 col-sm-6 col-6 partners-item">
+<<<<<<< HEAD
                        @if(isset($partners->website))
+=======
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                          <a href="{{$partners->website}}">
                              <img src="{{ image($partners->thumb) }}" alt="partners">
                              <div class="partners-name">

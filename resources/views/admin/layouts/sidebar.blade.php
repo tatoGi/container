@@ -69,12 +69,20 @@
                         <span> {{ trans('admin.sections') }} </span>
                     </a>
                 </li>
+<<<<<<< HEAD
                 <li >
+=======
+                <li class="">
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                     <a href="/{{ app()->getLocale() }}/admin/sections?type=13">
                         <i class="mdi mdi-view-list"></i>
                         <span> {{ trans('admin.categories') }} </span>
                     </a>
                 </li>
+<<<<<<< HEAD
+=======
+                
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                 <li>
                     
                     @foreach (bannerTypesOrdered() as $key => $bannerType)

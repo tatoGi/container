@@ -45,7 +45,10 @@
                  </div>
              </div>
              @foreach ($posts as $item)
+<<<<<<< HEAD
              
+=======
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
              <div class="search-result-item">
                 <div class="container">
               

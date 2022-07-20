@@ -130,8 +130,12 @@ class PagesController extends Controller
 	
 		if ($model->type_id == 14) {
 			
+<<<<<<< HEAD
 			$products  = Section::where('type_id', 14)->with('translations', 'posts'  )->first();
 			
+=======
+			$products  = Section::where('type_id', 14)->with('translations', 'posts' )->first();
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 			$popular_products = Post::where('section_id', $products->id)->with('translations')->orderby('date', 'asc')->get();
 			$category  = Section::where([['type_id', 13],['parent_id',null]])->with('translations','children','children.children')->get();
 			$filter_cat_arr = array();
@@ -313,7 +317,11 @@ class PagesController extends Controller
 			}
 		}
 
+<<<<<<< HEAD
 		$filter_category = Section::where([['type_id', 13],['id', $model->category]])->with('translations' , 'parent.parent' , 'parent')->get();
+=======
+		$filter_category = Section::where([['type_id', 13],['id', $model->category]])->with('translations' , 'parent')->get();
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 
 		
 
@@ -340,6 +348,7 @@ class PagesController extends Controller
 		})->where('active_on_home', 1)->paginate(settings('projects_pagination'));
 		
 		$news = Section::where('type_id', 2)->with('translations', 'posts')->first();
+<<<<<<< HEAD
 		$news_posts = Post::where('section_id', $news->id)->with('translations',function($q){
 			$q->where('active', 1);
 		})->where('active_on_home', 1)->orderby('date', 'desc')->paginate(settings('paginate'));
@@ -362,6 +371,10 @@ class PagesController extends Controller
 		
 				
 		
+=======
+		$news_posts = Post::where('section_id', $news->id)->with('translations')->orderby('date', 'desc')->paginate(settings('paginate'));
+
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 		$breadcrumbs = array_reverse($breadcrumbs);
 		$post = Post::where('posts.id', $model->id)
 	
@@ -465,6 +478,23 @@ class PagesController extends Controller
 
 		public static function SearchProduct(request $request){
 		
+<<<<<<< HEAD
+=======
+		$posts->appends(['que' => $searchText]);
+		$data = [];
+		foreach ($posts as $post) {
+			$data[] = [
+				'slug' => $post->getFullSlug() ?? '#',
+				'title' => $post->translate(app()->getLocale())->title,
+				'desc' => str_limit(strip_tags($post->translate(app()->getLocale())->desc)),
+			];
+		}
+		return view('website.pages.products.index', compact('posts', 'language_slugs'));
+	}	
+
+	public static function SearchProduct(request $request){
+		
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 		$que = $request->que;
 		$model = Section::where('type_id', 14)->with('translations')->first();
 		
@@ -477,6 +507,24 @@ class PagesController extends Controller
 
 		
 		$products_posts = Post::Where('section_id', $model->id)
+<<<<<<< HEAD
+=======
+	
+		->whereHas('translations', function ($q) use ($que) {
+			$q->where('title', 'LIKE', "%{$que}%");
+			$q->orWhere('desc', 'LIKE', "%{$que}%");
+			$q->orWhere('text', 'LIKE', "%{$que}%");
+			
+		})->orWhereHas('product_category', function($p) use($que){
+			
+			$p->whereHas('translations',  function ($i) use ($que) {
+				$i->where('title', 'LIKE', "%{$que}%");
+			});
+		})->paginate(settings('products_pagination'));
+		
+		return view('website.pages.products.index', compact('products_posts', 'model', 'category', 'products', 'language_slugs'));
+	}
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 	
 		->whereHas('translations', function ($q) use ($que) {
 			$q->where('title', 'LIKE', "%{$que}%");

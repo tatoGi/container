@@ -109,6 +109,7 @@ class SectionController extends Controller
         Validator::validate($values, [
             'type_id' => 'required'
         ]);
+        
         $section = Section::where('id', $id)->with('translations')->first();
       
         MenuSection::where('section_id', $id)->delete();

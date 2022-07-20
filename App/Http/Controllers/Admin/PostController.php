@@ -33,7 +33,10 @@ class PostController extends Controller
             return Redirect::route('post.create', [app()->getLocale(), $sec,]);
 
         }
+<<<<<<< HEAD
         
+=======
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
         $posts = Post::where('section_id', $sec)->orderBy('date', 'desc')->orderBy('created_at', 'asc')
 		->join('post_translations', 'posts.id', '=', 'post_translations.post_id')
 		->where('post_translations.locale', '=', app()->getLocale())
@@ -53,11 +56,19 @@ class PostController extends Controller
 
 
     public function store($sec, Request $request){
+<<<<<<< HEAD
        
        
         $section = Section::where('id', $sec)->with('translations')->first();
         $values = $request->all();
        
+=======
+
+
+        $section = Section::where('id', $sec)->with('translations')->first();
+        $values = $request->all();
+        // dd($values);
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
         $values['section_id'] = $sec;
         $values['author_id'] = auth()->user()->id;
         $postFillable = (new Post)->getFillable();
@@ -81,6 +92,7 @@ class PostController extends Controller
         }elseif(isset($values['old_cover'])){
             $values['cover'] = $values['old_cover'];
         }
+<<<<<<< HEAD
        
 
         $values['additional'] = getAdditional($values, array_diff(array_keys($section->fields['nonTrans']) , $postFillable) );
@@ -88,6 +100,10 @@ class PostController extends Controller
 
        
 
+=======
+        $values['additional'] = getAdditional($values, array_diff(array_keys($section->fields['nonTrans']), $postFillable) );
+		
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
         foreach(config('app.locales') as $locale){
             if($values[$locale]['slug'] != ''){
                 $values[$locale]['slug'] = SlugService::createSlug(PostTranslation::class, 'slug', $values[$locale]['slug']);
@@ -105,6 +121,7 @@ class PostController extends Controller
                 'locale' => $locale
             ]);
         }
+<<<<<<< HEAD
         
 
         if (isset($values['invoice']) && (count($values['invoice']) > 0)) {
@@ -134,6 +151,8 @@ class PostController extends Controller
 
 
 
+=======
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
         if (isset($values['files']) && count($values['files']) > 0) {
 			
             foreach($values['files'] as $key => $files){
@@ -241,7 +260,11 @@ class PostController extends Controller
 				]);
                
 			
+<<<<<<< HEAD
            
+=======
+            // dd($values);
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
             if(isset($values[$locale]['file']) && ($values[$locale]['file'] != '')){
                
                 $newfileName = uniqid() . "." . $values[$locale]['file']->getClientOriginalExtension();
@@ -313,6 +336,7 @@ class PostController extends Controller
 
 
 
+<<<<<<< HEAD
     // public function DeleteFile($que) {
     //     $post = Post::where('id', $que)->first();
     //     if($post->cover != ''){
@@ -325,6 +349,9 @@ class PostController extends Controller
     // }
 
     public function DeleteProduct($que){
+=======
+    public function DeleteFile($que) {
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
         $post = Post::where('id', $que)->first();
         if($post->product != ''){
         $post->product->delete();

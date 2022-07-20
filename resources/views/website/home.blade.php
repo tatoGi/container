@@ -242,7 +242,11 @@
                                     {{ Str::limit($post->translate(app()->getlocale())->title, 100) }}  
                                     </h2>
                                     <div class="text">
+<<<<<<< HEAD
                                     {!! Str::limit($post->translate(app()->getlocale())->desc, 180)!!}
+=======
+                                    {!! Str::limit($post->translate(app()->getlocale())->desc, 150)!!}
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
                                     </div>
                                     
                                     </a>

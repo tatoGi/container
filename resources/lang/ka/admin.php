@@ -221,8 +221,11 @@ return [
 
 	'facebook' => 'Facebook',
 
+<<<<<<< HEAD
     'twitter' => 'twitter',
 
+=======
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 	'phone2' => 'ტელეფონი',
 
 	'phone1' => "ტელეფონი",

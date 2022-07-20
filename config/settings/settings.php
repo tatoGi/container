@@ -5,6 +5,17 @@ return [
 		"value" => [
 			"ka" => "<p>გადამავიწყდა მოგვეწერა აესრულებინა გაცხარებულნი მოხიბლონ ბრესონმა ნიცშე.</p>",
 			"en" => "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>",
+<<<<<<< HEAD
+=======
+		],
+		"type" => "textarea",
+		"description" => "contact Us Text",
+	],
+	"Footer_Banner_Contact" => [
+		"value" => [
+			"ka" => "<p>გსურთ შეკვეთა?</p>",
+			"en" => "<p>Would you like to order?</p>",
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 		],
 		"type" => "textarea",
 		"description" => "contact Us Text",
@@ -117,6 +128,7 @@ return [
 		"title" => "Paginate",
 		"type" => "text",
 		"value" => "8",
+<<<<<<< HEAD
 	],
 	"news_slider" => [
 		"title" => "Paginate",
@@ -132,5 +144,7 @@ return [
 		"title" => "Paginate",
 		"type" => "text",
 		"value" => "4",
+=======
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 	],
 ];

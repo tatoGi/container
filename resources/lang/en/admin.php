@@ -77,7 +77,10 @@ return [
     'edit_user' => 'Edit User',
 
     'edit_Prevofile' => 'Edit Profile',
+<<<<<<< HEAD
     'price' => 'price',
+=======
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 
     'logout' => 'Log Out',
 
@@ -249,7 +252,11 @@ return [
 	'Vission' => 'Vission',
 
 	'Minimum_Quantity' => 'Minimum Quantity',
+<<<<<<< HEAD
     'COPYRIGHT' => 'ALL RIGHT IS RESERVED',
+=======
+    'COPYRIGHT' => 'COPYRIGHT ALL RIGHT IS RESERVED',
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
     'Footer_Banner_Contact' => 'Footer Banner Contact',
     'MADE_BY_IDEA' => 'MADE BY IDEA DESIGN GROUP',
     'time' => 'time',
@@ -261,7 +268,11 @@ return [
     'Description' => 'Description',
     'See_All' => 'See All',
     'show_on_home_page' => 'Show on home page',
+<<<<<<< HEAD
     'Missions' => 'Mission',
+=======
+    'Missions' => 'Missions',
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
     'Vission' => 'Vission',
     'History' => 'History',
     'Sheare_this' => 'Share this',
@@ -315,6 +326,7 @@ return [
     'Measurement' => 'Measurement',
     'Prev' => 'Prev',
     'Next' => 'Next',
+<<<<<<< HEAD
     'Business-Years'=>'Business Years',
     'Product-Sales'=>'Product Sales',
     'Happy-Customers'=>'Happy Customers',
@@ -323,6 +335,8 @@ return [
     'Working_day - First' => "Working day - First",
 	'Working_day - last' => "Working day - Last",
     
+=======
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 
 ];
 

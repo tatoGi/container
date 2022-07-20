@@ -124,6 +124,7 @@ class Post extends Model
         }
         return $slugs;
     }
+<<<<<<< HEAD
 
     public function product_category(){
         return $this->belongsTo('App\Models\Section', 'additional->category', 'id' )->with('translations' ,'children');
@@ -131,4 +132,9 @@ class Post extends Model
 
 
 
+=======
+    public function product_category(){
+        return $this->belongsTo('App\Models\Section', 'additional->category', 'id' )->with('translations' ,'children');
+    }
+>>>>>>> d922c0ffaf704877e41100065be4c367b03aefc8
 }
